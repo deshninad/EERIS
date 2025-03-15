@@ -1,0 +1,129 @@
+body {
+  
+    color: #000000; /* Black text color */
+    font-family: Arial, sans-serif; /* Font family for consistency */
+    margin: 0;
+    padding: 0;
+    background-image: url("https://catalog.usf.edu/mime/media/21/1925/Mission%20Vision%20Values%20and%20Goals.png");
+    background-size: cover;
+  }
+  
+  /* Container styling */
+  .login-container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #ddd; /* Border for the container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: #f9f9f9; /* Light background for the container */
+  }
+  
+  /* Title styling */
+  .login-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #000000;
+  }
+  
+  /* Input group styling */
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative; /* For tooltip positioning */
+  }
+  
+  /* Input field styling */
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  /* Info button styling */
+  .info-button {
+    background: none;
+    border: 1px solid #007bff; /* Border for the info icon */
+    border-radius: 50%; /* Make it circular */
+    font-size: 16px;
+    color: #007bff;
+    margin-left: 5px;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .info-button:hover {
+    color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  /* Tooltip container */
+  .tooltip-container {
+    display: inline-block;
+    position: relative;
+  }
+  
+  /* Tooltip text */
+  .tooltip-text {
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the info button */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+    width: 160px;
+  }
+  
+  /* Show tooltip on hover */
+  .tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* Send OTP button styling */
+  .send-otp-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .send-otp-button:hover {
+    background-color: #218838;
+  }
+  
+  /* Sign in button styling */
+  .sign-in-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .sign-in-button:hover {
+    background-color: #0056b3;
+  }
+  
