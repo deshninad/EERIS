@@ -4,6 +4,7 @@ import EUploadPage from "./pages/eUploadPage/EUploadPage";
 import ESummaryPage from "./pages/eSummaryPage/eSummaryPage";
 import { AuthProvider } from "./AuthProvider";  
 import ProtectedRoute from "./ProtectedRoute"; 
+import AdminDashboard from "./pages/adminDashboard/adminDashboard";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
          <Route path="/upload" element={<ProtectedRoute><EUploadPage /></ProtectedRoute>} />
          <Route path="/dashboard" element={<ProtectedRoute><ESummaryPage /></ProtectedRoute>} />
+         <Route path="/admindashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
         </Routes>
       </Router>
     </AuthProvider>

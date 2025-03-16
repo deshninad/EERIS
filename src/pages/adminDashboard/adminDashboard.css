@@ -1,0 +1,90 @@
+.admin-dashboard {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2, h3 {
+    text-align: center;
+    color: #343a40;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+  }
+  
+  table, th, td {
+    border: 1px solid #dee2e6;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  th {
+    background: #007bff;
+    color: white;
+  }
+  
+  td input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+  }
+  
+  button {
+    padding: 8px 12px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .approve-button {
+    background: #28a745;
+    color: white;
+  }
+  
+  .add-user-container {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .add-user-container input,
+  .add-user-container select {
+    padding: 8px;
+    margin: 5px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .add-user-container button {
+    background: #007bff;
+    color: white;
+  }
+  
