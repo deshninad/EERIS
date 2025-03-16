@@ -6,17 +6,22 @@ body {
     padding: 0;
     background-image: url("https://catalog.usf.edu/mime/media/21/1925/Mission%20Vision%20Values%20and%20Goals.png");
     background-size: cover;
+    justify-content: center;
+  align-items: center;
   }
   
   /* Container styling */
   .login-container {
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 2px solid #ddd; /* Border for the container */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    background-color: #f9f9f9; /* Light background for the container */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Adjust to your desired container size */
   }
   
   /* Title styling */

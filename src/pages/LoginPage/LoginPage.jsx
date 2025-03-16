@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useAuth } from '../../AuthContext.jsx'; // Correct import path
+import { useAuth } from '../../AuthProvider.jsx'; // Correct import path
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -62,7 +62,7 @@ const LoginPage = () => {
     if (otp === generatedOtp) {
       alert('Signed in successfully!');
       login(email);  // Update AuthContext with the user's email to log them in
-      navigate('/selection');  // Navigate to the next page
+      navigate('/upload');  // Navigate to the next page
       setError('');  // Clear any previous error
     } else {
       setError('Invalid OTP. Please try again.');
