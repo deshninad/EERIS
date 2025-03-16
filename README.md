@@ -1,8 +1,17 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Basic Setup:
+In terminal, ensure node.js and npm are installed:
+node -v
+npm -v
+npm install
 
-Currently, two official plugins are available:
+Then, to run the vite server, use npm run dev
+To run .js server, use node server.js
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A .env file is needed **in the format below** for email access. Must be in backend, same directory level as OTP_emailer.py:
+
+EMAIL_ADDRESS="xxxxx@gmail.com"
+EMAIL_PASSWORD="xxxxxx"
+SMTP_SERVER="smtp.gmail.com"
+SMTP_PORT="587"
