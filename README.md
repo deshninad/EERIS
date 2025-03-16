@@ -9,7 +9,8 @@ npm install
 Then, to run the vite server, use npm run dev
 To run .js server, use node server.js
 
-A .env file is needed in the format below for email access. Must be in backend, same directory level as OTP_emailer.py:
+A .env file is needed **in the format below** for email access. Must be in backend, same directory level as OTP_emailer.py:
+
 EMAIL_ADDRESS="xxxxx@gmail.com"
 EMAIL_PASSWORD="xxxxxx"
 SMTP_SERVER="smtp.gmail.com"
