@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Import Link from react-router-dom for navigation
 import "./eSummaryPage.css";
-import data from "../../data/data.json"; // Import the JSON file (or fetch it later from an API)
+import data from "../../data/DATA.json"; // Import the JSON file (or fetch it later from an API)
 import { useAuth } from "../../AuthProvider"; // Import the AuthContext to access the logged-in user's email
 
 const Dashboard = () => {

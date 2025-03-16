@@ -6,77 +6,102 @@ import './LoginPage.css';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
-  const [otp, setOtp] = useState('');  // Store OTP entered by user
-  const [generatedOtp, setGeneratedOtp] = useState('');  // Store generated OTP
-  const [otpSent, setOtpSent] = useState(false);  // Show OTP input fields when OTP is sent
-  const [error, setError] = useState('');  // Error message
-  const [loadingOtp, setLoadingOtp] = useState(false);  // Loading state for sending OTP
-  const [loadingSignIn, setLoadingSignIn] = useState(false);  // Loading state for signing in
-  const navigate = useNavigate();  // Hook for navigation
+  const [otp, setOtp] = useState('');
+  const [generatedOtp, setGeneratedOtp] = useState('');
+  const [otpSent, setOtpSent] = useState(false);
+  const [error, setError] = useState('');
+  const [loadingOtp, setLoadingOtp] = useState(false);
+  const [loadingSignIn, setLoadingSignIn] = useState(false);
+  const [role, setRole] = useState('employee'); // Default to employee
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const { login } = useAuth();  // Get login function from AuthContext
+  const generateOtp = () => Math.floor(1000 + Math.random() * 9000).toString();
 
-  // Function to generate a 4-digit OTP using JavaScript's Math.random()
-  const generateOtp = () => {
-    return Math.floor(1000 + Math.random() * 9000).toString();  // Generates a 4-digit OTP
-  };
-
-  // Email validation function to check if it ends with @usf.edu
-  const validateEmail = (email) => {
-    return email.endsWith('@usf.edu');
-  };
+  const validateEmail = (email) => email.endsWith('@usf.edu');
 
   const handleSendOtp = async () => {
-    // Check if email is valid
     if (!validateEmail(email)) {
-      setError('Email must end in @usf.edu');  // Show error if email is invalid
+      setError('Email must end in @usf.edu');
       return;
     }
-
-    const generated = generateOtp();  // Generate OTP
-    setGeneratedOtp(generated);  // Store the generated OTP locally
-    setLoadingOtp(true);  // Start loading
-
+  
+    setLoadingOtp(true);
+    setError('');
+  
     try {
-      // Send email and generated OTP to backend for sending the email
-      const response = await axios.post('http://localhost:5000/send-OTP', { email, otp: generated });
-
-      if (response.data.success) {
+      const response = await axios.get('http://localhost:5000/get-users');
+      console.log('Users data received:', response.data); // Debugging log
+  
+      const users = response.data;
+      const isEmployee = users.employees.includes(email);
+      const isAdmin = users.admins.includes(email);
+  
+      // Debugging logs
+      console.log(`Checking email: ${email}`);
+      console.log(`Role selected: ${role}`);
+      console.log(`Is Employee: ${isEmployee}, Is Admin: ${isAdmin}`);
+  
+      if (role === 'employee' && !isEmployee) {
+        setError('Access denied: You are not registered as an employee.');
+        setLoadingOtp(false);
+        return;
+      }
+  
+      if (role === 'admin' && !isAdmin && !isEmployee) {
+        setError('Access denied: You are not registered as an admin.');
+        setLoadingOtp(false);
+        return;
+      }
+  
+      const generated = generateOtp();
+      setGeneratedOtp(generated);
+  
+      const otpResponse = await axios.post('http://localhost:5000/send-OTP', { email, otp: generated, role });
+  
+      if (otpResponse.data.success) {
         alert('OTP sent to your email!');
-        setOtpSent(true);  // Show OTP input fields
-        setError('');  // Clear any previous error
+        setOtpSent(true);
       } else {
         setError('Failed to send OTP. Please try again.');
       }
     } catch (error) {
-      setError('Error sending OTP. Please check your email format or try again later.');
+      console.error('Error in handleSendOtp:', error); // Log exact error
+      setError('Error verifying email. Please try again later.');
     } finally {
-      setLoadingOtp(false);  // Stop loading
+      setLoadingOtp(false);
     }
   };
-
+  
   const handleSignIn = () => {
-    setLoadingSignIn(true);  // Start loading
+    setLoadingSignIn(true);
 
-    // Compare user input OTP with the generated OTP
     if (otp === generatedOtp) {
       alert('Signed in successfully!');
-      login(email);  // Update AuthContext with the user's email to log them in
-      navigate('/upload');  // Navigate to the next page
-      setError('');  // Clear any previous error
+      login(email, role);
+      if(role=="admin"){
+        navigate('/adminDashboard')
+      }
+      else{
+      navigate('/upload');
+      }
     } else {
       setError('Invalid OTP. Please try again.');
     }
 
-    setLoadingSignIn(false);  // Stop loading
+    setLoadingSignIn(false);
   };
-
-  // Clears error when focusing back on input fields
-  const clearError = () => setError('');
 
   return (
     <div className="login-container">
       <h2 className="login-title">WELCOME TO EERIS</h2>
+
+      <div className="input-group">
+        <select className="role-select" value={role} onChange={(e) => setRole(e.target.value)} disabled={otpSent}>
+          <option value="employee">Employee</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
 
       <div className="input-group">
         <input
@@ -85,26 +110,16 @@ const LoginPage = () => {
           placeholder="USF Email **ONLY**"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          onFocus={clearError}  // Clear error on focus
-          disabled={otpSent || loadingOtp || loadingSignIn}  // Disable input after OTP is sent
+          disabled={otpSent || loadingOtp || loadingSignIn}
         />
-        <div className="tooltip-container">
-          <button className="info-button">i</button>
-          <div className="tooltip-text">Must end in @usf.edu</div>
-        </div>
       </div>
 
       <div className="input-group">
         <button className="send-otp-button" onClick={handleSendOtp} disabled={loadingOtp || otpSent}>
-          {loadingOtp ? (
-            <span className="loading-spinner">Loading...</span>  // Display loading spinner
-          ) : (
-            'Send OTP'
-          )}
+          {loadingOtp ? 'Loading...' : 'Send OTP'}
         </button>
       </div>
 
-      {/* Conditionally render OTP input and Sign In button */}
       {otpSent && (
         <>
           <div className="input-group">
@@ -114,21 +129,15 @@ const LoginPage = () => {
               placeholder="Enter OTP"
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
-              onFocus={clearError}  // Clear error on focus
-              disabled={loadingSignIn}  // Disable input while signing in
+              disabled={loadingSignIn}
             />
           </div>
           <button className="sign-in-button" onClick={handleSignIn} disabled={loadingSignIn}>
-            {loadingSignIn ? (
-              <span className="loading-spinner">Signing in...</span>  // Display loading spinner
-            ) : (
-              'Sign In'
-            )}
+            {loadingSignIn ? 'Signing in...' : 'Sign In'}
           </button>
         </>
       )}
 
-      {/* Display error message if there's an error */}
       {error && <p className="error-message">{error}</p>}
     </div>
   );
