@@ -16,6 +16,7 @@ const AdminDashboard = () => {
   const fetchExpenses = async () => {
     try {
       const response = await axios.get('http://localhost:5000/get-expenses');
+      console.log('Fetched expenses:', response.data);  // Debug log
       setExpenses(response.data);
     } catch (error) {
       setError('Error fetching expenses');
@@ -62,32 +63,43 @@ const AdminDashboard = () => {
           <tr>
             <th>ID</th>
             <th>Employee</th>
-            <th>Amount</th>
+            <th>Expense Type</th>
+            <th>Category</th>
             <th>Status</th>
+            <th>Amount</th>
             <th>Approve</th>
             <th>Edit</th>
           </tr>
         </thead>
         <tbody>
-          {expenses.map((exp) => (
-            <tr key={exp.id}>
-              <td>{exp.id}</td>
-              <td>{exp.employee}</td>
-              <td>
-                <input
-                  type="number"
-                  defaultValue={exp.amount}
-                  onBlur={(e) => updateExpense(exp.id, 'amount', e.target.value)}
-                />
-              </td>
-              <td>{exp.status}</td>
-              <td>
-                {exp.status !== 'Approved' && (
-                  <button onClick={() => approveExpense(exp.id)}>Approve</button>
-                )}
-              </td>
-            </tr>
-          ))}
+        {expenses.length === 0 ? (
+  <tr>
+    <td colSpan="8">No expenses available</td>
+  </tr>
+) : (
+  expenses.map((exp) => (
+    <tr key={exp.id}>
+      <td>{exp.id}</td>
+      <td>{exp.email}</td>
+      <td>{exp.expenseType}</td>
+      <td>{exp.category}</td>
+      <td>{exp.status}</td>
+      <td>
+        <input
+          type="number"
+          defaultValue={exp.amount}
+          onBlur={(e) => updateExpense(exp.id, 'amount', e.target.value)}
+        />
+      </td>
+      <td>
+        {exp.status !== 'Approved' && (
+          <button onClick={() => approveExpense(exp.id)}>Approve</button>
+        )}
+      </td>
+    </tr>
+  ))
+)}
+
         </tbody>
       </table>
 

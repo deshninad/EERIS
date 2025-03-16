@@ -1,37 +1,37 @@
 [
-    {
-      "email": "user1@example.com",
-      "requests": [
-        {
-          "receiptId": "12345",
-          "expenseType": "Food",
-          "category": "Lunch",
-          "status": "Pending",
-          "amount": 25.50,
-          "name": "John Doe"
-        },
-        {
-          "receiptId": "12346",
-          "expenseType": "Travel",
-          "category": "Taxi",
-          "status": "Approved",
-          "amount": 50.00,
-          "name": "John Doe"
-        }
-      ]
-    },
-    {
-      "email": "ndeshpande2@usf.edu",
-      "requests": [
-        {
-          "receiptId": "12347",
-          "expenseType": "Food",
-          "category": "Dinner",
-          "status": "Rejected",
-          "amount": 30.00,
-          "name": "Jane Smith"
-        }
-      ]
-    }
-  ]
-  
+  {
+    "email": "user1@example.com",
+    "requests": [
+      {
+        "receiptId": "12345",
+        "expenseType": "Food",
+        "category": "Lunch",
+        "status": "Pending",
+        "amount": 25.5,
+        "name": "John Doe"
+      },
+      {
+        "receiptId": "12346",
+        "expenseType": "Travel",
+        "category": "Taxi",
+        "status": "Approved",
+        "amount": 50,
+        "name": "John Doe"
+      }
+    ],
+    "amount": ""
+  },
+  {
+    "email": "ndeshpande2@usf.edu",
+    "requests": [
+      {
+        "receiptId": "12347",
+        "expenseType": "Food",
+        "category": "Dinner",
+        "status": "Rejected",
+        "amount": 30,
+        "name": "Jane Smith"
+      }
+    ]
+  }
+]
