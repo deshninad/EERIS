@@ -1,5 +1,13 @@
 {
-    "employees": ["ndeshpande2@usf.edu", "neerajpillai@usf.edu","dkarmariya@usf.edu","snagraj@usf.edu"],
-    "admins": ["ndeshpande2@usf.edu", "admin2@usf.edu"]
-  }
-  
+  "employees": [
+    "ndeshpande2@usf.edu",
+    "neerajpillai@usf.edu",
+    "dkarmariya@usf.edu",
+    "snagraj@usf.edu",
+    "dkrulez123@gmail.com"
+  ],
+  "admins": [
+    "ndeshpande2@usf.edu",
+    "admin2@usf.edu"  
+  ]
+}

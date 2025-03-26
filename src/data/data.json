@@ -19,7 +19,8 @@
         "name": "John Doe"
       }
     ],
-    "amount": ""
+    "amount": "",
+    "status": "Approved"
   },
   {
     "email": "ndeshpande2@usf.edu",
