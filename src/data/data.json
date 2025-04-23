@@ -4,7 +4,7 @@
     "email": "user82@usf.edu",
     "expenseType": "Entertainment",
     "category": "Conference",
-    "status": "Approved",
+    "status": "Pending",
     "amount": 293.69,
     "name": "User82"
   },
@@ -22,7 +22,7 @@
     "email": "user84@usf.edu",
     "expenseType": "Utilities",
     "category": "Internet",
-    "status": "Approved",
+    "status": "Rejected",
     "amount": 72.01,
     "name": "User84"
   },
@@ -59,7 +59,7 @@
     "expenseType": "Office",
     "category": "Stationery",
     "status": "Approved",
-    "amount": 400.08,
+    "amount": "400.08",
     "name": "User97"
   },
   {
@@ -85,7 +85,7 @@
     "email": "user36@usf.edu",
     "expenseType": "Entertainment",
     "category": "Workshop",
-    "status": "Approved",
+    "status": "Pending",
     "amount": 118.24,
     "name": "User36"
   },
@@ -517,7 +517,7 @@
     "email": "user100@usf.edu",
     "expenseType": "Supplies",
     "category": "Paper",
-    "status": "Rejected",
+    "status": "Approved",
     "amount": 42.61,
     "name": "User100"
   },
@@ -815,7 +815,7 @@
     "expenseType": "Office",
     "category": "Equipment",
     "status": "Approved",
-    "amount": 48.0,
+    "amount": 48,
     "name": "User97"
   },
   {
@@ -1481,7 +1481,7 @@
     "expenseType": "Utilities",
     "category": "Internet",
     "status": "Approved",
-    "amount": 372.0,
+    "amount": 372,
     "name": "User96"
   },
   {
@@ -1625,7 +1625,7 @@
     "expenseType": "Food",
     "category": "Dinner",
     "status": "Pending",
-    "amount": 480.0,
+    "amount": 480,
     "name": "User22"
   },
   {
@@ -3677,7 +3677,7 @@
     "expenseType": "Utilities",
     "category": "Electricity",
     "status": "Approved",
-    "amount": 23.0,
+    "amount": 23,
     "name": "User83"
   },
   {
@@ -3794,7 +3794,7 @@
     "expenseType": "Supplies",
     "category": "Ink",
     "status": "Rejected",
-    "amount": 69.0,
+    "amount": 69,
     "name": "User45"
   },
   {
@@ -4091,7 +4091,7 @@
     "expenseType": "Utilities",
     "category": "Water",
     "status": "Approved",
-    "amount": 338.0,
+    "amount": 338,
     "name": "User33"
   },
   {
@@ -4847,7 +4847,7 @@
     "expenseType": "Office",
     "category": "Equipment",
     "status": "Approved",
-    "amount": 146.0,
+    "amount": 146,
     "name": "User9"
   },
   {
@@ -5243,7 +5243,7 @@
     "expenseType": "Supplies",
     "category": "Toner",
     "status": "Rejected",
-    "amount": 216.0,
+    "amount": 216,
     "name": "User57"
   },
   {
@@ -5792,7 +5792,7 @@
     "expenseType": "Food",
     "category": "Coffee",
     "status": "Rejected",
-    "amount": 101.0,
+    "amount": 101,
     "name": "User62"
   },
   {
@@ -7070,7 +7070,7 @@
     "expenseType": "Food",
     "category": "Dinner",
     "status": "Pending",
-    "amount": 464.0,
+    "amount": 464,
     "name": "User13"
   },
   {
@@ -8294,7 +8294,7 @@
     "expenseType": "Utilities",
     "category": "Electricity",
     "status": "Approved",
-    "amount": 149.0,
+    "amount": 149,
     "name": "User70"
   },
   {
@@ -8501,7 +8501,7 @@
     "expenseType": "Entertainment",
     "category": "Workshop",
     "status": "Rejected",
-    "amount": 38.0,
+    "amount": 38,
     "name": "User95"
   },
   {
@@ -8771,7 +8771,7 @@
     "expenseType": "Supplies",
     "category": "Paper",
     "status": "Rejected",
-    "amount": 483.0,
+    "amount": 483,
     "name": "User55"
   },
   {
