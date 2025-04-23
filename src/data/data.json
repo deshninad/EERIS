@@ -4,7 +4,7 @@
     "email": "user82@usf.edu",
     "expenseType": "Entertainment",
     "category": "Conference",
-    "status": "Pending",
+    "status": "Approved",
     "amount": 293.69,
     "name": "User82"
   },
@@ -58,7 +58,7 @@
     "email": "user97@usf.edu",
     "expenseType": "Office",
     "category": "Stationery",
-    "status": "Approved",
+    "status": "Pending",
     "amount": "400.08",
     "name": "User97"
   },
@@ -67,7 +67,7 @@
     "email": "user60@usf.edu",
     "expenseType": "Entertainment",
     "category": "Workshop",
-    "status": "Rejected",
+    "status": "Approved",
     "amount": 38.56,
     "name": "User60"
   },
