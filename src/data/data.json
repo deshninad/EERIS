@@ -1,36 +1,29 @@
 [
   {
-    "email": "user1@example.com",
-    "requests": [
-      {
-        "receiptId": "12345",
-        "expenseType": "Food",
-        "category": "Lunch",
-        "status": "Pending",
-        "amount": 25.5,
-        "name": "John Doe"
-      },
-      {
-        "receiptId": "12346",
-        "expenseType": "Travel",
-        "category": "Taxi",
-        "status": "Approved",
-        "amount": 50,
-        "name": "John Doe"
-      }
-    ]
+    "id": 1,
+    "email": "alice@usf.edu",
+    "expenseType": "Food",
+    "category": "Lunch",
+    "status": "Approved",
+    "amount": "25.5",
+    "name": "Alice"
   },
   {
+    "id": 2,
+    "email": "bob@usf.edu",
+    "expenseType": "Travel",
+    "category": "Taxi",
+    "status": "Approved",
+    "amount": 42,
+    "name": "Bob"
+  },
+  {
+    "id": 3,
     "email": "ndeshpande2@usf.edu",
-    "requests": [
-      {
-        "receiptId": "12347",
-        "expenseType": "Food",
-        "category": "Dinner",
-        "status": "Rejected",
-        "amount": 30,
-        "name": "Jane Smith"
-      }
-    ]
+    "expenseType": "Office",
+    "category": "Supplies",
+    "status": "Rejected",
+    "amount": 15.75,
+    "name": "Carol"
   }
 ]

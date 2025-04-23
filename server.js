@@ -4,136 +4,141 @@ import bodyParser from 'body-parser';
 import { exec } from 'child_process';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url'; // Required for __dirname alternative
+import { fileURLToPath } from 'url';
 
-// __dirname workaround for ES Modules
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname  = path.dirname(__filename);
 
 const app = express();
-app.use(bodyParser.json());
 app.use(cors());
+app.use(bodyParser.json());
 
-// Helper functions to load and save JSON files
-const getUsers = () => JSON.parse(fs.readFileSync(path.join(__dirname, 'src/data/USERS.json'), 'utf-8'));
-const getExpenses = () => JSON.parse(fs.readFileSync(path.join(__dirname, 'src/data/DATA.json'), 'utf-8'));
-const saveExpenses = (data) => fs.writeFileSync(path.join(__dirname, 'src/data/DATA.json'), JSON.stringify(data, null, 2));
-const saveUsers = (data) => fs.writeFileSync(path.join(__dirname, 'src/data/USERS.json'), JSON.stringify(data, null, 2));
+const USERS_FILE   = path.join(__dirname, 'src/data/USERS.json');
+const EXPENSES_FILE = path.join(__dirname, 'src/data/data.json');
 
+function readJSON(file) {
+  return JSON.parse(fs.readFileSync(file, 'utf-8'));
+}
 
-// Route to send OTP with role-based verification
+function writeJSON(file, data) {
+  fs.writeFileSync(file, JSON.stringify(data, null, 2));
+}
+
+// ————————————————————————————————
+// 1) SEND OTP with role check
 app.post('/send-OTP', (req, res) => {
-  const { email, otp, role } = req.body; // Extract role from request
-
+  const { email, otp, role } = req.body;
   if (!email || !otp || !role) {
-    return res.status(400).json({ message: 'Email, role, and OTP are required.' });
+    return res.status(400).json({ message: 'Email, role and OTP required.' });
   }
 
-  // Load user data
-  const users = getUsers();
-  if (!users) {
-    return res.status(500).json({ message: 'Error loading user data' });
+  const users = readJSON(USERS_FILE);
+  const isEmp  = users.employees.includes(email);
+  const isAdm  = users.admins.includes(email);
+
+  if (role === 'employee' && !isEmp) {
+    return res.status(403).json({ message: 'Not registered as employee.' });
+  }
+  if (role === 'admin' && !isAdm && !isEmp) {
+    return res.status(403).json({ message: 'Not registered as admin.' });
   }
 
-  const isEmployee = users.employees.includes(email);
-  const isAdmin = users.admins.includes(email);
-
-  // Check role-based access
-  if (role === 'employee' && !isEmployee) {
-    return res.status(403).json({ message: 'Access denied: You are not registered as an employee.' });
-  }
-
-  if (role === 'admin' && !isAdmin && !isEmployee) {
-    return res.status(403).json({ message: 'Access denied: You are not registered as an admin.' });
-  }
-
-  // Construct command to run Python script
-  const command = `python3 src/backend/OTP_emailer.py ${email} ${otp}`;
-  console.log('Executing command:', command);
-
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error executing script: ${error.message}`);
-      return res.status(500).json({ success: false, message: 'Error executing script' });
+  // run your OTP script
+  exec(`python3 src/backend/OTP_emailer.py ${email} ${otp}`, (err, stdout, stderr) => {
+    if (err || stderr) {
+      console.error(err || stderr);
+      return res.status(500).json({ success: false, message: 'Error sending OTP.' });
     }
-    if (stderr) {
-      console.error(`Script stderr: ${stderr}`);
-      return res.status(500).json({ success: false, message: 'Script error' });
-    }
-
-    console.log(`Script stdout: ${stdout}`);
-    res.json({ success: true, message: 'OTP sent successfully' });
+    res.json({ success: true, message: 'OTP sent.' });
   });
 });
 
-// Route to fetch USERS.json for frontend role validation
+// ————————————————————————————————
+// 2) GET USERS
 app.get('/get-users', (req, res) => {
-  const users = getUsers();
-  if (!users) {
-    return res.status(500).json({ message: 'Error loading user data' });
-  }
-  console.log(users)
-  res.json(users);
-});
-
-//  Get all expenses
-app.get('/get-expenses', (req, res) => {
   try {
-    res.json(getExpenses());
-  } catch (error) {
-    res.status(500).json({ message: 'Error loading expenses' });
+    res.json(readJSON(USERS_FILE));
+  } catch {
+    res.status(500).json({ message: 'Cannot load users.' });
   }
 });
 
-//  Approve an expense
+// ————————————————————————————————
+// 3) GET EXPENSES
+app.get('/get-expenses', (req, res) => {
+  const file = EXPENSES_FILE;
+  console.log('[get-expenses] looking for file at:', file);
+  try {
+    if (!fs.existsSync(file)) {
+      console.error('[get-expenses] file does not exist:', file);
+      return res.status(500).json({ error: 'Expenses file missing on disk' });
+    }
+    const data = readJSON(file);
+    console.log('[get-expenses] loaded', data.length, 'records');
+    return res.json(data);
+  } catch (err) {
+    console.error('[get-expenses] error reading file:', err);
+    return res.status(500).json({ error: 'Failed to load expenses' });
+  }
+});
+
+
+// ————————————————————————————————
+// 4) APPROVE EXPENSE
 app.post('/approve-expense', (req, res) => {
   const { expenseId } = req.body;
-  let expenses = getExpenses();
-
-  const expenseIndex = expenses.findIndex((exp) => exp.id === expenseId);
-  if (expenseIndex === -1) return res.status(404).json({ message: 'Expense not found' });
-
-  expenses[expenseIndex].status = 'Approved';
-  saveExpenses(expenses);
-  
-  res.json({ success: true, message: 'Expense approved successfully' });
+  const exps = readJSON(EXPENSES_FILE);
+  const idx = exps.findIndex(e => e.id === expenseId);
+  if (idx === -1) return res.status(404).json({ message: 'Not found.' });
+  exps[idx].status = 'Approved';
+  writeJSON(EXPENSES_FILE, exps);
+  res.json({ success: true });
 });
 
-//  Edit an expense field
+// ————————————————————————————————
+// 5) UPDATE EXPENSE
 app.post('/update-expense', (req, res) => {
   const { expenseId, field, newValue } = req.body;
-  let expenses = getExpenses();
-
-  const expenseIndex = expenses.findIndex((exp) => exp.id === expenseId);
-  if (expenseIndex === -1) return res.status(404).json({ message: 'Expense not found' });
-
-  expenses[expenseIndex][field] = newValue;  // Update the specific field
-  saveExpenses(expenses);
-
-  res.json({ success: true, message: `Updated ${field} successfully` });
+  const exps = readJSON(EXPENSES_FILE);
+  const idx = exps.findIndex(e => e.id === expenseId);
+  if (idx === -1) return res.status(404).json({ message: 'Not found.' });
+  exps[idx][field] = newValue;
+  writeJSON(EXPENSES_FILE, exps);
+  res.json({ success: true });
 });
 
-//  Add a new user (Admin or Employee)
+// ————————————————————————————————
+// 6) DELETE EXPENSE
+app.post('/delete-expense', (req, res) => {
+  const { expenseId } = req.body;
+  let exps = readJSON(EXPENSES_FILE);
+  exps = exps.filter(e => e.id !== expenseId);
+  writeJSON(EXPENSES_FILE, exps);
+  res.json({ success: true });
+});
+
+// ————————————————————————————————
+// 7) ADD USER
 app.post('/add-user', (req, res) => {
   const { email, role } = req.body;
-  let users = getUsers();
-
+  if (!email.endsWith('@usf.edu')) {
+    return res.status(400).json({ message: 'Email must end in @usf.edu.' });
+  }
   if (role !== 'admin' && role !== 'employee') {
-    return res.status(400).json({ message: 'Invalid role. Must be admin or employee.' });
+    return res.status(400).json({ message: 'Role must be admin or employee.' });
   }
 
-  if (users[role + 's'].includes(email)) {
+  const users = readJSON(USERS_FILE);
+  const list  = role + 's';
+  if (users[list].includes(email)) {
     return res.status(409).json({ message: 'User already exists.' });
   }
 
-  users[role + 's'].push(email);
-  saveUsers(users);
-
+  users[list].push(email);
+  writeJSON(USERS_FILE, users);
   res.json({ success: true, message: `${email} added as ${role}` });
 });
 
-
+// ————————————————————————————————
 const PORT = 5001;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server listening on ${PORT}`));

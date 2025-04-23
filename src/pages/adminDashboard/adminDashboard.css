@@ -1,4 +1,7 @@
-/* Global reset + font */
+/* GLOBAL RESET */
+* {
+  box-sizing: border-box;
+}
 html, body {
   margin: 0;
   padding: 0;
@@ -7,130 +10,120 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
-/* Container & Nav */
-.admin-dashboard-container {
-  min-height: 100vh;
-  background: #000;
-}
-.admin-title {
-  text-align: center;
-  color: #d61dfb;
-  margin: 1rem 0 0.5rem;
-  font-size: 1.75rem;
-}
-.error-message {
-  text-align: center;
-  color: #ff4c4c;
-  margin-bottom: 1rem;
+/* LAYOUT: two-pane */
+.admin-dashboard {
+  display: flex;
+  height: 100vh;
 }
 
-/* Main content grid */
-.dashboard-content {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 2rem;
-  padding: 1rem 2rem 2rem;
-}
-@media (max-width: 800px) {
-  .dashboard-content {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Shared card style */
-.dashboard-card {
+/* NAV PANE */
+.nav-pane {
+  width: 200px;
   background: #111;
+  border-right: 1px solid #d61dfb;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.nav-pane h3 {
+  margin: 0 0 1rem 0;
+  color: #d61dfb;
+}
+.nav-pane button {
+  background: none;
   border: 1px solid #d61dfb;
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-sizing: border-box;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.nav-pane button:hover {
+  background: rgba(214, 29, 251, 0.2);
+}
+.nav-pane .sign-out {
+  margin-top: auto;
+  border-color: #ff4c4c;
+}
+.nav-pane .sign-out:hover {
+  background: rgba(255, 76, 76, 0.2);
 }
 
-/* Table styling */
-.expenses-card h3,
-.add-user-card h3 {
+/* MAIN TABLE PANE */
+.table-pane {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+.table-pane h2 {
   margin-top: 0;
   color: #d61dfb;
 }
-.expenses-table {
+.error {
+  margin: 0.5rem 0;
+  color: #ff4c4c;
+}
+
+/* DYNAMIC TABLE */
+.dynamic-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
 }
-.expenses-table th,
-.expenses-table td {
-  border: 1px solid #444;
+.dynamic-table th,
+.dynamic-table td {
+  border: 1px solid #333;
   padding: 0.5rem;
   text-align: left;
 }
-.expenses-table th {
+.dynamic-table th {
   background: #111;
   color: #d61dfb;
 }
-.expenses-table tr:nth-child(even) {
+.dynamic-table tr:nth-child(even) {
   background: #1a1a1a;
 }
-.amount-input {
-  width: 80px;
-  padding: 0.25rem;
-  background: #000;
+
+/* Status coloring */
+.dynamic-table td.approved {
+  background: #228B22;
   color: #fff;
-  border: 1px solid #d61dfb;
-  border-radius: 4px;
 }
-.amount-input:focus {
-  outline: none;
-  border-color: #ff77ff;
-}
-.approve-btn {
-  background: #d61dfb;
-  color: #000;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-.approve-btn:hover {
-  opacity: 0.9;
+.dynamic-table td.pending,
+.dynamic-table td.rejected {
+  background: #B22222;
+  color: #fff;
 }
 
-/* Add User form */
-.add-user-form {
+/* Actions column */
+.dynamic-table td.actions {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 0.5rem;
 }
-.add-user-form label {
-  display: flex;
-  flex-direction: column;
-  font-size: 0.9rem;
-  color: #ddd;
-}
-.input-field {
-  margin-top: 0.25rem;
-  padding: 0.5rem;
-  background: #000;
-  color: #fff;
-  border: 1px solid #d61dfb;
-  border-radius: 4px;
-  transition: border-color 0.2s;
-}
-.input-field:focus {
-  outline: none;
-  border-color: #ff77ff;
-}
-.add-user-btn {
-  align-self: flex-start;
+.dynamic-table td.actions button {
   background: #d61dfb;
-  color: #000;
   border: none;
-  padding: 0.6rem 1.2rem;
+  color: #000;
+  padding: 0.3rem 0.6rem;
   border-radius: 4px;
   cursor: pointer;
   transition: opacity 0.2s;
 }
-.add-user-btn:hover {
-  opacity: 0.9;
+.dynamic-table td.actions button:hover {
+  opacity: 0.8;
+}
+
+/* Input fields */
+.dynamic-table input {
+  width: 80px;
+  padding: 0.25rem;
+  border: 1px solid #d61dfb;
+  border-radius: 4px;
+  background: #000;
+  color: #fff;
+}
+.dynamic-table input:focus {
+  outline: none;
+  border-color: #ff77ff;
 }
