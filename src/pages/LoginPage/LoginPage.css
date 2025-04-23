@@ -1,134 +1,250 @@
-body {
-  
-    color: #000000; /* Black text color */
-    font-family: Arial, sans-serif; /* Font family for consistency */
-    margin: 0;
-    padding: 0;
-    background-image: url("https://catalog.usf.edu/mime/media/21/1925/Mission%20Vision%20Values%20and%20Goals.png");
-    background-size: cover;
-    justify-content: center;
+/* === GLOBAL RESET === */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #000;
+  font-family: Arial, sans-serif;
+}
+
+/* === LAYOUT: TWO‑COLUMN === */
+.login-page {
+  display: flex;
+  width: 100%;
+  height: 100vh;        /* fill viewport height */
+}
+
+/* LEFT PANEL (login) */
+.login-panel {
+  flex: 0 0 380px;      /* fixed 380px width */
+  display: flex;
   align-items: center;
-  }
-  
-  /* Container styling */
-  .login-container {
-    display: flex;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* RIGHT PANEL (info cards) */
+.info-panel {
+  flex: 1;
+  padding: 2rem;
+  box-sizing: border-box;
+  background-color: #111;
+  overflow: hidden;     /* no scroll */
+}
+
+/* GRID FOR THE THREE CARDS */
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  height: 100%;         /* stretch to panel height */
+}
+
+/* === SHARED CARD STYLING === */
+.info-card {
+  background-color: transparent;
+  border: 1px solid #d61dfb;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  overflow: auto;       /* if content slightly overflows */
+}
+
+.info-card h3 {
+  margin-top: 0;
+  color: #d61dfb;
+  font-size: 1.25rem;
+}
+
+/* STEPS CARD */
+.steps-card ul {
+  list-style: disc inside;
+  margin: 1rem 0;
+  padding: 0;
+}
+.steps-card p {
+  margin: 0.75rem 0 0;
+}
+.steps-card a {
+  color: #d61dfb;
+  text-decoration: none;
+}
+.steps-card a:hover {
+  text-decoration: underline;
+}
+
+/* FEATURES CARD */
+.features-card .feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.features-card .feature-item h4 {
+  margin: 0 0 0.25rem;
+  color: #d61dfb;
+  font-size: 1.1rem;
+}
+.features-card .feature-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+/* LINKS CARD */
+.links-card .support-links {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+.links-card .support-links li + li {
+  margin-top: 0.5rem;
+}
+.links-card .support-links a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.links-card .support-links a:hover {
+  color: #d61dfb;
+}
+
+/* === LOGIN CARD (left) === */
+.login-card {
+  position: relative;
+  background-color: #111;
+  border: 1px solid #d61dfb;
+  border-radius: 12px;
+  padding: 2.5rem 2rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.accent-stripe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background-color: #d61dfb;
+}
+
+.login-title {
+  margin: 0 0 2rem;
+  text-align: center;
+  color: #d61dfb;
+  font-size: 1.75rem;
+}
+
+/* Role selector */
+.role-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.role-group label {
+  color: #fff;
+  font-size: 0.9rem;
+}
+.role-select {
+  flex: 1;
+}
+
+/* Inputs */
+.input-group {
+  margin-bottom: 1.25rem;
+}
+.input-field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #d61dfb;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+.input-field:focus {
+  outline: none;
+  border-color: #ff77ff;
+}
+
+/* Extra options */
+.extra-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ccc;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+.extra-options input {
+  margin-right: 0.25rem;
+}
+.resend-btn {
+  background: none;
+  border: none;
+  color: #d61dfb;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  padding: 0;
+}
+.resend-btn:hover {
+  color: #ff77ff;
+}
+
+/* Buttons */
+.send-otp-button,
+.sign-in-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #d61dfb;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+.send-otp-button:hover,
+.sign-in-button:hover {
+  background-color: #ee1dfb;
+  opacity: 0.9;
+}
+.send-otp-button:disabled,
+.sign-in-button:disabled,
+.role-select:disabled,
+.input-field:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Error */
+.error-message {
+  color: #ff4c4c;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .login-page {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .login-panel,
+  .info-panel {
+    flex: none;
     width: 100%;
-    max-width: 400px; /* Adjust to your desired container size */
+    padding: 1rem;
   }
-  
-  /* Title styling */
-  .login-title {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #000000;
+  .info-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    height: fit-content;
   }
-  
-  /* Input group styling */
-  .input-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    position: relative; /* For tooltip positioning */
-  }
-  
-  /* Input field styling */
-  .input-field {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  /* Info button styling */
-  .info-button {
-    background: none;
-    border: 1px solid #007bff; /* Border for the info icon */
-    border-radius: 50%; /* Make it circular */
-    font-size: 16px;
-    color: #007bff;
-    margin-left: 5px;
-    cursor: pointer;
-    padding: 5px;
-  }
-  
-  .info-button:hover {
-    color: #0056b3;
-    border-color: #0056b3;
-  }
-  
-  /* Tooltip container */
-  .tooltip-container {
-    display: inline-block;
-    position: relative;
-  }
-  
-  /* Tooltip text */
-  .tooltip-text {
-    visibility: hidden;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 4px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%; /* Position above the info button */
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.3s;
-    font-size: 12px;
-    width: 160px;
-  }
-  
-  /* Show tooltip on hover */
-  .tooltip-container:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
-  }
-  
-  /* Send OTP button styling */
-  .send-otp-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-  }
-  
-  .send-otp-button:hover {
-    background-color: #218838;
-  }
-  
-  /* Sign in button styling */
-  .sign-in-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-  }
-  
-  .sign-in-button:hover {
-    background-color: #0056b3;
-  }
-  
+}
