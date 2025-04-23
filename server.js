@@ -48,7 +48,7 @@ app.post('/send-OTP', (req, res) => {
   }
 
   // Construct command to run Python script
-  const command = `python src/backend/OTP_emailer.py ${email} ${otp}`;
+  const command = `python3 src/backend/OTP_emailer.py ${email} ${otp}`;
   console.log('Executing command:', command);
 
   exec(command, (error, stdout, stderr) => {

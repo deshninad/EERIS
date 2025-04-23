@@ -2,15 +2,15 @@ import sys
 import smtplib
 from email.mime.text import MIMEText
 import os
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
-load_dotenv()
+#load_dotenv()
 
 def send_otp_email(email, otp):
-    smtp_server = os.getenv("SMTP_SERVER")  # SMTP server
-    port = int(os.getenv("SMTP_PORT"))  # SMTP port (converted to integer)
-    user_email = os.getenv("EMAIL_ADDRESS")  # Email address
-    password = os.getenv("EMAIL_PASSWORD")  # Email password
+    smtp_server = ("smtp.gmail.com")  # SMTP server
+    port = int(("587"))  # SMTP port (converted to integer)
+    user_email =("neerajpillai2004@gmail.com")  # Email address
+    password = ("vlvxwoteuephwukc")  # Email password
 
     # Ensure the environment variables are loaded correctly
     if not smtp_server or not port or not user_email or not password:
