@@ -1,66 +1,131 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-//import NavBar from '../NavBar'; // adjust path if needed
+//import NavBar from '../NavBar'; // adjust path as needed
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
+  // expenses table state
   const [expenses, setExpenses] = useState([]);
+  // users lists
+  const [users, setUsers] = useState({ employees: [], admins: [] });
+  const [loadingUsers, setLoadingUsers] = useState(false);
+
+  // add-user form state
   const [newUserEmail, setNewUserEmail] = useState('');
   const [newUserRole, setNewUserRole] = useState('employee');
+  const [loadingAddUser, setLoadingAddUser] = useState(false);
+
+  // global error message
   const [error, setError] = useState('');
 
+  // on mount: fetch both expenses & users
   useEffect(() => {
     fetchExpenses();
+    fetchUsers();
   }, []);
 
+  // fetch pending expenses
   const fetchExpenses = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/get-expenses');
+      const { data } = await axios.get(
+        'http://localhost:5000/get-expenses'
+      );
       setExpenses(data);
     } catch {
       setError('Error fetching expenses.');
     }
   };
 
+  // fetch existing user lists
+  const fetchUsers = async () => {
+    setLoadingUsers(true);
+    try {
+      const { data } = await axios.get('http://localhost:5000/get-users');
+      setUsers(data);
+    } catch {
+      setError('Error fetching users.');
+    } finally {
+      setLoadingUsers(false);
+    }
+  };
+
+  // approve an expense
   const approveExpense = async (id) => {
     try {
-      await axios.post('http://localhost:5000/approve-expense', { expenseId: id });
+      await axios.post('http://localhost:5000/approve-expense', {
+        expenseId: id,
+      });
       fetchExpenses();
     } catch {
       setError('Error approving expense.');
     }
   };
 
+  // update an expense field
   const updateExpense = async (id, field, value) => {
     try {
-      await axios.post('http://localhost:5000/update-expense', { expenseId: id, field, newValue: value });
+      await axios.post('http://localhost:5000/update-expense', {
+        expenseId: id,
+        field,
+        newValue: value,
+      });
       fetchExpenses();
     } catch {
       setError('Error updating expense.');
     }
   };
 
+  // add a new user, with client-side validations
   const addUser = async () => {
-    if (!newUserEmail) {
-      setError('Please enter an email.');
+    setError('');
+
+    const email = newUserEmail.trim().toLowerCase();
+    // domain check
+    if (!email.endsWith('@usf.edu')) {
+      setError('Email must end in @usf.edu.');
       return;
     }
+    // existence check
+    if (
+      users.employees.includes(email) ||
+      users.admins.includes(email)
+    ) {
+      setError('User already exists.');
+      return;
+    }
+
+    setLoadingAddUser(true);
     try {
-      await axios.post('http://localhost:5000/add-user', {
-        email: newUserEmail,
-        role: newUserRole,
-      });
-      alert(`Added ${newUserEmail} as ${newUserRole}`);
-      setNewUserEmail('');
-      setError('');
-    } catch {
-      setError('Error adding user.');
+      const { data } = await axios.post(
+        'http://localhost:5000/add-user',
+        { email, role: newUserRole }
+      );
+
+      if (data.success) {
+        // success!
+        alert(`Added ${email} as ${newUserRole}.`);
+        // update local users state
+        setUsers((u) => ({
+          ...u,
+          [newUserRole + 's']: [...u[newUserRole + 's'], email],
+        }));
+        setNewUserEmail('');
+      } else {
+        // backend said “no”
+        setError(data.message || 'Error adding user.');
+      }
+    } catch (err) {
+      // check for a message from backend
+      const msg = err.response?.data?.message;
+      setError(msg || 'Error adding user.');
+    } finally {
+      setLoadingAddUser(false);
     }
   };
 
   return (
     <div className="admin-dashboard-container">
-      {/* <NavBar /> */}
+      <NavBar />
 
       <h2 className="admin-title">Admin Dashboard</h2>
       {error && <p className="error-message">{error}</p>}
@@ -133,21 +198,29 @@ const AdminDashboard = () => {
                 placeholder="User Email"
                 value={newUserEmail}
                 onChange={(e) => setNewUserEmail(e.target.value)}
+                disabled={loadingAddUser || loadingUsers}
               />
             </label>
+
             <label>
               Role
               <select
                 className="input-field"
                 value={newUserRole}
                 onChange={(e) => setNewUserRole(e.target.value)}
+                disabled={loadingAddUser || loadingUsers}
               >
                 <option value="employee">Employee</option>
                 <option value="admin">Admin</option>
               </select>
             </label>
-            <button className="add-user-btn" onClick={addUser}>
-              Add User
+
+            <button
+              className="add-user-btn"
+              onClick={addUser}
+              disabled={loadingAddUser || loadingUsers}
+            >
+              {loadingAddUser ? 'Adding…' : 'Add User'}
             </button>
           </div>
         </div>

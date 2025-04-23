@@ -1,82 +1,121 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import Link from react-router-dom for navigation
-import "./eSummaryPage.css";
-import data from "../../data/DATA.json"; // Import the JSON file (or fetch it later from an API)
-import { useAuth } from "../../AuthProvider"; // Import the AuthContext to access the logged-in user's email
+import React, { useEffect, useState } from 'react';
+import { useNavigate, Navigate } from 'react-router-dom';
+import './eSummaryPage.css';
+import data from '../../data/DATA.json';
+import { useAuth } from '../../AuthProvider.jsx';
 
-const Dashboard = () => {
-  const [requestsData, setRequestsData] = useState([]);
-  const { email, logout } = useAuth(); // Access the logged-in user's email and logout function
+const ESummaryPage = () => {
+  const auth = useAuth();
   const navigate = useNavigate();
+  const [requests, setRequests] = useState([]);
+  const [error, setError]       = useState('');
 
-  // Filter the data based on the logged-in user's email
+  // redirect if not logged in
+  if (!auth || !auth.email) {
+    return <Navigate to="/login" replace />;
+  }
+  const { email, logout } = auth;
+
+  // load this user's requests
   useEffect(() => {
-    if (email) {
-      const userRequests = data.find((entry) => entry.email === email);
-      if (userRequests) {
-        setRequestsData(userRequests.requests);
-      }
-    }
+    const entry = data.find((e) => e.email === email);
+    setRequests(entry ? entry.requests : []);
   }, [email]);
 
-  // Handle request deletion
-  const handleDeleteRequest = (receiptId) => {
-    const updatedRequests = requestsData.filter((request) => request.receiptId !== receiptId);
-    setRequestsData(updatedRequests);
-    // Optionally, update the data on the server if you want to persist changes
-  };
+  // delete locally
+  const handleDelete = (id) =>
+    setRequests((r) => r.filter((req) => req.receiptId !== id));
+
+  // summary numbers
+  const total    = requests.length;
+  const approved = requests.filter((r) => r.status === 'Approved').length;
+  const pending  = total - approved;
 
   return (
     <div className="dashboard-container">
-        {/* Navigation Bar */}
+      {/* NAV */}
       <nav className="navbar">
-        <h2>EERIS</h2>
+        <h2 className="navbar-logo">EERIS</h2>
         <div className="nav-links">
-          <button onClick={() => navigate("/upload")}>Upload Page</button>
-          <button onClick={() => navigate("/login")}>Sign Out</button>
+          <button className="nav-btn" onClick={() => navigate('/upload')}>
+            Upload
+          </button>
+          <button
+            className="nav-btn"
+            onClick={() => {
+              logout();
+              navigate('/login');
+            }}
+          >
+            Sign Out
+          </button>
         </div>
       </nav>
-      <h2>eSummary Page</h2>
-    
 
-      <table className="requests-table">
-        <thead>
-          <tr>
-            <th>Receipt ID</th>
-            <th>Expense Type</th>
-            <th>Category</th>
-            <th>Status</th>
-            <th>Amount</th>
-            <th>Name</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {requestsData.length === 0 ? (
-            <tr>
-              <td colSpan="7">No requests available.</td>
-            </tr>
-          ) : (
-            requestsData.map((request, index) => (
-              <tr key={index}>
-                <td>{request.receiptId}</td>
-                <td>{request.expenseType}</td>
-                <td>{request.category}</td>
-                <td>{request.status}</td>
-                <td>${request.amount.toFixed(2)}</td>
-                <td>{request.name}</td>
-                <td>
-                  <button onClick={() => handleDeleteRequest(request.receiptId)}>
-                    Delete
-                  </button>
-                </td>
+      <div className="dashboard-content">
+        {/* METRICS */}
+        <div className="metrics-row">
+          <div className="metric-card total">
+            <h4>Total Requests</h4>
+            <p>{total}</p>
+          </div>
+          <div className="metric-card approved">
+            <h4>Approved</h4>
+            <p>{approved}</p>
+          </div>
+          <div className="metric-card pending">
+            <h4>Pending</h4>
+            <p>{pending}</p>
+          </div>
+        </div>
+
+        {/* REQUESTS TABLE */}
+        <div className="requests-card">
+          <h3>My Expense Requests</h3>
+          {error && <p className="error-message">{error}</p>}
+          <table className="requests-table">
+            <thead>
+              <tr>
+                <th>Receipt ID</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Amount</th>
+                <th>Name</th>
+                <th>Action</th>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+              {requests.length === 0 ? (
+                <tr>
+                  <td colSpan="7">No requests available.</td>
+                </tr>
+              ) : (
+                requests.map((req) => (
+                  <tr key={req.receiptId}>
+                    <td>{req.receiptId}</td>
+                    <td>{req.expenseType}</td>
+                    <td>{req.category}</td>
+                    <td>{req.status}</td>
+                    <td>${req.amount.toFixed(2)}</td>
+                    <td>{req.name}</td>
+                    <td>
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDelete(req.receiptId)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default ESummaryPage;
