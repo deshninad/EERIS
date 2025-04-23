@@ -1,0 +1,52 @@
+.confirmation-container {
+    flex-grow: 1;
+    padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    justify-content: center;
+    animation: slide-in-up 0.5s ease-in-out;
+  }
+  
+  .confirmation-container h2 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .confirmation-container p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .confirmation-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .btn {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .btn.grey {
+    background-color: #a0aec0;
+    color: white;
+  }
+  
+  .btn.green {
+    background-color: #2f855a;
+    color: white;
+  }
+  
+  .btn.dark {
+    background-color: #1a202c;
+    color: white;
+  }
+  

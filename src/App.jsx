@@ -5,6 +5,7 @@ import ESummaryPage from "./pages/eSummaryPage/eSummaryPage";
 import { AuthProvider } from "./AuthProvider";  
 import ProtectedRoute from "./ProtectedRoute"; 
 import AdminDashboard from "./pages/adminDashboard/adminDashboard";
+import ReceiptConfirmation from "./pages/receiptConfirmation/ReceiptConfirmation";
 
 //  function App() {
 //    return (
@@ -34,6 +35,7 @@ function App() {
          <Route path="/upload" element={<EUploadPage />} />
          <Route path="/dashboard" element={<ESummaryPage />} />
          <Route path="/admindashboard" element={<AdminDashboard />} />
+         <Route path="/receipt-confirmation" element={<ReceiptConfirmation />} />
         </Routes>
       </Router>
       </AuthProvider>

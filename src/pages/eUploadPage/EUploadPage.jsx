@@ -3,79 +3,125 @@ import { useNavigate } from "react-router-dom";
 import "./EUploadPage.css";
 
 const EUploadPage = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState("");
-  const [expenseType, setExpenseType] = useState("");
-  const [notes, setNotes] = useState("");
-  
   const navigate = useNavigate();
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
+  const [expenseType, setExpenseType] = useState("");
+  const [notes, setNotes] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState("");
+  const [dateUploaded, setDateUploaded] = useState("");
+  const [receiptAmount, setReceiptAmount] = useState("Autopopulated amount");
+  const [vendorName, setVendorName] = useState("Autopopulated vendor name");
 
-    // Preview the file if it's an image
-    if (file && file.type.startsWith("image/")) {
-      const url = URL.createObjectURL(file);
-      setPreviewUrl(url);
-    } else {
-      setPreviewUrl("");
-    }
+  const handleFileSelect = () => {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = ".jpg,.jpeg";
+    fileInput.onchange = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        setSelectedFile(file);
+        setPreviewUrl(URL.createObjectURL(file));
+        setDateUploaded(new Date().toISOString().split("T")[0]);
+      }
+    };
+    fileInput.click();
   };
 
-  const handleUpload = () => {
-    if (!selectedFile || !expenseType) {
-      alert("Please select a file and expense type.");
-      return;
-    }
+  const generateRandomReceiptId = () => {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    return Array.from({ length: 8 }, () =>
+      chars[Math.floor(Math.random() * chars.length)]
+    ).join("");
+  };
 
-    // Simulate an upload process
-    console.log("Uploading:", selectedFile.name);
-    console.log("Expense Type:", expenseType);
-    console.log("Notes:", notes);
-    
-    alert("File uploaded successfully!");
+  const handleSave = () => {
+    const receiptId = generateRandomReceiptId();
+    navigate("/receipt-confirmation", {
+      state: { receiptId },
+    });
   };
 
   return (
-    <div className="upload-page">
-      {/* Navigation Bar */}
-      <nav className="navbar">
-        <h2>EERIS</h2>
-        <div className="nav-links">
-          <button onClick={() => navigate("/dashboard")}>Dashboard</button>
-          <button onClick={() => navigate("/login")}>Sign Out</button>
+    <div className="upload-container">
+      <div className="sidebar">
+        <h1 className="logo">EERIS</h1>
+        <div className="menu">
+          <div className="menu-item selected">🗂 Employee Dashboard</div>
+          <div className="menu-item">👥 Admin Dashboard</div>
         </div>
-      </nav>
+      </div>
 
-      <div className="upload-container">
-        <h2>E-Upload Page</h2>
-        
-        {/* File Upload */}
-        <input type="file" onChange={handleFileChange} />
-        
-        {previewUrl && <img src={previewUrl} alt="Preview" className="file-preview" />}
+      <div className="upload-form-wide">
+        <h2 className="form-title">Enter Details of Receipt to be reported below</h2>
 
-        {/* Expense Type Dropdown */}
-        <select value={expenseType} onChange={(e) => setExpenseType(e.target.value)}>
-          <option value="">Select Expense Type</option>
-          <option value="Travel">Travel</option>
-          <option value="Food">Food</option>
-          <option value="Office Supplies">Office Supplies</option>
-          <option value="Other">Other</option>
-        </select>
+        {!selectedFile ? (
+          <div className="form-controls">
+            <select
+              className="dropdown common-input"
+              value={expenseType}
+              onChange={(e) => setExpenseType(e.target.value)}
+            >
+              <option value="">Type of expense</option>
+              <option>Office Supplies</option>
+              <option>Groceries</option>
+              <option>Meals</option>
+              <option>Utilities</option>
+              <option>Travel</option>
+            </select>
 
-        {/* Notes Input Field */}
-        <textarea
-          placeholder="Enter any additional notes..."
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-        ></textarea>
+            <input
+              type="text"
+              placeholder="Other Notes"
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              className="notes-input common-input"
+            />
 
-        {/* Upload Button */}
-        <button onClick={handleUpload} disabled={!selectedFile || !expenseType}>
-          Upload
-        </button>
+            <button className="import-btn bounce" onClick={handleFileSelect}>
+              Import Receipt
+            </button>
+          </div>
+        ) : (
+          <div className="details-grid">
+            <div className="left-form">
+              <div className="field">
+                <label>Date uploaded</label>
+                <input type="text" value={dateUploaded} disabled />
+              </div>
+              <div className="field">
+                <label>Receipt amount</label>
+                <input type="text" value={receiptAmount} disabled />
+              </div>
+              <div className="field">
+                <label>Vendor Name</label>
+                <input type="text" value={vendorName} disabled />
+              </div>
+              <div className="field">
+                <label>Other Notes</label>
+                <input
+                  type="text"
+                  placeholder="User input notes"
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                />
+              </div>
+              <div className="buttons">
+                <button className="btn cancel" onClick={() => window.location.reload()}>
+                  Cancel
+                </button>
+                <button className="btn save" onClick={handleSave}>
+                  Save
+                </button>
+              </div>
+            </div>
+
+            <div className="receipt-preview">
+              <label>Receipt uploaded</label>
+              {previewUrl && <img src={previewUrl} alt="Uploaded Receipt" />}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
