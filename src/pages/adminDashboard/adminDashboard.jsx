@@ -28,7 +28,7 @@ const AdminDashboard = () => {
   const fetchExpenses = async () => {
     try {
       const { data } = await axios.get(
-        'http://localhost:5000/get-expenses'
+        'http://localhost:5001/get-expenses'
       );
       setExpenses(data);
     } catch {
@@ -40,7 +40,7 @@ const AdminDashboard = () => {
   const fetchUsers = async () => {
     setLoadingUsers(true);
     try {
-      const { data } = await axios.get('http://localhost:5000/get-users');
+      const { data } = await axios.get('http://localhost:5001/get-users');
       setUsers(data);
     } catch {
       setError('Error fetching users.');
@@ -52,7 +52,7 @@ const AdminDashboard = () => {
   // approve an expense
   const approveExpense = async (id) => {
     try {
-      await axios.post('http://localhost:5000/approve-expense', {
+      await axios.post('http://localhost:5001/approve-expense', {
         expenseId: id,
       });
       fetchExpenses();
@@ -64,7 +64,7 @@ const AdminDashboard = () => {
   // update an expense field
   const updateExpense = async (id, field, value) => {
     try {
-      await axios.post('http://localhost:5000/update-expense', {
+      await axios.post('http://localhost:5001/update-expense', {
         expenseId: id,
         field,
         newValue: value,
@@ -97,7 +97,7 @@ const AdminDashboard = () => {
     setLoadingAddUser(true);
     try {
       const { data } = await axios.post(
-        'http://localhost:5000/add-user',
+        'http://localhost:5001/add-user',
         { email, role: newUserRole }
       );
 

@@ -32,7 +32,7 @@ const LoginPage = () => {
     setError('');
     try {
       const { data: users } = await axios.get(
-        'http://localhost:5000/get-users'
+        'http://localhost:5001/get-users'
       );
       const isEmployee = users.employees.includes(email);
       const isAdmin    = users.admins.includes(email);
@@ -51,7 +51,7 @@ const LoginPage = () => {
       const gen = generateOtp();
       setGeneratedOtp(gen);
       const { data: otpRes } = await axios.post(
-        'http://localhost:5000/send-OTP',
+        'http://localhost:5001/send-OTP',
         { email, otp: gen, role }
       );
       if (otpRes.success) {
