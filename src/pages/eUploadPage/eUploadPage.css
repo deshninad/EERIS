@@ -227,3 +227,42 @@
   }
 }
 
+.loader-wrapper {
+  text-align: center;
+  margin-top: 3rem;
+  color: black;
+  animation: fade-in 0.5s ease-in-out;
+}
+
+.spinner {
+  margin: 0 auto 1rem;
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #2f855a;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.progress-bar {
+  width: 100%;
+  max-width: 700px;
+  height: 12px;
+  background-color: #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #38a169, #48bb78);
+  transition: width 0.4s ease-in-out;
+}

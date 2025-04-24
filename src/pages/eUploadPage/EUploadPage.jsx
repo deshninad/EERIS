@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./eUploadPage.css";
 
@@ -11,17 +11,33 @@ const EUploadPage = () => {
   const [dateUploaded, setDateUploaded] = useState("");
   const [receiptAmount] = useState("Autopopulated amount");
   const [vendorName] = useState("Autopopulated vendor name");
+  const [isLoading, setIsLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  // ✅ Dynamic progress bar logic
+  useEffect(() => {
+    let p = 0;
+    if (expenseType) p += 33;
+    if (notes.trim()) p += 33;
+    if (selectedFile) p += 34;
+    setProgress(p);
+  }, [expenseType, notes, selectedFile]);
 
   const handleFileSelect = () => {
     const fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.accept = ".jpg,.jpeg";
+
     fileInput.onchange = (e) => {
       const file = e.target.files[0];
       if (file) {
-        setSelectedFile(file);
-        setPreviewUrl(URL.createObjectURL(file));
-        setDateUploaded(new Date().toISOString().split("T")[0]);
+        setIsLoading(true);
+        setTimeout(() => {
+          setSelectedFile(file);
+          setPreviewUrl(URL.createObjectURL(file));
+          setDateUploaded(new Date().toISOString().split("T")[0]);
+          setIsLoading(false);
+        }, 1500);
       }
     };
     fileInput.click();
@@ -54,7 +70,17 @@ const EUploadPage = () => {
       <div className="upload-form-wide">
         <h2 className="form-title">Enter Details of Receipt to be reported below</h2>
 
-        {!selectedFile ? (
+        {/* ✅ Progress Bar */}
+        <div className="progress-bar">
+          <div className="progress-fill" style={{ width: `${progress}%` }}></div>
+        </div>
+
+        {isLoading ? (
+          <div className="loader-wrapper">
+            <div className="spinner"></div>
+            <p>Processing receipt...</p>
+          </div>
+        ) : !selectedFile ? (
           <div className="form-controls">
             <select
               className="dropdown common-input"
