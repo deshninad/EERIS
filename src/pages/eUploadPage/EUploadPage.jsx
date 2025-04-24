@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./EUploadPage.css";
+import "./eUploadPage.css";
 
 const EUploadPage = () => {
   const navigate = useNavigate();
-
   const [expenseType, setExpenseType] = useState("");
   const [notes, setNotes] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState("");
   const [dateUploaded, setDateUploaded] = useState("");
-  const [receiptAmount, setReceiptAmount] = useState("Autopopulated amount");
-  const [vendorName, setVendorName] = useState("Autopopulated vendor name");
+  const [receiptAmount] = useState("Autopopulated amount");
+  const [vendorName] = useState("Autopopulated vendor name");
 
   const handleFileSelect = () => {
     const fileInput = document.createElement("input");
@@ -47,7 +46,7 @@ const EUploadPage = () => {
       <div className="sidebar">
         <h1 className="logo">EERIS</h1>
         <div className="menu">
-          <div className="menu-item selected">🗂 Employee Dashboard</div>
+          <div className="menu-item selected">📁 Employee Dashboard</div>
           <div className="menu-item">👥 Admin Dashboard</div>
         </div>
       </div>
@@ -78,7 +77,7 @@ const EUploadPage = () => {
               className="notes-input common-input"
             />
 
-            <button className="import-btn bounce" onClick={handleFileSelect}>
+            <button className="import-btn" onClick={handleFileSelect}>
               Import Receipt
             </button>
           </div>
@@ -108,10 +107,10 @@ const EUploadPage = () => {
               </div>
               <div className="buttons">
                 <button className="btn cancel" onClick={() => window.location.reload()}>
-                  Cancel
+                  ✖ Cancel
                 </button>
                 <button className="btn save" onClick={handleSave}>
-                  Save
+                  💾 Save
                 </button>
               </div>
             </div>

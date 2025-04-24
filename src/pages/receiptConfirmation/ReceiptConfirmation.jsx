@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./ReceiptConfirmation.css";
+import Confetti from "react-confetti";
+import { useEffect, useState } from "react";
 
 const ReceiptConfirmation = () => {
   const navigate = useNavigate();
@@ -19,7 +21,9 @@ const ReceiptConfirmation = () => {
 
       <div className="confirmation-container">
         <h2>Your receipt has been received</h2>
-        <p>Receipt ID – <strong>{receiptId}</strong></p>
+        <p>
+          Receipt ID – <span className="receipt-id">{receiptId}</span>
+        </p>
 
         <div className="confirmation-buttons">
           <button onClick={() => navigate("/upload")} className="btn grey">⬆ Upload New Receipt</button>

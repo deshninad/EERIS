@@ -1,16 +1,27 @@
-/* Container */
+* {
+  font-family: "Google Sans", "Courier New", monospace;
+}
+
 .upload-container {
   display: flex;
   height: 100vh;
   width: 100vw;
-  font-family: "Courier New", Courier, monospace;
-  background-color: #f7f9fa;
-  overflow: hidden;
+  font-family: "Google Sans", sans-serif;
+  background: linear-gradient(135deg, #d4f7d4, #f0f8f0);
+  overflow-x: hidden;
+}
+
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Sidebar */
 .sidebar {
   width: 250px;
+  position: fixed; 
   background-color: black;
   color: white;
   padding: 2rem;
@@ -21,7 +32,6 @@
 .logo {
   font-size: 2rem;
   margin-bottom: 2rem;
-  animation: slide-in-left 0.6s ease-in-out;
 }
 
 .menu-item {
@@ -30,102 +40,117 @@
   transition: all 0.3s ease;
   cursor: pointer;
 }
-
+.menu-item.selected,
 .menu-item:hover {
   opacity: 1;
-  transform: scale(1.02);
-}
-
-.menu-item.selected {
-  opacity: 1;
   font-weight: bold;
 }
 
-/* Form container */
 .upload-form-wide {
+  margin-left: 250px; /* ✅ This pushes content right of sidebar */
   flex-grow: 1;
-  padding: 3rem 4rem;
-  animation: slide-in-up 0.8s ease-out;
+  min-height: 100vh;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
+
 
 .form-title {
-  font-size: 1.5rem;
-  margin-bottom: 2.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
   color: #1a202c;
+  margin-bottom: 2.5rem;
 }
 
-/* Before Upload */
+/* Pre-upload Controls */
 .form-controls {
   display: flex;
   gap: 1.5rem;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
+/* Inputs */
 .common-input {
   width: 240px;
   height: 48px;
   padding: 0 1rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-sizing: border-box;
+  border: 1.5px solid #48bb78;
+  border-radius: 10px;
   background-color: white;
-  color: black;
+  color: #1a202c;
   transition: box-shadow 0.3s ease;
 }
 
 .common-input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #4299e1;
+  box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.3);
 }
 
+/* Import Button */
 .import-btn {
   width: 240px;
   height: 48px;
   font-size: 1rem;
   font-weight: bold;
-  border: none;
   background-color: #1a202c;
   color: white;
-  border-radius: 8px;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
-
 .import-btn:hover {
   background-color: #2d3748;
   transform: translateY(-2px);
 }
 
-/* After Upload Layout */
 .details-grid {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 3rem;
+  width: 100%;
+  max-width: 900px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto 0 auto; /* center the box horizontally */
 }
+
+
 
 .left-form {
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
+  gap: 1.2rem;
+  min-width: 280px;
+  flex: 1;
 }
 
 .field label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  color: #2d3748;
   display: block;
-  margin-bottom: 0.4rem;
-  font-weight: 500;
-  color: #333;
 }
 
 .field input {
-  width: 280px;
+  width: 100%;
   height: 44px;
-  padding: 0 0.8rem;
+  padding: 0 1rem;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 1rem;
   background-color: white;
+  color: #1a202c;
 }
 
 .buttons {
@@ -135,74 +160,70 @@
 }
 
 .btn {
-  padding: 0.6rem 1.4rem;
+  padding: 0.7rem 1.4rem;
   font-weight: bold;
-  border: none;
-  border-radius: 6px;
   font-size: 1rem;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .cancel {
-  background-color: #e2e8f0;
+  background-color: #cbd5e0;
   color: #1a202c;
 }
-
 .save {
-  background-color: #2f855a;
+  background: linear-gradient(to right, #38a169, #48bb78);
   color: white;
+  box-shadow: 0 0 8px rgba(72, 187, 120, 0.3);
+}
+.save:hover {
+  transform: scale(1.05);
 }
 
+/* Receipt Preview */
 .receipt-preview {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 3rem;
+  justify-content: start;
+  flex-shrink: 0;
+}
+
+.receipt-preview label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: #4a5568;
 }
 
 .receipt-preview img {
   width: 200px;
-  height: auto;
-  margin-top: 0.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Animations */
-@keyframes slide-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+@media (max-width: 768px) {
+  .upload-form-wide {
+    margin-left: 250px; /* match sidebar width */
+    margin-right: auto;
+    max-width: 950px;
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+  }    
 
-@keyframes slide-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 
-@keyframes bounce-in {
-  0% {
-    transform: scale(0.95);
-  }
-  60% {
-    transform: scale(1.02);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.bounce {
-  animation: bounce-in 0.4s ease-in-out;
-}
