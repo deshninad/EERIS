@@ -138,7 +138,35 @@ app.post('/add-user', (req, res) => {
   writeJSON(USERS_FILE, users);
   res.json({ success: true, message: `${email} added as ${role}` });
 });
+app.post('/update-user', (req, res) => {
+  const { email, newRole } = req.body;
+  let users = getUsers();
+  // ————————————————————————————————
+  // 8) remove from both lists
+  users.employees = users.employees.filter(e => e !== email);
+  users.admins    = users.admins   .filter(a => a !== email);
 
+  // ————————————————————————————————
+  // 9) add to the correct one
+  if (newRole === 'employee') users.employees.push(email);
+  else if (newRole === 'admin') users.admins.push(email);
+  else return res.status(400).json({ message: 'Invalid role' });
+
+  saveUsers(users);
+  res.json({ success: true });
+});
+
+// Delete a user
+app.post('/delete-user', (req, res) => {
+  const { email } = req.body;
+  let users = getUsers();
+
+  users.employees = users.employees.filter(e => e !== email);
+  users.admins    = users.admins   .filter(a => a !== email);
+
+  saveUsers(users);
+  res.json({ success: true });
+});
 // ————————————————————————————————
 const PORT = 5001;
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
