@@ -1,0 +1,29 @@
+[
+  {
+    "id": "RCP001",
+    "employee": "Neeraj Pillai",
+    "email": "npillai@usf.edu",
+    "vendor": "Staples",
+    "amount": 120.5,
+    "date": "2025-04-24",
+    "status": "Pending"
+  },
+  {
+    "id": "RCP002",
+    "employee": "DK",
+    "email": "dkarmariya@usf.edu",
+    "vendor": "Walmart",
+    "amount": 89.99,
+    "date": "2025-04-23",
+    "status": "Pending"
+  },
+  {
+    "id": "RCP003",
+    "employee": "Ninad Deshpande",
+    "email": "deshninad@usf.edu",
+    "vendor": "Amazon",
+    "amount": 49.95,
+    "date": "2025-04-22",
+    "status": "Pending"
+  }
+]

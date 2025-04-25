@@ -36,6 +36,7 @@ function App() {
          <Route path="/dashboard" element={<ESummaryPage />} />
          <Route path="/admindashboard" element={<AdminDashboard />} />
          <Route path="/receipt-confirmation" element={<ReceiptConfirmation />} />
+         <Route path="/admin-dashboard" element={<AdminDashboard />} /> {/* ⬅️ Added */}
         </Routes>
       </Router>
       </AuthProvider>

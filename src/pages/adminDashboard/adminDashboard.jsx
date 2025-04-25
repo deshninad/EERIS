@@ -1,120 +1,115 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import './AdminDashboard.css';
 
+const mockReceipts = [
+  {
+    id: '2793',
+    name: 'Neeraj Pillai',
+    email: 'npillai@usf.edu',
+    expenseType: 'Travel',
+    amount: '$100',
+    date: '2025-04-22',
+    status: 'Pending'
+  },
+  {
+    id: '2794',
+    name: 'DK',
+    email: 'dkarmariya@usf.edu',
+    expenseType: 'Meal',
+    amount: '$75',
+    date: '2025-04-21',
+    status: 'Approved'
+  },
+  {
+    id: '2795',
+    name: 'Ninad',
+    email: 'deshinad@usf.edu',
+    expenseType: 'Utilities',
+    amount: '$200',
+    date: '2025-04-20',
+    status: 'Rejected'
+  }
+];
+
 const AdminDashboard = () => {
-  const [expenses, setExpenses] = useState([]);
-  const [newUserEmail, setNewUserEmail] = useState('');
-  const [newUserRole, setNewUserRole] = useState('employee');
-  const [error, setError] = useState('');
+  const [receipts, setReceipts] = useState(mockReceipts);
 
-  // Load all expenses when the component mounts
-  useEffect(() => {
-    fetchExpenses();
-  }, []);
-
-  const fetchExpenses = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/get-expenses');
-      console.log('Fetched expenses:', response.data);  // Debug log
-      setExpenses(response.data);
-    } catch (error) {
-      setError('Error fetching expenses');
-    }
-  };
-
-  const approveExpense = async (expenseId) => {
-    try {
-      await axios.post('http://localhost:5000/approve-expense', { expenseId });
-      fetchExpenses(); // Reload data after approval
-    } catch (error) {
-      setError('Error approving expense');
-    }
-  };
-
-  const updateExpense = async (expenseId, field, newValue) => {
-    try {
-      await axios.post('http://localhost:5000/update-expense', { expenseId, field, newValue });
-      fetchExpenses(); // Reload after update
-    } catch (error) {
-      setError('Error updating expense');
-    }
-  };
-
-  const addUser = async () => {
-    try {
-      await axios.post('http://localhost:5000/add-user', { email: newUserEmail, role: newUserRole });
-      alert(`Added ${newUserEmail} as ${newUserRole}`);
-      setNewUserEmail('');
-    } catch (error) {
-      setError('Error adding user');
-    }
+  const updateStatus = (id, newStatus) => {
+    setReceipts(prev => prev.map(r => r.id === id ? { ...r, status: newStatus } : r));
   };
 
   return (
-    <div className="admin-dashboard">
-      <h2>Admin Dashboard</h2>
+    <div className="dashboard-container">
+      <aside className="sidebar">
+        <h1 className="logo">EERIS</h1>
+        <div className="nav-links">
+          <div className="nav-item">📁 Upload Receipt</div>
+          <div className="nav-item active">👥 Admin Dashboard</div>
+        </div>
+      </aside>
 
-      {error && <p className="error">{error}</p>}
+      <main className="dashboard-content">
+        <div className="centered">
+          <p className="breadcrumb">Admin › Dashboard</p>
+          <h2 className="title">Dashboard</h2>
 
-      <h3>Pending Expenses</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Employee</th>
-            <th>Expense Type</th>
-            <th>Category</th>
-            <th>Status</th>
-            <th>Amount</th>
-            <th>Approve</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
-        <tbody>
-        {expenses.length === 0 ? (
-  <tr>
-    <td colSpan="8">No expenses available</td>
-  </tr>
-) : (
-  expenses.map((exp) => (
-    <tr key={exp.id}>
-      <td>{exp.id}</td>
-      <td>{exp.email}</td>
-      <td>{exp.expenseType}</td>
-      <td>{exp.category}</td>
-      <td>{exp.status}</td>
-      <td>
-        <input
-          type="number"
-          defaultValue={exp.amount}
-          onBlur={(e) => updateExpense(exp.id, 'amount', e.target.value)}
-        />
-      </td>
-      <td>
-        {exp.status !== 'Approved' && (
-          <button onClick={() => approveExpense(exp.id)}>Approve</button>
-        )}
-      </td>
-    </tr>
-  ))
-)}
+          <div className="stats-row">
+            <div className="stat-card yellow">
+              <span className="count">{receipts.filter(r => r.status === 'Pending').length}</span>
+              <span className="label">Pending Requests</span>
+            </div>
+            <div className="stat-card green">
+              <span className="count">{receipts.filter(r => r.status === 'Approved').length}</span>
+              <span className="label">Approved Requests</span>
+            </div>
+            <div className="stat-card red">
+              <span className="count">{receipts.filter(r => r.status === 'Rejected').length}</span>
+              <span className="label">Rejected Requests</span>
+            </div>
+          </div>
 
-        </tbody>
-      </table>
+          <div className="table-wrapper">
+            <h3 className="section-title">All Requests:</h3>
+            <div className="filters">
+              <input className="filter-input" placeholder="EmployeeID/ReceiptID" />
+              <button className="filter-btn">Filter</button>
+            </div>
 
-      <h3>Add New User</h3>
-      <input
-        type="email"
-        placeholder="User Email"
-        value={newUserEmail}
-        onChange={(e) => setNewUserEmail(e.target.value)}
-      />
-      <select value={newUserRole} onChange={(e) => setNewUserRole(e.target.value)}>
-        <option value="employee">Employee</option>
-        <option value="admin">Admin</option>
-      </select>
-      <button onClick={addUser}>Add User</button>
+            <table className="receipt-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Receipt ID</th>
+                  <th>Expense Type</th>
+                  <th>Status</th>
+                  <th>Amount</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {receipts.map(r => (
+                  <tr key={r.id}>
+                    <td>
+                      <span className="name">{r.name}</span><br/>
+                      <span className="email">{r.email}</span>
+                    </td>
+                    <td>{r.id}</td>
+                    <td>{r.expenseType}</td>
+                    <td><span className={`status-tag ${r.status.toLowerCase()}`}>{r.status}</span></td>
+                    <td>{r.amount}</td>
+                    <td className="action-cell">
+                      <button className="action-btn approve-btn" onClick={() => updateStatus(r.id, 'Approved')}>✔</button>
+                      <button className="action-btn reject-btn" onClick={() => updateStatus(r.id, 'Rejected')}>✖</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            <div className="pagination">« <a>‹</a> <span>1</span> <a>›</a> »</div>
+          </div>
+        </div>
+      </main>
     </div>
   );
 };
