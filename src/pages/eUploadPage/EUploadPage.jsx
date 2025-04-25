@@ -62,7 +62,7 @@ const EUploadPage = () => {
       <div className="sidebar">
         <h1 className="logo">EERIS</h1>
         <div className="menu">
-          <div className="menu-item selected">📁 Employee Dashboard</div>
+          <div className="menu-item selected">📁 Upload receipt</div>
           <div className="menu-item">👥 Admin Dashboard</div>
         </div>
       </div>

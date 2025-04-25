@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./ReceiptConfirmation.css";
-import Confetti from "react-confetti";
-import { useEffect, useState } from "react";
+
 
 const ReceiptConfirmation = () => {
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ const ReceiptConfirmation = () => {
       <div className="sidebar">
         <h1 className="logo">EERIS</h1>
         <div className="menu">
-          <div className="menu-item selected">🗂 Employee Dashboard</div>
+          <div className="menu-item selected">Upload receipt</div>
           <div className="menu-item">👥 Admin Dashboard</div>
         </div>
       </div>
