@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "email": "user82@usf.edu",
+    "email": "dkarmariya@usf.edu",
     "expenseType": "Entertainment",
     "category": "Conference",
     "status": "Approved",
@@ -10,16 +10,16 @@
   },
   {
     "id": 2,
-    "email": "user24@usf.edu",
+    "email": "dkarmariya@usf.edu",
     "expenseType": "Entertainment",
     "category": "Conference",
     "status": "Pending",
-    "amount": 81.53,
+    "amount": "8000",
     "name": "User24"
   },
   {
     "id": 3,
-    "email": "user84@usf.edu",
+    "email": "dkarmariya@usf.edu",
     "expenseType": "Utilities",
     "category": "Internet",
     "status": "Rejected",
@@ -28,7 +28,7 @@
   },
   {
     "id": 4,
-    "email": "user49@usf.edu",
+    "email": "dkarmariya@usf.edu",
     "expenseType": "Office",
     "category": "Equipment",
     "status": "Pending",
@@ -37,7 +37,7 @@
   },
   {
     "id": 5,
-    "email": "user3@usf.edu",
+    "email": "dkarmariya@usf.edu",
     "expenseType": "Supplies",
     "category": "Paper",
     "status": "Pending",
@@ -46,7 +46,7 @@
   },
   {
     "id": 6,
-    "email": "user72@usf.edu",
+    "email": "dkarmariya@usf.edu",
     "expenseType": "Travel",
     "category": "Taxi",
     "status": "Pending",
@@ -55,7 +55,7 @@
   },
   {
     "id": 7,
-    "email": "user97@usf.edu",
+    "email": "dkarmariya@usf.edu",
     "expenseType": "Office",
     "category": "Stationery",
     "status": "Pending",
@@ -64,7 +64,7 @@
   },
   {
     "id": 8,
-    "email": "user60@usf.edu",
+    "email": "dkarmariya@usf.edu",
     "expenseType": "Entertainment",
     "category": "Workshop",
     "status": "Approved",
