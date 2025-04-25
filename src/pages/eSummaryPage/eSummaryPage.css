@@ -21,7 +21,7 @@
 }
 html, body {
   width: 100%;
-  height: 100%;
+  /* min-height: 100%; Allow content to define height */
   background-color: var(--bg-dark);
   color: var(--text-primary);
   font-family: 'Poppins', sans-serif;
@@ -32,59 +32,126 @@ html, body {
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh; /* Ensure container takes at least full viewport height */
   width: 100vw;
 }
+
+/* === Navbar Styles (Aligned) === */
 .navbar {
-  position: hidden;
+  /* position: hidden; <-- Removed Invalid */
+  position: sticky; /* Keeps navbar visible on scroll */
   top: 0;
   height: 4.5rem;
   left: 0;
   width: 100%;
   background: var(--bg-light);
-  padding: 1rem 2rem;
+  padding: 0 2rem; /* Horizontal padding */
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between; /* Logo left, nav-links group right */
+  align-items: center; /* Vertically center items */
   box-shadow: 0 4px 12px var(--shadow);
-  z-index: 100;
+  z-index: 100; /* Ensure navbar is on top */
 }
 .navbar-logo {
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--accent);
 }
+/* Container for right-side items (button, profile) */
+.nav-links {
+  display: flex;
+  align-items: center; /* Align button and profile vertically */
+  gap: 1.5rem; /* Space between button and profile */
+}
 .nav-links .nav-btn {
   background: none;
   border: none;
   color: var(--text-primary);
-  margin-left: 5rem;
-  font-size: 1.5rem;
+  /* margin-left: 5rem; <-- Removed fixed margin */
+  font-size: 1.1rem; /* Adjusted size */
   cursor: pointer;
-  padding:0rem 2rem;
+  padding: 0.5rem 1.5rem; /* Add vertical padding */
   border-radius: var(--border-radius);
   transition: background var(--transition), color var(--transition);
+  line-height: 1; /* Help vertical centering */
 }
 .nav-links .nav-btn:hover {
   background: var(--accent);
   color: var(--bg-dark);
 }
+/* Profile Dropdown styles */
+.profile-dropdown {
+  position: relative; /* Needed for absolute menu positioning */
+  display: flex; /* Ensure image aligns well */
+  align-items: center;
+}
+.profile-pic {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+  display: block; /* Prevent extra space below image */
+}
+.profile-menu {
+  position: absolute;
+  top: calc(100% + 8px); /* Position below pic */
+  right: 0;
+  width: 200px;
+  background-color: var(--bg-light);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px var(--shadow);
+  padding: 0.5rem 0;
+  list-style: none;
+  z-index: 1000; /* Above other content */
+  /* Visibility controlled via React state */
+}
+.profile-menu li {
+  /* Padding applied to button inside */
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+.profile-menu li.profile-email {
+  padding: 0.6rem 1rem; /* Keep padding on non-button item */
+  font-weight: 600;
+  border-bottom: 1px solid #444;
+  margin-bottom: 0.5rem;
+  word-break: break-all;
+}
+.profile-menu li button {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  text-align: left;
+  padding: 0.6rem 1rem; /* Consistent padding */
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-size: inherit; /* Inherit size from li */
+}
+.profile-menu li button:hover {
+  background-color: var(--bg-dark);
+}
+/* === End Navbar === */
 
+
+/* === Main Content === */
 .dashboard-content {
-  margin-top: 4.5rem; /* height of navbar */
+  margin-top: 4.5rem; /* Space below sticky navbar */
   padding: 2rem;
   max-width: 1400px;
   width: 100%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto; /* Center content block */
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2rem; /* Space between content sections */
 }
 
-/* Metrics Row */
+/* Metrics */
 .metrics-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
 }
 .metric-card {
@@ -97,9 +164,10 @@ html, body {
   overflow: hidden;
   transition: transform var(--transition), background var(--transition);
 }
-.metric-card:hover {
+.metric-card:hover, .metric-card:focus {
   transform: translateY(-8px);
   background: var(--bg-dark);
+  outline: none; /* Remove default focus outline if adding custom */
 }
 .metric-card h4 {
   font-size: 0.9rem;
@@ -112,23 +180,21 @@ html, body {
   font-size: 2.5rem;
   font-weight: 600;
 }
-.metric-card::after {
+.metric-card::after { /* Accent line */
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
+  bottom: 0; left: 0;
+  width: 100%; height: 4px;
   background: var(--accent);
 }
 
-/* Requests Table */
+/* Requests Table Card */
 .requests-card {
   background: var(--bg-light);
   border-radius: var(--border-radius);
   padding: 1.5rem;
   box-shadow: 0 6px 20px var(--shadow);
-  overflow-x: auto;
+  /* Let inner div handle scroll */
 }
 .requests-card h3 {
   font-size: 1.25rem;
@@ -138,18 +204,21 @@ html, body {
 .requests-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 0.5rem;
+  border-spacing: 0 0.5rem; /* Vertical space between rows */
+  min-width: 600px; /* Minimum width before horizontal scroll activates */
 }
 .requests-table th, .requests-table td {
   padding: 0.75rem 1rem;
   text-align: left;
+  vertical-align: middle; /* Align content vertically */
+  white-space: nowrap; /* Prevent wrapping by default */
 }
 .requests-table th {
   background: var(--bg-dark);
   color: var(--accent);
   font-weight: 600;
   position: sticky;
-  top: 4.5rem; /* below navbar */
+  top: 0; /* Stick to top of scroll container */
   z-index: 10;
 }
 .requests-table tr {
@@ -161,72 +230,94 @@ html, body {
 }
 .requests-table td {
   color: var(--text-primary);
+  border-bottom: 1px solid var(--bg-light); /* Row separator */
 }
-.requests-table td:last-child {
-  text-align: center;
+/* Rounded corners for table rows */
+.requests-table tr td:first-child {
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+.requests-table tr td:last-child {
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    text-align: center; /* Center action buttons */
 }
 
-.delete-btn {
-  background: var(--accent);
-  color: var(--bg-dark);
+/* === Status Badge Styling === */
+/* Ensure TD itself has no background */
+.requests-table td[data-status] {
+  background-color: transparent !important;
+  text-align: center; /* Center the badge within the cell */
+  vertical-align: middle;
+  font-weight: normal; /* Reset any bolding on the cell */
+}
+/* Base styles for the SPAN acting as the badge */
+.status-badge {
+  display: inline-block; /* Allow padding/margins */
+  padding: 0.3rem 0.8rem; /* Badge padding */
+  border-radius: 12px;    /* Pill shape */
+  font-size: 0.75rem;     /* Badge font size */
+  font-weight: 600;       /* Badge font weight */
+  line-height: 1.2;       /* Badge line height */
+  text-align: center;     /* Center text inside badge */
+  white-space: nowrap;    /* Prevent status text wrapping */
+}
+/* Specific badge colors */
+td[data-status="Approved"] .status-badge {
+  background-color: #27ae60; /* Green */
+  color: #ffffff;           /* White text */
+}
+td[data-status="Pending"] .status-badge {
+  background-color: #f1c40f; /* Yellow */
+  color: #333333;           /* Dark text */
+}
+td[data-status="Rejected"] .status-badge {
+  background-color: #e74c3c; /* Red */
+  color: #ffffff;           /* White text */
+}
+/* === End Status Badge === */
+
+/* --- Action Buttons & Inputs --- */
+.requests-table td button {
+  margin: 0 0.25rem; /* Space between buttons */
+  vertical-align: middle;
+}
+/* Base button style (using user's delete btn as reference) */
+.delete-btn, .edit-btn, .save-btn, .cancel-btn {
   border: none;
   padding: 0.5rem 0.8rem;
   border-radius: var(--border-radius);
   font-weight: 600;
   cursor: pointer;
-  transition: background var(--transition), transform var(--transition);
+  transition: background 0.2s ease, transform 0.1s ease;
 }
-.delete-btn:hover {
-  background: var(--accent-light);
-  transform: translateY(-2px);
+.delete-btn:hover, .edit-btn:hover, .save-btn:hover, .cancel-btn:hover {
+    transform: translateY(-1px); /* Slight lift on hover */
 }
+/* Specific button colors */
+.delete-btn { background: var(--accent); color: var(--bg-dark); }
+.delete-btn:hover { background: var(--accent-light); }
+.edit-btn { background: var(--bg-light); color: var(--text-primary); border: 1px solid var(--text-secondary); }
+.edit-btn:hover { background: var(--accent); color: var(--bg-dark); border-color: var(--accent); }
+.save-btn { background: #27ae60; color: #fff; border: 1px solid #27ae60; }
+.save-btn:hover { background: #2ecc71; border-color: #2ecc71; }
+.cancel-btn { background: var(--bg-dark); color: var(--text-secondary); border: 1px solid var(--text-secondary); }
+.cancel-btn:hover { background: var(--bg-light); color: var(--text-primary); }
 
-/* Profile Dropdown */
-.profile-dropdown {
-  position: relative;
-  display: inline-block;
+/* Inputs within the table */
+.requests-table td input[type="text"],
+.requests-table td input[type="number"] {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    border: 1px solid var(--accent); /* Highlight editable */
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
 }
-.profile-pic {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  cursor: pointer;
-  object-fit: cover;
-}
-.profile-menu {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  width: 200px;
-  background-color: var(--bg-light);
-  border-radius: var(--border-radius);
-  box-shadow: 0 4px 12px var(--shadow);
-  padding: 0.5rem 0;
-  list-style: none;
-  z-index: 1000;
-}
-.profile-menu li {
-  padding: 0.6rem 1rem;
-  color: var(--text-primary);
-  font-size: 0.95rem;
-}
-.profile-menu li.profile-email {
-  font-weight: 600;
-  border-bottom: 1px solid #444;
-  margin-bottom: 0.5rem;
-}
-.profile-menu li button {
-  width: 100%;
-  background: none;
-  border: none;
-  color: var(--text-primary);
-  text-align: left;
-  padding: 0.4rem 1rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-.profile-menu li button:hover {
-  background-color: var(--bg-dark);
+.requests-table td input:focus {
+    outline: none;
+    border-color: var(--accent-light);
 }
 
 /* Error Message */
@@ -234,14 +325,45 @@ html, body {
   color: #ff4c4c;
   text-align: center;
   font-weight: 500;
+  padding: 0.75rem;
+  background-color: rgba(233, 69, 96, 0.15);
+  border: 1px solid rgba(233, 69, 96, 0.3);
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
 }
 
-/* Responsive */
+/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
-  .dashboard-content {
-    padding: 1rem;
-  }
-  .requests-table th, .requests-table td {
-    padding: 0.5rem;
-  }
+  /* Navbar */
+  .navbar { padding: 0 1rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links .nav-btn { padding: 0.4rem 1rem; font-size: 1rem; }
+  .navbar-logo { font-size: 1.5rem; }
+  /* Content */
+  .dashboard-content { padding: 1rem; margin-top: 4.5rem; }
+  /* Table */
+  .requests-table th, .requests-table td { padding: 0.5rem 0.75rem; white-space: normal; }
+  .requests-table { min-width: auto; font-size: 0.9rem; }
+  .requests-table td:last-child { white-space: normal; }
+  .requests-table td button { margin-bottom: 0.25rem; }
+  /* Status Badge */
+  .status-badge { padding: 0.25rem 0.6rem; font-size: 0.7rem; }
+}
+
+@media (max-width: 480px) {
+  /* Metrics */
+  .metrics-row { grid-template-columns: 1fr; }
+  /* Navbar */
+  .navbar-logo { font-size: 1.3rem; }
+  .nav-links { gap: 0.75rem; }
+  .nav-links .nav-btn { padding: 0.3rem 0.6rem; font-size: 0.9rem; }
+  .profile-pic { width: 32px; height: 32px; }
+  /* Table */
+  .requests-table th, .requests-table td { padding: 0.4rem 0.5rem; }
+  .delete-btn, .edit-btn, .save-btn, .cancel-btn { padding: 0.4rem 0.6rem; font-size: 0.85rem; }
+  /* Status Badge */
+  .status-badge { padding: 0.2rem 0.5rem; }
+  /* Content Padding */
+  .dashboard-content { padding: 0.5rem; }
+  .requests-card { padding: 1rem; }
 }
