@@ -1246,7 +1246,7 @@
     "email": "user9@usf.edu",
     "expenseType": "Utilities",
     "category": "Water",
-    "status": "Approved",
+    "status": "Rejected",
     "amount": 289.83,
     "name": "User9"
   },
@@ -1372,7 +1372,7 @@
     "email": "user9@usf.edu",
     "expenseType": "Entertainment",
     "category": "Workshop",
-    "status": "Approved",
+    "status": "Pending",
     "amount": 231.84,
     "name": "User9"
   },
