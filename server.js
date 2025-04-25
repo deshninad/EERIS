@@ -1,139 +1,80 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import { exec } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url'; // Required for __dirname alternative
+// server.js
+import path from "path";
+import fs from "fs";
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import multer from "multer";
+import Tesseract from "tesseract.js";
+import { OpenAI } from "openai";
+import { fileURLToPath } from "url";
 
-// __dirname workaround for ES Modules
+// ————— Setup ESM __dirname —————
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// ————— Load ENV —————
+dotenv.config();
+const PORT = process.env.PORT || 5009;
+
+// ————— App & Middleware —————
 const app = express();
-app.use(bodyParser.json());
 app.use(cors());
+app.use(express.json());
 
-// Helper functions to load and save JSON files
-const getUsers = () => JSON.parse(fs.readFileSync(path.join(__dirname, 'src/data/USERS.json'), 'utf-8'));
-const getExpenses = () => JSON.parse(fs.readFileSync(path.join(__dirname, 'src/data/DATA.json'), 'utf-8'));
-const saveExpenses = (data) => fs.writeFileSync(path.join(__dirname, 'src/data/DATA.json'), JSON.stringify(data, null, 2));
-const saveUsers = (data) => fs.writeFileSync(path.join(__dirname, 'src/data/USERS.json'), JSON.stringify(data, null, 2));
+// ————— Your existing routes here —————
+// e.g. app.get("/get-expenses", (req,res)=>{ … });
+// ————————————————————————————
 
+// ————— OCR + ChatGPT Endpoint —————
+const upload = multer({ dest: path.join(__dirname, "uploads/") });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// Route to send OTP with role-based verification
-app.post('/send-OTP', (req, res) => {
-  const { email, otp, role } = req.body; // Extract role from request
-
-  if (!email || !otp || !role) {
-    return res.status(400).json({ message: 'Email, role, and OTP are required.' });
+app.post("/api/ocr", upload.single("receipt"), async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: "No file uploaded." });
   }
+  const imagePath = req.file.path;
 
-  // Load user data
-  const users = getUsers();
-  if (!users) {
-    return res.status(500).json({ message: 'Error loading user data' });
-  }
-
-  const isEmployee = users.employees.includes(email);
-  const isAdmin = users.admins.includes(email);
-
-  // Check role-based access
-  if (role === 'employee' && !isEmployee) {
-    return res.status(403).json({ message: 'Access denied: You are not registered as an employee.' });
-  }
-
-  if (role === 'admin' && !isAdmin && !isEmployee) {
-    return res.status(403).json({ message: 'Access denied: You are not registered as an admin.' });
-  }
-
-  // Construct command to run Python script
-  const command = `python3 src/backend/OTP_emailer.py ${email} ${otp}`;
-  console.log('Executing command:', command);
-
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error executing script: ${error.message}`);
-      return res.status(500).json({ success: false, message: 'Error executing script' });
-    }
-    if (stderr) {
-      console.error(`Script stderr: ${stderr}`);
-      return res.status(500).json({ success: false, message: 'Script error' });
-    }
-
-    console.log(`Script stdout: ${stdout}`);
-    res.json({ success: true, message: 'OTP sent successfully' });
-  });
-});
-
-// Route to fetch USERS.json for frontend role validation
-app.get('/get-users', (req, res) => {
-  const users = getUsers();
-  if (!users) {
-    return res.status(500).json({ message: 'Error loading user data' });
-  }
-  console.log(users)
-  res.json(users);
-});
-
-//  Get all expenses
-app.get('/get-expenses', (req, res) => {
   try {
-    res.json(getExpenses());
-  } catch (error) {
-    res.status(500).json({ message: 'Error loading expenses' });
+    // 1) OCR
+    const {
+      data: { text },
+    } = await Tesseract.recognize(imagePath, "eng");
+
+    // 2) Structure with ChatGPT
+    const prompt = `
+Extract and return ONLY a JSON object with these fields:
+- vendor (string)
+- date (YYYY-MM-DD)
+- amount (number only)
+If missing, put "Not Found".
+
+Receipt text:
+"""
+${text}
+"""
+`;
+    const chat = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: prompt }],
+      temperature: 0,
+    });
+    const raw = chat.choices[0].message.content;
+
+    // 3) Parse & Respond
+    const result = JSON.parse(raw);
+    return res.json(result);
+  } catch (err) {
+    console.error("OCR/AI Error:", err);
+    return res.status(500).json({ error: "Failed to extract data." });
+  } finally {
+    // cleanup upload
+    fs.unlinkSync(imagePath);
   }
 });
+// ————————————————————————————
 
-//  Approve an expense
-app.post('/approve-expense', (req, res) => {
-  const { expenseId } = req.body;
-  let expenses = getExpenses();
-
-  const expenseIndex = expenses.findIndex((exp) => exp.id === expenseId);
-  if (expenseIndex === -1) return res.status(404).json({ message: 'Expense not found' });
-
-  expenses[expenseIndex].status = 'Approved';
-  saveExpenses(expenses);
-  
-  res.json({ success: true, message: 'Expense approved successfully' });
-});
-
-//  Edit an expense field
-app.post('/update-expense', (req, res) => {
-  const { expenseId, field, newValue } = req.body;
-  let expenses = getExpenses();
-
-  const expenseIndex = expenses.findIndex((exp) => exp.id === expenseId);
-  if (expenseIndex === -1) return res.status(404).json({ message: 'Expense not found' });
-
-  expenses[expenseIndex][field] = newValue;  // Update the specific field
-  saveExpenses(expenses);
-
-  res.json({ success: true, message: `Updated ${field} successfully` });
-});
-
-//  Add a new user (Admin or Employee)
-app.post('/add-user', (req, res) => {
-  const { email, role } = req.body;
-  let users = getUsers();
-
-  if (role !== 'admin' && role !== 'employee') {
-    return res.status(400).json({ message: 'Invalid role. Must be admin or employee.' });
-  }
-
-  if (users[role + 's'].includes(email)) {
-    return res.status(409).json({ message: 'User already exists.' });
-  }
-
-  users[role + 's'].push(email);
-  saveUsers(users);
-
-  res.json({ success: true, message: `${email} added as ${role}` });
-});
-
-
-const PORT = 5001;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server listening on http://localhost:${PORT}`);
 });
