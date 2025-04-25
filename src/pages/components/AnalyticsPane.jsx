@@ -26,8 +26,11 @@ export default function AnalyticsPane({ expenses }) {
     acc[e.category] = (acc[e.category]||0) + e.amount;
     return acc;
   }, {});
-  const catData = Object.entries(catAgg).map(([name, value])=>({ name, value }));
-
+  const catData = React.useMemo(() =>
+    Object.entries(catAgg).map(([name, v]) => ({
+      name,
+      value: Number(v)           // ensure numeric
+    })), [catAgg]);
   return (
     <div className="analytics-pane">
       <h3>Overview</h3>
@@ -51,14 +54,20 @@ export default function AnalyticsPane({ expenses }) {
       </ResponsiveContainer>
 
       <h4>Spend by Category</h4>
-      <ResponsiveContainer width="100%" height={150}>
-        <BarChart data={catData}>
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip formatter={v=>`$${v.toFixed(2)}`} />
-          <Bar dataKey="value" fill="#d61dfb" />
-        </BarChart>
-      </ResponsiveContainer>
+<div style={{minWidth: 300, minHeight: 160}}> {/* ensure space */}
+  {catData.length ? (
+    <ResponsiveContainer width="100%" height={150}>
+      <BarChart data={catData}>
+        <XAxis dataKey="name" />
+        <YAxis domain={[0, 'dataMax']} />
+        <Tooltip formatter={v => `$${Number(v).toFixed(2)}`} />
+        <Bar dataKey="value" fill="#d61dfb" isAnimationActive={false} />
+      </BarChart>
+    </ResponsiveContainer>
+  ) : (
+    <p>No category data yet.</p>
+  )}
+</div>
     </div>
   );
 }
