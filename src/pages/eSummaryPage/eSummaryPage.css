@@ -315,10 +315,10 @@ td[data-status="Rejected"] .status-badge {
 /* Base button style */
 .delete-btn, .edit-btn, .save-btn, .cancel-btn {
   border: 1px solid;
-  padding: 0.4rem 0.8rem;
+  padding: 1rem 1rem;
   border-radius: var(--border-radius);
-  font-weight: 500;
-  font-size: 0.85rem;
+  font-weight: 900;
+  font-size: 3rem;
   cursor: pointer;
   transition: all var(--transition);
 }
@@ -387,7 +387,7 @@ td[data-status="Rejected"] .status-badge {
   /* Status Badge */
   .status-badge { padding: 0.25rem 0.6rem; font-size: 0.75rem; }
   /* Buttons */
-  .delete-btn, .edit-btn, .save-btn, .cancel-btn { font-size: 0.8rem; padding: 0.3rem 0.6rem;}
+  .delete-btn, .edit-btn, .save-btn, .cancel-btn { font-size: 3rem; padding: 1rem 1rem;}
 }
 
 @media (max-width: 480px) {
@@ -400,7 +400,7 @@ td[data-status="Rejected"] .status-badge {
   .nav-links .nav-btn { padding: 0.3rem 0.6rem; }
   .profile-pic { width: 32px; height: 32px; }
   .requests-table th, .requests-table td { padding: 0.5rem 0.4rem; font-size: 0.85rem;}
-  .delete-btn, .edit-btn, .save-btn, .cancel-btn { padding: 0.3rem 0.5rem; font-size: 0.75rem;}
+  .delete-btn, .edit-btn, .save-btn, .cancel-btn { padding: 1rem 1rem; font-size: 3rem;}
   .status-badge { padding: 0.2rem 0.5rem; font-size: 0.7rem;}
   .dashboard-content { padding: 0.5rem; }
   .requests-card { padding: 1rem; }
