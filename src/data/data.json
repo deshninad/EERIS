@@ -1,37 +1,10 @@
 [
   {
-    "id": 1,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Pending",
-    "amount": 293.69,
-    "name": "User82"
-  },
-  {
-    "id": 2,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Pending",
-    "amount": 233.52,
-    "name": "User24"
-  },
-  {
-    "id": 3,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Rejected",
-    "amount": 72.01,
-    "name": "User84"
-  },
-  {
     "id": 4,
     "email": "dkarmariya@usf.edu",
     "expenseType": "Office",
     "category": "Equipment",
-    "status": "Pending",
+    "status": "Approved",
     "amount": 376.04,
     "name": "User49"
   },
@@ -41,7 +14,7 @@
     "expenseType": "Supplies",
     "category": "Paper",
     "status": "Pending",
-    "amount": 394.7,
+    "amount": 394.75,
     "name": "User3"
   },
   {
@@ -76,7 +49,7 @@
     "email": "ndeshpande2@usf.edu",
     "expenseType": "Entertainment",
     "category": "Team Building",
-    "status": "Rejected",
+    "status": "Approved",
     "amount": 428.11,
     "name": "User49"
   },
@@ -88,15 +61,6 @@
     "status": "Pending",
     "amount": 118.24,
     "name": "User36"
-  },
-  {
-    "id": 11,
-    "email": "user43@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Pending",
-    "amount": 240.6,
-    "name": "User43"
   },
   {
     "id": 12,
@@ -175,7 +139,7 @@
     "email": "user80@usf.edu",
     "expenseType": "Supplies",
     "category": "Ink",
-    "status": "Rejected",
+    "status": "Approved",
     "amount": 166.2,
     "name": "User80"
   },
@@ -247,7 +211,7 @@
     "email": "user71@usf.edu",
     "expenseType": "Food",
     "category": "Snacks",
-    "status": "Rejected",
+    "status": "Approved",
     "amount": 474.49,
     "name": "User71"
   },
@@ -301,7 +265,7 @@
     "email": "user86@usf.edu",
     "expenseType": "Office",
     "category": "Equipment",
-    "status": "Rejected",
+    "status": "Approved",
     "amount": 111.63,
     "name": "User86"
   },
@@ -310,7 +274,7 @@
     "email": "user3@usf.edu",
     "expenseType": "Entertainment",
     "category": "Team Building",
-    "status": "Rejected",
+    "status": "Approved",
     "amount": 467.39,
     "name": "User3"
   },
@@ -391,7 +355,7 @@
     "email": "user50@usf.edu",
     "expenseType": "Supplies",
     "category": "Toner",
-    "status": "Rejected",
+    "status": "Approved",
     "amount": 57.88,
     "name": "User50"
   },

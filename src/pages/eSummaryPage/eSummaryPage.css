@@ -1,16 +1,35 @@
-/* ESummaryPage.css */
+/* ESummaryPage.css - Modern University/Professional Light Theme */
 
 :root {
-  /* Color Palette */
-  --bg-dark: #1a1a2e;
-  --bg-light: #16213e;
-  --accent: #e94560;
-  --accent-light: #f76c6c;
-  --text-primary: #f0f0f5;
-  --text-secondary: #cfcfd1;
-  --border-radius: 8px;
-  --shadow: rgba(0, 0, 0, 0.4);
-  --transition: 0.3s ease;
+  /* --- Primary Palette --- */
+  --bg-body: #f8f9fa;          /* Main page background (very light grey) */
+  --bg-card: #ffffff;          /* Card/Navbar background (white) */
+  --text-primary: #212529;     /* Main text color (near black) */
+  --text-secondary: #6c757d;     /* Secondary text color (grey) */
+  --border-color: #dee2e6;      /* Default border color (light grey) */
+  --accent-color: #0d6efd;      /* Primary accent color (standard bootstrap blue) */
+  --accent-color-darker: #0a58ca; /* Darker blue for hover/active states */
+  --shadow-color: rgba(0, 0, 0, 0.075); /* Subtle shadow */
+
+  /* --- Status Colors --- */
+  /* Using Bootstrap-inspired alert colors for badges */
+  --status-approved-bg: #d1e7dd;
+  --status-approved-text: #0f5132;
+  --status-approved-border: #badbcc;
+  --status-pending-bg: #fff3cd;
+  --status-pending-text: #664d03;
+  --status-pending-border: #ffecb5;
+  --status-rejected-bg: #f8d7da;
+  --status-rejected-text: #842029;
+  --status-rejected-border: #f5c2c7;
+
+  /* --- Table Specific --- */
+  --table-header-bg: #f1f3f5;   /* Slightly off-white header */
+  --table-row-hover-bg: #e9ecef; /* Grey hover for rows */
+
+  /* --- Other UI --- */
+  --border-radius: 0.375rem;    /* Standard Bootstrap 5 border-radius (6px) */
+  --transition: 0.2s ease-in-out;
 }
 
 /* Global Reset */
@@ -19,351 +38,371 @@
   margin: 0;
   padding: 0;
 }
-html, body {
+html {
+  font-size: 16px; /* Base font size */
+}
+body {
   width: 100%;
-  /* min-height: 100%; Allow content to define height */
-  background-color: var(--bg-dark);
+  background-color: var(--bg-body);
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* Add fallbacks */
   overflow-x: hidden;
+  line-height: 1.6; /* Improve readability */
 }
 
 /* Container & Layout */
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure container takes at least full viewport height */
+  min-height: 100vh;
   width: 100vw;
 }
 
-/* === Navbar Styles (Aligned) === */
+/* === Navbar === */
 .navbar {
-  /* position: hidden; <-- Removed Invalid */
-  position: sticky; /* Keeps navbar visible on scroll */
+  position: sticky;
   top: 0;
-  height: 4.5rem;
+  height: auto; /* Allow height to adjust slightly */
+  min-height: 4.5rem;
   left: 0;
   width: 100%;
-  background: var(--bg-light);
-  padding: 0 2rem; /* Horizontal padding */
+  background: var(--bg-card); /* White background */
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.5rem 2rem; /* Adjust padding */
   display: flex;
-  justify-content: space-between; /* Logo left, nav-links group right */
-  align-items: center; /* Vertically center items */
-  box-shadow: 0 4px 12px var(--shadow);
-  z-index: 100; /* Ensure navbar is on top */
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  z-index: 100;
 }
 .navbar-logo {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--accent);
+  font-size: 1.6rem; /* Slightly adjust size */
+  font-weight: 600; /* Slightly less bold */
+  color: var(--accent-color); /* Blue logo */
 }
-/* Container for right-side items (button, profile) */
 .nav-links {
   display: flex;
-  align-items: center; /* Align button and profile vertically */
-  gap: 1.5rem; /* Space between button and profile */
+  align-items: center;
+  gap: 1.5rem;
 }
+/* Style for buttons like "Upload" */
 .nav-links .nav-btn {
-  background: none;
-  border: none;
-  color: var(--text-primary);
-  /* margin-left: 5rem; <-- Removed fixed margin */
-  font-size: 1.1rem; /* Adjusted size */
+  background-color: var(--accent-color);
+  color: #ffffff;
+  border: 1px solid var(--accent-color);
+  font-size: 0.9rem;
+  font-weight: 500;
   cursor: pointer;
-  padding: 0.5rem 1.5rem; /* Add vertical padding */
+  padding: 0.45rem 1.1rem;
   border-radius: var(--border-radius);
-  transition: background var(--transition), color var(--transition);
-  line-height: 1; /* Help vertical centering */
+  transition: background-color var(--transition), border-color var(--transition);
+  text-decoration: none; /* Remove underline if it's a link */
+  line-height: 1.4;
 }
-.nav-links .nav-btn:hover {
-  background: var(--accent);
-  color: var(--bg-dark);
+.nav-links .nav-btn:hover,
+.nav-links .nav-btn:focus {
+  background-color: var(--accent-color-darker);
+  border-color: var(--accent-color-darker);
+  color: #ffffff;
+  outline: none;
 }
-/* Profile Dropdown styles */
+/* Profile Area */
 .profile-dropdown {
-  position: relative; /* Needed for absolute menu positioning */
-  display: flex; /* Ensure image aligns well */
+  position: relative;
+  display: flex;
   align-items: center;
 }
 .profile-pic {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   cursor: pointer;
   object-fit: cover;
-  display: block; /* Prevent extra space below image */
+  display: block;
+  border: 2px solid transparent; /* Transparent border */
+  transition: border-color var(--transition);
+}
+.profile-pic:hover {
+    border-color: var(--border-color);
 }
 .profile-menu {
   position: absolute;
-  top: calc(100% + 8px); /* Position below pic */
+  top: calc(100% + 10px);
   right: 0;
-  width: 200px;
-  background-color: var(--bg-light);
+  width: 240px; /* Slightly wider */
+  background-color: var(--bg-card);
   border-radius: var(--border-radius);
-  box-shadow: 0 4px 12px var(--shadow);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 5px 15px var(--shadow-color); /* Slightly more pronounced shadow */
   padding: 0.5rem 0;
   list-style: none;
-  z-index: 1000; /* Above other content */
-  /* Visibility controlled via React state */
+  z-index: 1000;
 }
 .profile-menu li {
-  /* Padding applied to button inside */
   color: var(--text-primary);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 .profile-menu li.profile-email {
-  padding: 0.6rem 1rem; /* Keep padding on non-button item */
-  font-weight: 600;
-  border-bottom: 1px solid #444;
+  padding: 0.75rem 1.2rem;
+  font-weight: 500; /* Normal weight */
+  border-bottom: 1px solid var(--border-color);
   margin-bottom: 0.5rem;
+  color: var(--text-secondary);
   word-break: break-all;
+  font-size: 0.85rem; /* Smaller email text */
 }
-.profile-menu li button {
+.profile-menu li button { /* Style for Sign Out button */
   width: 100%;
   background: none;
   border: none;
   color: var(--text-primary);
   text-align: left;
-  padding: 0.6rem 1rem; /* Consistent padding */
+  padding: 0.7rem 1.2rem; /* Consistent padding */
   cursor: pointer;
-  transition: background 0.2s ease;
-  font-size: inherit; /* Inherit size from li */
+  transition: background-color var(--transition), color var(--transition);
+  font-size: inherit;
 }
 .profile-menu li button:hover {
-  background-color: var(--bg-dark);
+  background-color: var(--accent-color); /* Blue background on hover */
+  color: #ffffff; /* White text */
 }
 /* === End Navbar === */
 
-
-/* === Main Content === */
+/* === Main Content Area === */
 .dashboard-content {
-  margin-top: 4.5rem; /* Space below sticky navbar */
-  padding: 2rem;
+  margin-top: 4.5rem; /* Adjust if navbar height changed */
+  padding: 2.5rem; /* More padding */
   max-width: 1400px;
   width: 100%;
   margin-left: auto;
-  margin-right: auto; /* Center content block */
+  margin-right: auto;
   display: flex;
   flex-direction: column;
-  gap: 2rem; /* Space between content sections */
+  gap: 2.5rem; /* More space between sections */
 }
 
-/* Metrics */
+/* Metrics Section */
 .metrics-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Adjust size */
+  gap: 1.75rem; /* More gap */
 }
 .metric-card {
-  background: var(--bg-light);
+  background: var(--bg-card);
   border-radius: var(--border-radius);
-  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  padding: 1.75rem; /* More padding */
   text-align: center;
-  box-shadow: 0 6px 20px var(--shadow);
+  box-shadow: 0 3px 6px var(--shadow-color);
   position: relative;
-  overflow: hidden;
-  transition: transform var(--transition), background var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 .metric-card:hover, .metric-card:focus {
-  transform: translateY(-8px);
-  background: var(--bg-dark);
-  outline: none; /* Remove default focus outline if adding custom */
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px var(--shadow-color);
+  outline: none;
 }
-.metric-card h4 {
+.metric-card h4 { /* Metric title */
   font-size: 0.9rem;
   color: var(--text-secondary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
+  font-weight: 500; /* Normal weight */
 }
-.metric-card p {
+.metric-card p { /* Metric value */
   font-size: 2.5rem;
   font-weight: 600;
-}
-.metric-card::after { /* Accent line */
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 100%; height: 4px;
-  background: var(--accent);
+  color: var(--text-primary);
 }
 
 /* Requests Table Card */
 .requests-card {
-  background: var(--bg-light);
+  background: var(--bg-card);
   border-radius: var(--border-radius);
-  padding: 1.5rem;
-  box-shadow: 0 6px 20px var(--shadow);
-  /* Let inner div handle scroll */
+  border: 1px solid var(--border-color);
+  padding: 2rem; /* More padding */
+  box-shadow: 0 3px 6px var(--shadow-color);
 }
-.requests-card h3 {
-  font-size: 1.25rem;
-  color: var(--accent);
-  margin-bottom: 1rem;
+.requests-card h3 { /* Card title */
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
 }
+/* Table Styles */
 .requests-table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 0.5rem; /* Vertical space between rows */
-  min-width: 600px; /* Minimum width before horizontal scroll activates */
+  border-collapse: collapse; /* Clean borders */
+  min-width: 600px;
+  font-size: 0.95rem; /* Slightly larger base font for table */
 }
-.requests-table th, .requests-table td {
-  padding: 0.75rem 1rem;
+.requests-table th,
+.requests-table td {
+  padding: 1rem 1rem; /* Consistent padding */
   text-align: left;
-  vertical-align: middle; /* Align content vertically */
-  white-space: nowrap; /* Prevent wrapping by default */
+  vertical-align: middle;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border-color);
 }
 .requests-table th {
-  background: var(--bg-dark);
-  color: var(--accent);
-  font-weight: 600;
+  background: var(--table-header-bg);
+  color: var(--text-primary);
+  font-weight: 600; /* Bold header text */
   position: sticky;
-  top: 0; /* Stick to top of scroll container */
+  top: 0;
   z-index: 10;
+  border-bottom-width: 2px;
+  border-color: var(--border-color);
 }
 .requests-table tr {
-  background: var(--bg-dark);
-  transition: background var(--transition);
+  background: var(--bg-card);
+  transition: background-color var(--transition);
 }
 .requests-table tr:hover {
-  background: var(--bg-light);
+  background: var(--table-row-hover-bg);
 }
 .requests-table td {
   color: var(--text-primary);
-  border-bottom: 1px solid var(--bg-light); /* Row separator */
 }
-/* Rounded corners for table rows */
-.requests-table tr td:first-child {
-    border-top-left-radius: var(--border-radius);
-    border-bottom-left-radius: var(--border-radius);
+.requests-table tbody tr:last-child td {
+    border-bottom: none; /* Remove border from last row */
 }
-.requests-table tr td:last-child {
-    border-top-right-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
-    text-align: center; /* Center action buttons */
+.requests-table td:last-child {
+    text-align: center;
 }
 
 /* === Status Badge Styling === */
-/* Ensure TD itself has no background */
 .requests-table td[data-status] {
   background-color: transparent !important;
-  text-align: center; /* Center the badge within the cell */
+  text-align: center;
   vertical-align: middle;
-  font-weight: normal; /* Reset any bolding on the cell */
+  font-weight: normal;
 }
-/* Base styles for the SPAN acting as the badge */
 .status-badge {
-  display: inline-block; /* Allow padding/margins */
-  padding: 0.3rem 0.8rem; /* Badge padding */
-  border-radius: 12px;    /* Pill shape */
-  font-size: 0.75rem;     /* Badge font size */
-  font-weight: 600;       /* Badge font weight */
-  line-height: 1.2;       /* Badge line height */
-  text-align: center;     /* Center text inside badge */
-  white-space: nowrap;    /* Prevent status text wrapping */
+  display: inline-block;
+  padding: 0.35rem 0.9rem; /* Adjust padding */
+  border-radius: 1rem;     /* More rounded for pill */
+  font-size: 0.8rem;      /* Adjust size */
+  font-weight: 500;       /* Normal weight */
+  line-height: 1.3;
+  text-align: center;
+  white-space: nowrap;
+  border: 1px solid;       /* Use border for definition */
 }
-/* Specific badge colors */
 td[data-status="Approved"] .status-badge {
-  background-color: #27ae60; /* Green */
-  color: #ffffff;           /* White text */
+  background-color: var(--status-approved-bg);
+  color: var(--status-approved-text);
+  border-color: var(--status-approved-border);
 }
 td[data-status="Pending"] .status-badge {
-  background-color: #f1c40f; /* Yellow */
-  color: #333333;           /* Dark text */
+  background-color: var(--status-pending-bg);
+  color: var(--status-pending-text);
+  border-color: var(--status-pending-border);
 }
 td[data-status="Rejected"] .status-badge {
-  background-color: #e74c3c; /* Red */
-  color: #ffffff;           /* White text */
+  background-color: var(--status-rejected-bg);
+  color: var(--status-rejected-text);
+  border-color: var(--status-rejected-border);
 }
 /* === End Status Badge === */
 
 /* --- Action Buttons & Inputs --- */
 .requests-table td button {
-  margin: 0 0.25rem; /* Space between buttons */
+  margin: 0 0.25rem;
   vertical-align: middle;
 }
-/* Base button style (using user's delete btn as reference) */
+/* Base button style */
 .delete-btn, .edit-btn, .save-btn, .cancel-btn {
-  border: none;
-  padding: 0.5rem 0.8rem;
+  border: 1px solid;
+  padding: 0.4rem 0.8rem;
   border-radius: var(--border-radius);
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.85rem;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
+  transition: all var(--transition);
 }
 .delete-btn:hover, .edit-btn:hover, .save-btn:hover, .cancel-btn:hover {
-    transform: translateY(-1px); /* Slight lift on hover */
+    transform: translateY(-1px);
+    opacity: 0.9;
 }
 /* Specific button colors */
-.delete-btn { background: var(--accent); color: var(--bg-dark); }
-.delete-btn:hover { background: var(--accent-light); }
-.edit-btn { background: var(--bg-light); color: var(--text-primary); border: 1px solid var(--text-secondary); }
-.edit-btn:hover { background: var(--accent); color: var(--bg-dark); border-color: var(--accent); }
-.save-btn { background: #27ae60; color: #fff; border: 1px solid #27ae60; }
-.save-btn:hover { background: #2ecc71; border-color: #2ecc71; }
-.cancel-btn { background: var(--bg-dark); color: var(--text-secondary); border: 1px solid var(--text-secondary); }
-.cancel-btn:hover { background: var(--bg-light); color: var(--text-primary); }
+.delete-btn { background-color: var(--status-rejected-bg); color: var(--status-rejected-text); border-color: var(--status-rejected-border); }
+.edit-btn   { background-color: transparent; color: var(--accent-color); border-color: var(--accent-color); }
+.save-btn   { background-color: var(--status-approved-bg); color: var(--status-approved-text); border-color: var(--status-approved-border); }
+.cancel-btn { background-color: transparent; color: var(--text-secondary); border-color: var(--border-color); }
 
 /* Inputs within the table */
 .requests-table td input[type="text"],
 .requests-table td input[type="number"] {
-    background-color: var(--bg-dark);
+    background-color: var(--bg-card);
     color: var(--text-primary);
-    border: 1px solid var(--accent); /* Highlight editable */
-    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--border-color); /* Standard border */
+    padding: 0.5rem 0.75rem; /* Match cell padding closer */
     border-radius: 4px;
     width: 100%;
     box-sizing: border-box;
+    transition: border-color var(--transition), box-shadow var(--transition);
+    font-size: inherit; /* Inherit table font size */
 }
 .requests-table td input:focus {
     outline: none;
-    border-color: var(--accent-light);
+    border-color: var(--accent-color); /* Blue border on focus */
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15); /* Blue focus glow */
 }
 
 /* Error Message */
 .error-message {
-  color: #ff4c4c;
+  color: var(--status-rejected-text);
   text-align: center;
   font-weight: 500;
-  padding: 0.75rem;
-  background-color: rgba(233, 69, 96, 0.15);
-  border: 1px solid rgba(233, 69, 96, 0.3);
+  padding: 0.85rem 1rem;
+  background-color: var(--status-rejected-bg);
+  border: 1px solid var(--status-rejected-border);
   border-radius: var(--border-radius);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem; /* More space below error */
 }
 
 /* --- Responsive Adjustments --- */
+@media (max-width: 992px) { /* Adjust breakpoint */
+    .dashboard-content { padding: 1.5rem; gap: 1.5rem;}
+    .requests-card { padding: 1.5rem; }
+    .requests-table th, .requests-table td { padding: 0.75rem; }
+}
+
 @media (max-width: 768px) {
   /* Navbar */
-  .navbar { padding: 0 1rem; }
-  .nav-links { gap: 1rem; }
-  .nav-links .nav-btn { padding: 0.4rem 1rem; font-size: 1rem; }
-  .navbar-logo { font-size: 1.5rem; }
+  .navbar { padding: 0.5rem 1rem; min-height: 4rem; }
+  .nav-links { gap: 0.75rem; }
+  .nav-links .nav-btn { padding: 0.4rem 0.8rem; font-size: 0.85rem; }
+  .navbar-logo { font-size: 1.4rem; }
+  .profile-pic { width: 36px; height: 36px; }
   /* Content */
-  .dashboard-content { padding: 1rem; margin-top: 4.5rem; }
+  .dashboard-content { padding: 1rem; margin-top: 4rem; gap: 1rem;}
   /* Table */
-  .requests-table th, .requests-table td { padding: 0.5rem 0.75rem; white-space: normal; }
-  .requests-table { min-width: auto; font-size: 0.9rem; }
+  .requests-table th, .requests-table td { padding: 0.6rem 0.5rem; white-space: normal; font-size: 0.9rem;}
+  .requests-table { min-width: auto; }
   .requests-table td:last-child { white-space: normal; }
-  .requests-table td button { margin-bottom: 0.25rem; }
+  .requests-table td button { margin-bottom: 0.3rem; } /* Stack buttons sooner */
   /* Status Badge */
-  .status-badge { padding: 0.25rem 0.6rem; font-size: 0.7rem; }
+  .status-badge { padding: 0.25rem 0.6rem; font-size: 0.75rem; }
+  /* Buttons */
+  .delete-btn, .edit-btn, .save-btn, .cancel-btn { font-size: 0.8rem; padding: 0.3rem 0.6rem;}
 }
 
 @media (max-width: 480px) {
-  /* Metrics */
-  .metrics-row { grid-template-columns: 1fr; }
-  /* Navbar */
-  .navbar-logo { font-size: 1.3rem; }
-  .nav-links { gap: 0.75rem; }
-  .nav-links .nav-btn { padding: 0.3rem 0.6rem; font-size: 0.9rem; }
+  html { font-size: 14px; } /* Reduce base font size */
+  .metrics-row { grid-template-columns: 1fr; gap: 1rem; }
+  .metric-card { padding: 1rem; }
+  .metric-card p { font-size: 2rem;}
+  .navbar-logo { font-size: 1.2rem; }
+  .nav-links { gap: 0.5rem; }
+  .nav-links .nav-btn { padding: 0.3rem 0.6rem; }
   .profile-pic { width: 32px; height: 32px; }
-  /* Table */
-  .requests-table th, .requests-table td { padding: 0.4rem 0.5rem; }
-  .delete-btn, .edit-btn, .save-btn, .cancel-btn { padding: 0.4rem 0.6rem; font-size: 0.85rem; }
-  /* Status Badge */
-  .status-badge { padding: 0.2rem 0.5rem; }
-  /* Content Padding */
+  .requests-table th, .requests-table td { padding: 0.5rem 0.4rem; font-size: 0.85rem;}
+  .delete-btn, .edit-btn, .save-btn, .cancel-btn { padding: 0.3rem 0.5rem; font-size: 0.75rem;}
+  .status-badge { padding: 0.2rem 0.5rem; font-size: 0.7rem;}
   .dashboard-content { padding: 0.5rem; }
   .requests-card { padding: 1rem; }
+  .requests-card h3 { font-size: 1.2rem; margin-bottom: 1rem;}
 }

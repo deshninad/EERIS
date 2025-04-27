@@ -1,351 +1,281 @@
-/* GLOBAL RESET & BASE */
-* {
-  box-sizing: border-box;
-}
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background: #000;
-  color: #fff;
-  font-family: Arial, sans-serif;
-}
+/* admindashboard.css - Refined Professional "Bank" Light Theme */
 
-/* LAYOUT: two‐column flex (nav + main) */
+/* :root variables assumed to be defined globally (e.g., in index.css or theme.css) */
+/* Example variables needed:
+:root {
+  --bg-primary: #f7faff;
+  --bg-secondary: #ffffff;
+  --border-color: #e9ecef;
+  --text-primary: #212529;
+  --text-secondary: #495057;
+  --accent-primary: #0056b3;
+  --accent-primary-light: #0d6efd;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --status-approved-bg: #e6f5ea;
+  --status-approved-text: #1d7b41;
+  --status-pending-bg: #fff8e1;
+  --status-pending-text: #7a5f00;
+  --status-rejected-bg: #fbe9eb;
+  --status-rejected-text: #b52439;
+  --table-header-bg: #f1f3f5;
+  --table-row-hover-bg: #eef2f7;
+  --table-border-color: var(--border-color);
+  --border-radius: 4px;
+  --transition: 0.15s ease-in-out;
+}
+*/
+
+/* LAYOUT: two-column flex (nav + main) */
 .admin-dashboard {
   display: flex;
-  height: 100vh;
+  height: 100vh; /* Full viewport height */
+  max-height: 100vh; /* Prevent exceeding viewport */
+  background-color: var(--bg-primary);
 }
 
-/* NAV PANE (always visible) */
+/* NAV PANE */
 .nav-pane {
-  width: 200px;
-  background: #111;
-  border-right: 1px solid #d61dfb;
+  width: 200px; /* Fixed width */
+  background: var(--bg-secondary); /* Subtle light grey nav */
+  border-right: 1px solid var(--border-color);
   display: flex;
+  flex-direction: column; /* Ensure content flows top-to-bottom */
+  flex-shrink: 0;
 }
 .nav-pane-content {
-  flex: 1;
+  flex: 1; /* Allow content to take space, pushing signout down */
   display: flex;
   flex-direction: column;
-  justify-content: center;   /* vertical center */
-  align-items: center;       /* horizontal center */
-  gap: 1rem;
-  padding-top: 2rem;
+  justify-content: flex-start; /* Align items to top */
+  align-items: stretch; /* Stretch items full width */
+  gap: 0.5rem;
+  padding: 1rem 0;
 }
-.nav-pane h3 {
-  margin: 0;
-  color: #d61dfb;
-}
-.nav-pane button {
-  width: 150px;
-  padding: 0.5rem;
-  background: none;
-  border: 1px solid #d61dfb;
-  border-radius: 4px;
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.nav-pane button:hover {
-  background: rgba(214, 29, 251, 0.2);
-}
-.nav-pane button.active {
-  background: #d61dfb;
-  color: #000;
-}
-.nav-pane .sign-out {
-  margin-top: auto;
-  border-color: #ff4c4c;
-}
-.nav-pane .sign-out:hover {
-  background: rgba(255, 76, 76, 0.2);
-}
+.nav-pane h3 { margin: 0 0 1.5rem 0; padding: 0 1rem; color: var(--accent-primary); font-size: 1.1rem; font-weight: 600; }
+.nav-pane button { width: auto; margin: 0 1rem; padding: 0.6rem 1rem; background: none; border: none; border-radius: var(--border-radius); color: var(--text-secondary); cursor: pointer; transition: background 0.2s, color 0.2s; text-align: left; font-size: 0.9rem; font-weight: 500; }
+.nav-pane button:hover { background: rgba(0, 86, 179, 0.07); color: var(--accent-primary); }
+.nav-pane button.active { background: rgba(0, 86, 179, 0.1); color: var(--accent-primary); font-weight: 600; }
+.nav-pane .sign-out { margin-top: auto; margin-bottom: 1rem; color: var(--status-rejected-text); font-weight: 500; }
+.nav-pane .sign-out:hover { background: var(--status-rejected-bg); color: var(--status-rejected-text); }
 
-/* MAIN PANE */
-.table-pane {
+/* MAIN PANE (Table Pane, Manage Users View, etc.) */
+.table-pane, .users-view {
+  flex: 1; /* Take remaining width */
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 2rem; /* Padding for the main content area */
+  overflow: hidden; /* Prevent this pane from scrolling */
+  background-color: var(--bg-primary);
+  height: 100vh; /* Explicitly set height */
+  box-sizing: border-box; /* Include padding in height calculation */
 }
 
-/* Let filters and headings size to content */
-.table-pane h2,
-.filters {
-  flex: 0 0 auto;
+/* Scrollable Content Wrapper */
+.table-wrapper, .users-table-wrapper {
+  flex: 1 1 auto; /* Grow and shrink to fill available space */
+  overflow-y: auto; /* Enable vertical scrollbar ONLY here */
+  overflow-x: hidden; /* Prevent horizontal scroll on the wrapper */
+  margin-top: 1rem; /* Space above scrollable area */
+  min-height: 0; /* Important for flexbox shrinking */
+}
+/* Ensure the inner table can still scroll horizontally if needed */
+.table-wrapper > .dynamic-table,
+.users-table-wrapper > .users-table {
+    /* min-width is already set on the table, allowing horizontal scroll */
 }
 
-/* Scroll only the table area */
-.table-wrapper {
-  flex: 1 1 auto;       /* take remaining space */
-  overflow-y: auto;     /* scroll only here */
-}
-.error {
-  color: #ff4c4c;
-  margin: 1rem 0;
+/* Headings and Filters should NOT grow */
+.table-pane h2, .users-view > h2,
+.filters,
+.metrics-row {
+  flex-shrink: 0; /* Prevent shrinking */
+  flex-grow: 0; /* Prevent growing */
 }
 
-/* FILTERS */
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 1rem;
-  margin: 1rem 0;
+/* General Heading in Main Pane */
+.table-pane h2, .users-view > h2 { margin: 0 0 1rem 0; color: var(--text-primary); font-weight: 600; font-size: 1.5rem; }
+
+/* Error & Success Messages */
+.error, .user-message.error { color: var(--status-rejected-text); background-color: var(--status-rejected-bg); border: 1px solid var(--status-rejected-text); padding: 0.75rem; border-radius: var(--border-radius); margin: 1rem 0; font-size: 0.9rem; }
+.user-message.success { color: var(--status-approved-text); background-color: var(--status-approved-bg); border: 1px solid var(--status-approved-text); padding: 0.75rem; border-radius: var(--border-radius); margin: 1rem 0; font-size: 0.9rem; }
+
+/* FILTERS (Space Optimized) */
+.filters { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); }
+.filters label { margin-right: 0.25rem; font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; }
+.filters input, .filters select { background: var(--bg-primary); color: var(--text-primary); border: 1px solid var(--border-color); padding: 0.4rem 0.7rem; border-radius: var(--border-radius); font-size: 0.85rem; }
+.filters input::placeholder { color: var(--text-secondary); opacity: 0.8; }
+.filters input:focus, .filters select:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.15); }
+.filters select { cursor: pointer; }
+.filters button { margin-left: auto; padding: 0.4rem 0.8rem; font-size: 0.8rem; background: transparent; border: 1px solid var(--text-secondary); color: var(--text-secondary); border-radius: var(--border-radius); cursor: pointer; transition: all var(--transition); }
+.filters button:hover:not(:disabled) { background: var(--bg-secondary); color: var(--text-primary); border-color: var(--text-primary); }
+.filters button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Metrics Row Styling (with Colors) */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust min width */
+  gap: 1rem; /* Space between metric cards */
+  margin-bottom: 1.5rem; /* Space below metrics row */
 }
-.filters input,
-.filters select {
-  background: #000;
-  color: #fff;
-  border: 1px solid #d61dfb;
-  padding: 0.5rem;
-  border-radius: 4px;
+.metric-card {
+  background: var(--bg-secondary); /* Default background */
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  padding: 1rem 1.25rem; /* Adjust padding */
+  text-align: center;
+  box-shadow: none;
+  position: relative;
+  transition: border-color var(--transition), transform var(--transition), background-color var(--transition);
+  cursor: pointer; /* Indicate clickable */
 }
-.filters input::placeholder {
-  color: #aaa;
+.metric-card:hover,
+.metric-card:focus {
+  transform: none;
+  border-color: var(--accent-primary); /* Blue border on hover/focus */
+  outline: none;
 }
-.filters select {
-  cursor: pointer;
+/* Style for card when its status filter is active */
+.metric-card.active-filter {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2); /* Add a subtle glow */
+  /* Keep background based on status below */
+}
+.metric-card h4 {
+  font-size: 0.8rem; /* Smaller heading */
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600; /* Slightly bolder */
+}
+.metric-card p {
+  font-size: 1.8rem; /* Smaller count */
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+/* Specific Metric Card Colors */
+.metric-card.metric-approved,
+.metric-card.metric-approved.active-filter { /* Keep color when active */
+  background-color: var(--status-approved-bg);
+  border-color: var(--status-approved-text);
+}
+.metric-card.metric-approved h4,
+.metric-card.metric-approved p {
+  color: var(--status-approved-text);
+}
+.metric-card.metric-pending,
+.metric-card.metric-pending.active-filter {
+  background-color: var(--status-pending-bg);
+  border-color: var(--status-pending-text);
+}
+.metric-card.metric-pending h4,
+.metric-card.metric-pending p {
+  color: var(--status-pending-text);
+}
+.metric-card.metric-rejected,
+.metric-card.metric-rejected.active-filter {
+  background-color: var(--status-rejected-bg);
+  border-color: var(--status-rejected-text);
+}
+.metric-card.metric-rejected h4,
+.metric-card.metric-rejected p {
+  color: var(--status-rejected-text);
+}
+/* Total card uses default --bg-secondary, but make count blue */
+.metric-card.metric-total p {
+    color: var(--accent-primary);
+}
+.metric-card.metric-total.active-filter {
+    background-color: #e7f1fc; /* Light blue when active */
 }
 
 /* TABLE STYLING */
-.dynamic-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.dynamic-table th,
-.dynamic-table td {
-  border: 1px solid #333;
-  padding: 0.5rem;
-  text-align: left;
-}
-.dynamic-table th {
-  background: #111;
-  color: #d61dfb;
-  cursor: pointer;
-  user-select: none;
-}
-.dynamic-table tr:nth-child(even) {
-  background: #1a1a1a;
-}
+.dynamic-table, .users-table { width: 100%; border-collapse: collapse; }
+.dynamic-table th, .users-table th, .dynamic-table td, .users-table td { padding: 0.85rem 1rem; text-align: left; vertical-align: middle; border-bottom: 1px solid var(--table-border-color); white-space: normal; /* Allow wrapping */ }
+.dynamic-table th, .users-table th { background: var(--table-header-bg); color: var(--text-secondary); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; border-bottom-width: 1px; border-top: 1px solid var(--table-border-color); position: sticky; top: 0; z-index: 10; }
+.dynamic-table tr:hover, .users-table tr:hover { background: var(--table-row-hover-bg); }
+.dynamic-table td, .users-table td { color: var(--text-primary); font-size: 0.9rem; }
+.dynamic-table tbody tr:last-child td, .users-table tbody tr:last-child td { border-bottom: none; }
+.dynamic-table td:last-child, .users-table td:last-child { text-align: right; white-space: nowrap; } /* Keep actions nowrap */
 
-/* STATUS DROPDOWN */
-.status-select {
-  padding: 0.25rem;
-  border: 1px solid #d61dfb;
-  border-radius: 4px;
-  font-weight: bold;
-  min-width: 100px;
-  cursor: pointer;
+/* STATUS SELECT STYLING (Colored) */
+.dynamic-table td .status-select,
+.users-table td select { /* Style role select in user table too */
+  padding: 0.35rem 0.6rem; border: 1px solid transparent; border-radius: var(--border-radius);
+  font-weight: 500; font-size: 0.8rem; cursor: pointer; transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  min-width: 110px; background-color: var(--bg-primary); color: var(--text-primary);
+  appearance: menulist-button; text-align: center;
 }
-.status-select.pending {
-  background-color: #f1c40f;
-  border-color: #f1c40f;
-  color: #000;
+.dynamic-table td .status-select:focus,
+.users-table td select:focus {
+    outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.15);
 }
-.status-select.approved {
-  background-color: #2ecc71;
-  border-color: #2ecc71;
-  color: #000;
-}
-.status-select.rejected {
-  background-color: #e74c3c;
-  border-color: #e74c3c;
-  color: #fff;
-}
+/* Apply colors based on the class derived from the selected value */
+.status-select.pending { background-color: var(--status-pending-bg); color: var(--status-pending-text); border-color: var(--status-pending-text); }
+.status-select.approved { background-color: var(--status-approved-bg); color: var(--status-approved-text); border-color: var(--status-approved-text); }
+.status-select.rejected { background-color: var(--status-rejected-bg); color: var(--status-rejected-text); border-color: var(--status-rejected-text); }
 
 /* AMOUNT INPUT */
-.dynamic-table input[type="number"] {
-  width: 80px;
-  padding: 0.25rem;
-  border: 1px solid #d61dfb;
-  border-radius: 4px;
-  background: #000;
-  color: #fff;
-}
-.dynamic-table input[type="number"]:focus {
-  outline: none;
-  border-color: #ff77ff;
-}
+.dynamic-table input[type="number"], .users-table input[type="number"] { width: 80px; padding: 0.4rem 0.6rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); background: var(--bg-primary); color: var(--text-primary); font-size: 0.9rem; text-align: right; }
+.dynamic-table input[type="number"]:focus, .users-table input[type="number"]:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.15); }
 
-/* ACTION BUTTONS */
-.actions {
-  display: flex;
-  gap: 0.5rem;
-}
-.actions button {
-  background: #d61dfb;
-  color: #000;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-.actions button:hover {
-  opacity: 0.8;
-}
+/* ACTION BUTTONS (Text Links) */
+.actions { display: flex; gap: 0.75rem; justify-content: flex-end; align-items: center; }
+.actions button, .actions .edit-btn, .actions .delete-btn { border: none; padding: 0; border-radius: 0; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: color var(--transition), text-decoration var(--transition); background: transparent; text-decoration: none; line-height: 1; }
+.actions button:hover, .actions .edit-btn:hover, .actions .delete-btn:hover { opacity: 1; text-decoration: underline; }
+.actions .edit-btn { color: var(--accent-primary); }
+.actions .delete-btn { color: var(--status-rejected-text); }
+.actions button:not(.edit-btn):not(.delete-btn) { color: var(--text-secondary); }
+.actions button:not(.edit-btn):not(.delete-btn):hover { color: var(--text-primary); }
 
 /* MANAGE USERS FORM */
-.add-user-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin: 1rem 0;
-}
-.add-user-form label {
-  display: flex;
-  flex-direction: column;
-  font-size: 0.9rem;
-  color: #ddd;
-}
-.add-user-form input,
-.add-user-form select {
-  padding: 0.5rem;
-  border: 1px solid #d61dfb;
-  border-radius: 4px;
-  background: #000;
-  color: #fff;
-}
-.add-user-form select {
-  cursor: pointer;
-}
-.add-user-btn {
-  padding: 0.6rem 1.2rem;
-  background: #d61dfb;
-  color: #000;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-.add-user-btn:hover {
-  opacity: 0.9;
-}
+.users-view { display: flex; flex-direction: column; height: 100%; box-sizing: border-box; }
+.users-content { display: flex; flex: 1; gap: 2rem; margin-top: 1rem; min-height: 0; }
+.users-table-wrapper { flex: 2; overflow-y: auto; border: 1px solid var(--border-color); border-radius: var(--border-radius); background: var(--bg-primary); min-height: 0;}
+.add-user-side { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; min-width: 280px; }
+.add-user-form { display: flex; flex-direction: column; gap: 1rem; margin: 0; padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); background-color: var(--bg-secondary); }
+.add-user-form h4 { margin: 0 0 1rem 0; font-weight: 600; color: var(--text-primary); }
+.add-user-form label { display: flex; flex-direction: column; font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); gap: 0.25rem; }
+.add-user-form input, .add-user-form select { padding: 0.5rem 0.75rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); background: var(--bg-primary); color: var(--text-primary); font-size: 0.9rem; }
+.add-user-form select { cursor: pointer; }
+.add-user-form input:focus, .add-user-form select:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.15); }
+.add-user-btn { padding: 0.6rem 1.2rem; background: var(--accent-primary); color: #fff; border: none; border-radius: var(--border-radius); font-weight: 500; cursor: pointer; transition: background 0.2s; font-size: 0.9rem; margin-top: 0.5rem; }
+.add-user-btn:hover { background: #004085; }
 
-/* USER MESSAGE */
-.user-message {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-}
-.user-message.error {
-  color: #ff4c4c;
-}
-.user-message.success {
-  color: #2ecc40;
-}
+/* ANALYTICS PANE */
+.analytics-pane { padding: 1rem 0; }
+.analytics-pane h2 { margin: 0 0 1rem 0; color: var(--text-primary); font-weight: 600; font-size: 1.5rem; }
+.analytics-pane h4 { color: var(--text-primary); margin-bottom: 1rem; font-weight: 600; font-size: 1.1rem; }
 
-/* ANALYTICS PANE (inside .table-pane when view==='analytics') */
-.analytics-pane {
-  padding: 1rem 0;
-}
-.analytics-pane h3,
-.analytics-pane h4 {
-  color: #d61dfb;
-  margin-bottom: 0.5rem;
-}
-/* Users table */
-/* --- Wrap the entire Manage Users view in a full-height flex column --- */
-.users-view {
-  display: flex;
-  flex-direction: column;
-  height: 100%;            /* take full height of .table-pane */
-}
+/* Inline search box */
+.inline-header-input { margin-top: 0.3rem; width: 100%; padding: 0.35rem 0.5rem; background: var(--bg-primary); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: var(--border-radius); font-size: 0.85rem; }
+.inline-header-input:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.15); }
 
-/* keep the <h2> fixed at top */
-.users-view > h2 {
-  margin: 0 0 1rem;
-  flex: 0 0 auto;
-}
+/* Sticky Header */
+.users-table-wrapper thead, .table-wrapper thead { position: sticky; top: 0; z-index: 1; }
 
-/* --- two-column content: scrollable table on left, form on right --- */
-.users-content {
-  display: flex;
-  flex: 1 1 auto;          /* fill remaining vertical space */
-  gap: 1rem;
-  overflow: hidden;        /* hide any overflow except in wrapper */
+/* Responsive rules */
+@media (max-width: 768px) {
+    .admin-dashboard { flex-direction: column; height: auto; }
+    .nav-pane { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); flex-direction: row; }
+    .nav-pane-content { flex-direction: row; justify-content: space-around; padding: 0.5rem; align-items: center; flex-wrap: wrap; }
+    .nav-pane h3 { display: none; }
+    .nav-pane button { margin: 0.25rem; }
+    .nav-pane .sign-out { margin: 0.25rem; margin-left: auto; }
+    .table-pane, .users-view { padding: 1rem; height: auto; }
+    .users-content { flex-direction: column; }
+    .add-user-side { margin-top: 1rem; }
+    .actions button { font-size: 0.75rem; }
+    .dynamic-table th, .users-table th, .dynamic-table td, .users-table td { white-space: normal; }
 }
-
-/* --- left: table wrapper scrolls its content --- */
-.users-table-wrapper {
-  flex: 3 1 0;             /* take 3 parts of the width */
-  overflow-y: auto;        /* scroll bar appears here */
-}
-
-/* ensure the table inside fills the wrapper */
-.users-table-wrapper .users-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-/* --- right: add-user form keeps its height --- */
-.add-user-side {
-  flex: 1 1 0;             /* take 1 part of the width */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-/* optional: if you want the table header fixed, see notes below */
-
-
-/* Role selector */
-/* --- Manage Users: two‐column layout --- */
-.users-view {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-.users-content {
-  display: flex;
-  flex: 1;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-/* scrollable table wrapper */
-.users-table-wrapper {
-  flex: 2;
-  overflow-y: auto;
-}
-.users-table-wrapper .users-table {
-  width: 100%;
-  border-collapse: collapse;
-  overflow-y: auto;
-}
-
-/* side‐by‐side add‐user form */
-.add-user-side {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-/* keep the form styling you already have */
-.add-user-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/* Inline search box in table header */
-.inline-header-input {
-  margin-top: 0.3rem;
-  width: 100%;
-  padding: 0.25rem;
-  background: #000;
-  color: #fff;
-  border: 1px solid #d61dfb;
-  border-radius: 4px;
-  font-size: 0.85rem;
-}
-
-/* Keep header sticky if you're scrolling */
-.users-table-wrapper thead {
-  position: sticky;
-  top: 0;
-  background: #111;
-  z-index: 1;
+@media (max-width: 480px) {
+    .metrics-row { grid-template-columns: 1fr; gap: 1rem; }
+    .metric-card { padding: 1rem;} .metric-card p { font-size: 1.8rem; }
+    .filters { gap: 0.5rem; }
+    .filters input, .filters select, .filters button { width: 100%; margin-left: 0 !important; }
+    .delete-btn, .edit-btn, .save-btn, .cancel-btn { padding: 0.3rem 0.5rem; font-size: 0.75rem; }
+    .dashboard-content { padding: 1rem; gap: 1rem; } /* Example */
+    .requests-card { padding: 1rem; } /* Example */
+    .requests-card h3 { font-size: 1.1rem; margin-bottom: 1rem;}
 }
