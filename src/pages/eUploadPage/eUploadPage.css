@@ -1,228 +1,277 @@
-/* EUploadPage.css - Professional Bank Theme */
+/* EUploadPage.css - Combined Styles for Upload and Summary (Friend's Theme) */
 
-/* Assumes :root variables are defined globally */
+/* Assumes :root variables are defined globally (e.g., in index.css or App.css) */
+/* Example :root variables (Add these to your global CSS if not already present) */
+/*
+:root {
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-light: #f8f9fa; / * Added for preview background * /
+  --bg-input: #ffffff;
+  --bg-hover: #f1f3f5;
+  --bg-selected: #e7f1fc;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --border-color: #dee2e6;
+  --accent-primary: #0056b3;
+  --accent-primary-dark: #004085;
+  --shadow-color: rgba(0, 0, 0, 0.07);
+  --font-family: "Open Sans", sans-serif;
+  --border-radius: 4px;
+  --transition: 0.2s ease-in-out;
+
+  / * Status Colors * /
+  --status-rejected-text: #721c24;
+  --status-rejected-bg: #f8d7da;
+  --status-rejected-border: #f5c6cb;
+  --status-approved-text: #155724;
+  --status-approved-bg: #d4edda;
+  --status-approved-border: #c3e6cb;
+  --status-pending-text: #664d03;
+  --status-pending-bg: #fff3cd;
+  --status-pending-border: #ffecb5;
+  --info-text: #0c5460;
+  --info-bg: #d1ecf1;
+  --info-border: #bee5eb;
+
+  / * Button Colors * /
+   --button-text-color: #ffffff;
+   --button-disabled-bg: #6c757d;
+   --button-light-bg: #e9ecef;
+   --button-light-hover-bg: #dee2e6;
+}
+*/
+
 
 /* === Page Container === */
 .eupload-page-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: var(--bg-primary); /* Use primary background */
-}
-
-/* === Navbar (Uses styles from AdminDashboard.css if loaded globally) === */
-/* If AdminDashboard.css isn't global, copy relevant .navbar styles here */
-/* Example minimal navbar styles if needed */
-.navbar {
-  position: sticky; top: 0; height: 4.5rem; width: 100%;
-  background: var(--bg-secondary); border-bottom: 1px solid var(--border-color);
-  padding: 0 2rem; display: flex; justify-content: space-between; align-items: center;
-  box-shadow: 0 1px 2px var(--shadow-color); z-index: 100; flex-shrink: 0;
-}
-.navbar-logo { font-size: 1.75rem; font-weight: 600; color: var(--accent-primary); }
-.nav-links { display: flex; align-items: center; gap: 1rem; }
-.nav-links .nav-btn { /* Basic button style for nav */
-  background: none; border: none; color: var(--text-secondary); font-size: 0.95rem;
-  font-weight: 500; cursor: pointer; padding: 0.4rem 1rem; border-radius: var(--border-radius);
-  transition: background var(--transition), color var(--transition); line-height: 1;
-}
-.nav-links .nav-btn:hover { color: var(--accent-primary); background-color: transparent; }
-.nav-links .sign-out { color: var(--status-rejected-text); } /* Style sign out */
-.nav-links .sign-out:hover { background-color: var(--status-rejected-bg); }
-
-/* Profile Dropdown Styles (Copy from admindashboard.css if not global) */
-.profile-dropdown { position: relative; display: flex; align-items: center; }
-.profile-pic { width: 36px; height: 36px; border-radius: 50%; cursor: pointer; object-fit: cover; display: block; border: 1px solid var(--border-color); }
-.profile-menu { position: absolute; top: calc(100% + 10px); right: 0; width: 220px; background-color: var(--bg-secondary); border-radius: var(--border-radius); border: 1px solid var(--border-color); box-shadow: 0 5px 15px var(--shadow-color); padding: 0.5rem 0; list-style: none; z-index: 1000; }
-.profile-menu li { color: var(--text-primary); font-size: 0.9rem; }
-.profile-menu li.profile-email { padding: 0.6rem 1rem; font-weight: 500; border-bottom: 1px solid var(--border-color); margin-bottom: 0.5rem; color: var(--text-secondary); word-break: break-all; font-size: 0.85rem; }
-.profile-menu li button { width: 100%; background: none; border: none; color: var(--text-primary); text-align: left; padding: 0.6rem 1rem; cursor: pointer; transition: background 0.2s ease; font-size: inherit; }
-.profile-menu li button:hover { background-color: var(--bg-secondary); color: var(--accent-primary); }
-
-
-/* === Main Upload Content Area === */
-.eupload-content {
-  flex-grow: 1; /* Allow content to take available space */
-  display: flex;
-  justify-content: center; /* Center the card horizontally */
-  align-items: flex-start; /* Align card to top */
-  padding: 2.5rem 1rem; /* Padding around the card */
-  box-sizing: border-box;
-}
-
-/* === Upload Card Styling === */
-.eupload-card {
-  background-color: var(--bg-secondary); /* Use secondary bg for card */
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  padding: 2rem 2.5rem; /* Card padding */
-  width: 100%;
-  max-width: 600px; /* Max width of the card */
-  box-sizing: border-box;
-  box-shadow: 0 4px 15px var(--shadow-color); /* Subtle shadow */
-}
-
-.eupload-card h2 {
-  margin: 0 0 0.5rem 0;
-  text-align: center;
-  color: var(--text-primary);
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.eupload-subtitle {
-    text-align: center;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    margin: 0 0 2rem 0; /* Space below subtitle */
-}
-
-/* === Form Styling === */
-.form-group {
-  margin-bottom: 1.5rem; /* Space between form groups */
-}
-
-.form-group label {
-  display: block; /* Label on its own line */
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  margin-bottom: 0.4rem; /* Space between label and input */
-}
-
-/* Input, Select, Textarea common styles */
-.eupload-card input[type="file"],
-.eupload-card select,
-.eupload-card textarea {
-  display: block; /* Take full width */
-  width: 100%;
-  padding: 0.6rem 0.8rem;
-  font-size: 0.95rem;
-  font-family: inherit; /* Use main font */
-  color: var(--text-primary);
-  background-color: var(--bg-primary); /* White background for inputs */
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  box-sizing: border-box;
-  transition: border-color var(--transition), box-shadow var(--transition);
-}
-
-.eupload-card input[type="file"] {
-    padding: 0.5rem; /* Adjust padding for file input */
-    color: var(--text-secondary);
-}
-/* Styling the file input button */
-.eupload-card input[type="file"]::file-selector-button {
-    margin-right: 0.8rem;
-    border: 1px solid var(--border-color);
-    padding: 0.4rem 0.8rem;
-    border-radius: var(--border-radius);
-    color: var(--text-secondary);
-    background-color: var(--bg-secondary); /* Light grey button */
-    cursor: pointer;
-    transition: background-color var(--transition);
-}
-.eupload-card input[type="file"]::file-selector-button:hover {
-    background-color: #e9ecef; /* Slightly darker grey */
-}
-
-
-.eupload-card select {
-  cursor: pointer;
-  appearance: menulist-button; /* Basic native appearance */
-}
-
-.eupload-card textarea {
-  resize: vertical; /* Allow vertical resize only */
-  min-height: 80px;
-}
-
-/* Focus styles */
-.eupload-card input[type="file"]:focus-within, /* Target container on focus */
-.eupload-card select:focus,
-.eupload-card textarea:focus {
-  outline: none;
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.15);
-}
-
-/* File Preview */
-.file-preview-container {
-    margin-top: 0.75rem;
-    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--bg-primary); /* Use primary background */
+    font-family: var(--font-family, "Open Sans", sans-serif);
+  }
+  
+  /* === Navbar === */
+  .navbar {
+    position: sticky; top: 0; height: 4.5rem; width: 100%;
+    background: var(--bg-secondary); border-bottom: 1px solid var(--border-color);
+    padding: 0 2rem; display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 1px 2px var(--shadow-color); z-index: 100; flex-shrink: 0;
+  }
+  .navbar-logo { font-size: 1.75rem; font-weight: 600; color: var(--accent-primary); }
+  .nav-links { display: flex; align-items: center; gap: 1rem; }
+  .nav-links .nav-btn { /* Style for Dashboard/Upload New buttons */
+    background: none; border: 1px solid transparent; color: var(--text-secondary); font-size: 0.95rem;
+    font-weight: 500; cursor: pointer; padding: 0.4rem 1rem; border-radius: var(--border-radius);
+    transition: background var(--transition), color var(--transition), border-color var(--transition); line-height: 1;
+  }
+  .nav-links .nav-btn:hover {
+      color: var(--accent-primary);
+      background-color: var(--bg-hover, #f1f3f5);
+      border-color: var(--border-color); /* Add subtle border on hover */
+  }
+  
+  /* Profile Dropdown Styles */
+  .profile-dropdown { position: relative; display: flex; align-items: center; }
+  .profile-pic { width: 36px; height: 36px; border-radius: 50%; cursor: pointer; object-fit: cover; display: block; border: 1px solid var(--border-color); }
+  .profile-menu { position: absolute; top: calc(100% + 10px); right: 0; width: 220px; background-color: var(--bg-secondary); border-radius: var(--border-radius); border: 1px solid var(--border-color); box-shadow: 0 5px 15px var(--shadow-color); padding: 0.5rem 0; list-style: none; z-index: 1000; }
+  .profile-menu li { color: var(--text-primary); font-size: 0.9rem; }
+  .profile-menu li.profile-email { padding: 0.6rem 1rem; font-weight: 500; border-bottom: 1px solid var(--border-color); margin-bottom: 0.5rem; color: var(--text-secondary); word-break: break-all; font-size: 0.85rem; }
+  .profile-menu li button { width: 100%; background: none; border: none; color: var(--text-primary); text-align: left; padding: 0.6rem 1rem; cursor: pointer; transition: background 0.2s ease, color 0.2s ease; font-size: inherit; font-family: inherit; }
+  .profile-menu li button:hover { background-color: var(--accent-primary); color: var(--button-text-color); }
+  
+  
+  /* === Main Content Area (Upload & Summary) === */
+  .eupload-content {
+    flex-grow: 1; /* Allow content to take available space */
+    display: flex;
+    justify-content: center; /* Center the card horizontally */
+    align-items: flex-start; /* Align card to top */
+    padding: 2.5rem 1.5rem; /* Padding around the card */
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  
+  /* === Card Styling (Upload & Summary) === */
+  .eupload-card {
     background-color: var(--bg-secondary);
-    border: 1px dashed var(--border-color);
-    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius, 8px);
+    padding: 2rem 2.5rem;
+    width: 100%;
+    max-width: 650px; /* Consistent width */
+    box-sizing: border-box;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    margin-bottom: 2rem;
+  }
+  
+  .eupload-card h2 {
+    margin: 0 0 1.5rem 0;
     text-align: center;
-}
-.file-preview-container p {
-    margin: 0 0 0.5rem 0;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  /* === Form Styling (Upload Page) === */
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 0.9rem;
     font-weight: 500;
-}
-.file-preview {
-  display: block;
-  margin: 0 auto; /* Center preview */
-  max-width: 100%; /* Ensure preview fits */
-  max-height: 150px; /* Limit preview height */
-  height: auto;
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
-}
-
-/* Upload Button */
-.upload-button {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  font-size: 1.1rem;
-  font-weight: 800; /* Standard weight */
-  background-color: var(--accent-primary); /* Solid blue */
-  color: #000000;
-  border: 1px solid var(--accent-primary);
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  transition: background-color var(--transition), opacity var(--transition);
-  margin-top: 0.5rem; /* Space above button */
-}
-
-.upload-button:hover:not(:disabled) {
-  background-color: #7ea8e7; /* Darker blue */
-}
-
-.upload-button:disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
-}
-
-/* Messages */
-.message {
-  padding: 0.75rem 1rem;
-  margin-bottom: 1.5rem;
-  border-radius: var(--border-radius);
-  font-size: 0.9rem;
-  text-align: center;
-  border: 1px solid transparent;
-}
-.error-message { /* Use theme error colors */
-  color: var(--status-rejected-text);
-  background-color: var(--status-rejected-bg);
-  border-color: var(--status-rejected-text);
-}
-.success-message { /* Use theme success colors */
-  color: var(--status-approved-text);
-  background-color: var(--status-approved-bg);
-  border-color: var(--status-approved-text);
-}
-
-
-/* === RESPONSIVE === */
-@media (max-width: 600px) {
-  .eupload-content { padding: 1.5rem 1rem; }
-  .eupload-card { padding: 1.5rem; }
-  .eupload-card h2 { font-size: 1.3rem; }
-  .eupload-subtitle { font-size: 0.9rem; margin-bottom: 1.5rem; }
-  .form-group label { font-size: 0.85rem; }
-  .eupload-card input[type="file"], .eupload-card select, .eupload-card textarea { padding: 0.5rem 0.7rem; font-size: 0.9rem; }
-  .upload-button { padding: 0.65rem; font-size: 0.95rem; }
-}
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+  }
+  
+  /* Base Input, Select, Textarea styles */
+  .eupload-card input[type="text"],
+  .eupload-card input[type="date"],
+  .eupload-card input[type="number"],
+  .eupload-card input[type="file"],
+  .eupload-card select,
+  .eupload-card textarea {
+    display: block; width: 100%; padding: 0.6rem 0.8rem;
+    font-size: 0.95rem; font-family: inherit; color: var(--text-primary);
+    background-color: var(--bg-input, #ffffff); border: 1px solid var(--border-color, #ced4da);
+    border-radius: var(--border-radius, 4px); box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .eupload-card input::placeholder,
+  .eupload-card textarea::placeholder { color: #adb5bd; opacity: 1; }
+  
+  /* File Input Specifics */
+  .eupload-card input[type="file"] { padding: 0.5rem; color: var(--text-secondary); line-height: 1.5; }
+  .eupload-card input[type="file"]::file-selector-button {
+      margin-right: 0.8rem; border: 1px solid var(--border-color, #ced4da); padding: 0.4rem 0.8rem;
+      border-radius: var(--border-radius, 4px); color: var(--text-secondary);
+      background-color: var(--button-light-bg, #e9ecef); cursor: pointer; transition: background-color 0.2s ease;
+  }
+  .eupload-card input[type="file"]::file-selector-button:hover { background-color: var(--button-light-hover-bg, #dee2e6); }
+  
+  /* Select Specifics */
+  .eupload-card select {
+    cursor: pointer; appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236c757d%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat; background-position: right 0.8rem center; background-size: 0.65em auto;
+    padding-right: 2.5em;
+  }
+  
+  /* Textarea Specifics */
+  .eupload-card textarea { resize: vertical; min-height: 80px; }
+  
+  /* Focus styles */
+  .eupload-card input:focus,
+  .eupload-card select:focus,
+  .eupload-card textarea:focus {
+    outline: none; border-color: var(--accent-primary, #80bdff);
+    box-shadow: 0 0 0 0.2rem rgba(0, 86, 179, 0.25);
+  }
+  
+  /* Grid for Vendor/Date/Total */
+  .parsed-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+  }
+  .parsed-grid .form-group { margin-bottom: 0; }
+  
+  /* File Preview */
+  .file-preview-container {
+      margin-top: 1rem; margin-bottom: 1.25rem; padding: 1rem;
+      background-color: var(--bg-light, #f8f9fa); border: 1px dashed var(--border-color, #ced4da);
+      border-radius: var(--border-radius, 4px); text-align: center;
+  }
+  .file-preview-container p { margin: 0; font-size: 0.9rem; color: var(--text-secondary); font-style: italic; }
+  .file-preview {
+    display: block; margin: 0.75rem auto 0 auto; max-width: 100%;
+    max-height: 180px; height: auto; border-radius: var(--border-radius, 4px);
+    border: 1px solid var(--border-color, #dee2e6);
+  }
+  
+  /* Upload/Save Button */
+  .upload-button {
+    width: 100%; padding: 0.75rem 1rem; font-size: 1.05rem; font-weight: 600;
+    background-color: var(--accent-primary, #0056b3); color: var(--button-text-color, #ffffff);
+    border: none; border-radius: var(--border-radius, 4px); cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease; margin-top: 1rem;
+  }
+  .upload-button:hover:not(:disabled) { background-color: var(--accent-primary-dark, #004085); }
+  .upload-button:disabled { opacity: 0.65; cursor: not-allowed; background-color: var(--button-disabled-bg, #6c757d); }
+  
+  /* Messages */
+  .message {
+    padding: 0.8rem 1.2rem; margin-bottom: 1.5rem; border-radius: var(--border-radius, 4px);
+    font-size: 0.9rem; text-align: center; border: 1px solid transparent;
+  }
+  .error-message { color: var(--status-rejected-text, #721c24); background-color: var(--status-rejected-bg, #f8d7da); border-color: var(--status-rejected-border, #f5c6cb); }
+  .success-message { color: var(--status-approved-text, #155724); background-color: var(--status-approved-bg, #d4edda); border-color: var(--status-approved-border, #c3e6cb); }
+  .info-message { color: var(--info-text, #0c5460); background-color: var(--info-bg, #d1ecf1); border-color: var(--info-border, #bee5eb); }
+  
+  /* Spinner */
+  .spinner {
+      display: inline-block; width: 1em; height: 1em; vertical-align: -0.125em;
+      border: 0.15em solid currentColor; border-right-color: transparent;
+      border-radius: 50%; animation: spin 0.75s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-indicator { display: flex; justify-content: center; align-items: center; min-height: 100vh; font-size: 1.2rem; color: var(--text-secondary); }
+  .spinner-container { /* For centering spinner in summary */
+      display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem;
+  }
+  .spinner-container .message { margin-bottom: 1rem; }
+  
+  
+  /* === Summary Page Specific Styles === */
+  .summary-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem 1.5rem; margin-top: 1.5rem; margin-bottom: 2rem;
+    padding-top: 1.5rem; border-top: 1px solid var(--border-color, #e9ecef);
+  }
+  .summary-item { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.95rem; }
+  .summary-item.full-width { grid-column: 1 / -1; }
+  .summary-label { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary, #6c757d); text-transform: uppercase; letter-spacing: 0.5px; }
+  .summary-value { font-size: 1rem; color: var(--text-primary, #343a40); word-break: break-word; }
+  /* Status value styling */
+  .summary-value[class*="status-"] { font-weight: 500; padding: 0.2rem 0.5rem; border-radius: var(--border-radius); display: inline-block; width: fit-content; }
+  .summary-value.status-pending { background-color: var(--status-pending-bg); color: var(--status-pending-text); }
+  .summary-value.status-approved { background-color: var(--status-approved-bg); color: var(--status-approved-text); }
+  .summary-value.status-rejected { background-color: var(--status-rejected-bg); color: var(--status-rejected-text); }
+  .summary-value.status-clarification-requested { background-color: var(--info-bg); color: var(--info-text); }
+  /* Notes value styling */
+  .summary-value.notes-value { white-space: pre-wrap; background-color: var(--bg-light, #f8f9fa); padding: 0.75rem; border-radius: var(--border-radius, 4px); border: 1px solid var(--border-color, #e9ecef); min-height: 60px; font-size: 0.95rem; line-height: 1.5; }
+  /* Link styling */
+  .summary-link { color: var(--accent-primary, #0056b3); text-decoration: none; font-weight: 500; transition: color 0.2s ease; }
+  .summary-link:hover { color: var(--accent-primary-dark, #004085); text-decoration: underline; }
+  /* Summary Action Buttons */
+  .summary-actions { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color, #e9ecef); display: flex; justify-content: flex-end; gap: 1rem; }
+  .summary-actions .nav-btn { border: 1px solid var(--border-color, #ced4da); background-color: var(--bg-secondary, #ffffff); }
+  .summary-actions .nav-btn:hover { background-color: var(--bg-hover, #f1f3f5); border-color: var(--text-secondary, #adb5bd); }
+  .summary-actions .edit-btn { background-color: var(--status-pending-bg); color: var(--status-pending-text); border-color: var(--status-pending-border); }
+  .summary-actions .edit-btn:hover { background-color: #e9bd4b; border-color: #e9bd4b; }
+  
+  
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+      .navbar { padding: 0 1rem; }
+      .eupload-content { padding: 1.5rem 1rem; }
+      .eupload-card { padding: 1.5rem; }
+      .eupload-card h2 { font-size: 1.4rem; }
+  }
+  @media (max-width: 600px) {
+    .eupload-card { padding: 1.5rem 1rem; }
+    .eupload-card h2 { font-size: 1.3rem; }
+    .parsed-grid { grid-template-columns: 1fr; }
+    .form-group label { font-size: 0.85rem; }
+    .eupload-card input, .eupload-card select, .eupload-card textarea { padding: 0.5rem 0.7rem; font-size: 0.9rem; }
+    .upload-button { padding: 0.65rem; font-size: 0.95rem; }
+    .summary-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .summary-actions { flex-direction: column; align-items: stretch; }
+    .summary-actions .nav-btn { width: 100%; text-align: center; }
+  }
+  
+  

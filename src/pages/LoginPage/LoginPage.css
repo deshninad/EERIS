@@ -1,75 +1,104 @@
-/* LoginPage.css - New Theme with Sidebar Content Toggle */
+/* LoginPage.css - New Theme with Improved Info Content Styles */
 
 /* === GLOBAL RESET (Minimal) === */
-html, body { margin: 0; padding: 0; height: 100%; font-family: "Courier New", monospace; }
 
 /* === LAYOUT & BACKGROUND === */
-.login-container { display: flex; height: 100vh; width: 100vw; font-family: "Courier New", monospace; background: linear-gradient(-45deg, #d9f99d, #e2e8f0, #a7f3d0, #d1d5db); background-size: 400% 400%; animation: gradientShift 10s ease infinite; overflow: hidden; }
+.login-container { display: flex; height: 100vh; width: 100vw; font-family: "open sans", sans-serif; background: linear-gradient(-45deg, #d9f99d, #e2e8f0, #a7f3d0, #d1d5db); background-size: 400% 400%; animation: gradientShift 10s ease infinite; overflow: hidden; }
 @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
 /* === Sidebar === */
-.sidebar { width: 280px; flex-shrink: 0; height: 100%; background-color: black; color: #e2e8f0; padding: 2rem; box-sizing: border-box; display: flex; flex-direction: column; overflow-y: auto; }
+.sidebar { width: 280px; flex-shrink: 0; height: 100%; background-color: rgb(210, 42, 42); color: #e2e8f0; padding: 2rem; box-sizing: border-box; display: flex; flex-direction: column; overflow-y: auto; }
 .logo { font-size: 2rem; font-weight: bold; margin-bottom: 2rem; text-align: center; color: #a7f3d0; }
 
 /* Sidebar Navigation Styling */
 .sidebar-nav { margin-top: 1.5rem; flex-grow: 1; }
-.menu-item { margin: 0.75rem 0; padding: 0.6rem 0.5rem; opacity: 0.7; transition: all 0.3s ease; cursor: pointer; font-size: 1rem; border-left: 3px solid transparent; color: #cbd5e0; }
-.menu-item.selected, .menu-item:hover { opacity: 1; font-weight: bold; color: #a7f3d0; border-left-color: #a7f3d0; background-color: rgba(167, 243, 208, 0.05); }
+.menu-item { margin: 0.75rem 0; padding: 0.6rem 0.8rem; opacity: 0.7; transition: all 0.3s ease; cursor: pointer; font-size: 1rem; border-left: 4px solid transparent; color: #cbd5e0; }
+.menu-item.selected, .menu-item:hover { opacity: 1; font-weight: bold; color: #ffffff; border-left-color: #a7f3d0; background-color: rgba(167, 243, 208, 0.1); }
 
 /* === Form Section === */
 .form-section { flex: 1; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 2rem; box-sizing: border-box; overflow-y: auto; }
-.login-card { background: #ffffffdd; padding: 2.5rem; border-radius: 20px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); width: 100%; max-width: 420px; /* Slightly wider card */ text-align: center; animation: fadeInUp 0.6s ease-in-out; box-sizing: border-box; }
+.login-card { background: #ffffffdd; padding: 2.5rem; border-radius: 20px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); width: 100%; max-width: 420px; text-align: center; animation: fadeInUp 0.6s ease-in-out; box-sizing: border-box; }
 @keyframes fadeInUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 .login-card h2 { margin-top: 0; margin-bottom: 1.5rem; color: #1a202c; font-size: 1.6rem; }
 
-/* === ADDED: Info Content Section Styling === */
+/* === UPDATED: Info Content Section Styling === */
 .info-content-section {
-    text-align: left; /* Align info text left */
-    animation: fadeInUp 0.4s ease-out; /* Fade in info */
-    color: #2d3748; /* Darker text for info */
+    text-align: left;
+    animation: fadeInUp 0.4s ease-out;
+    color: #000000; /* Darker base text color for readability */
+    font-size: 0.9rem; /* Base font size for info */
+    line-height: 1.6;
 }
 .info-content-section h3 {
-    font-size: 1.2rem;
-    color: #2c5282; /* Darker blue heading */
-    margin-bottom: 1rem;
+    font-size: 1.25rem; /* Slightly larger heading */
+    color: #0056b3; /* Use a professional blue for info headings */
+    margin: 0 0 1rem 0; /* Adjusted margin */
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid #dee2e6; /* Lighter border */
+    font-weight: 600;
 }
 .info-content-section ul {
-    list-style-position: outside;
-    margin: 0.5rem 0 1rem 1.2rem;
+    list-style: none; /* Remove default bullets */
+    margin: 1rem 0;
     padding: 0;
-    font-size: 0.9rem;
-    line-height: 1.6;
 }
 .info-content-section li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem; /* Increased spacing */
+    padding-left: 1.2rem; /* Indentation for custom bullet */
+    position: relative;
+    color: #495057; /* Slightly lighter grey for list items */
+}
+/* Custom bullet using pseudo-element */
+.info-content-section li::before {
+    content: '✓'; /* Checkmark or other icon */
+    position: absolute;
+    left: 0;
+    top: 1px;
+    color: #38a169; /* Green accent for bullet */
+    font-weight: bold;
 }
 .info-content-section p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin: 0.8rem 0;
+    margin: 1rem 0; /* Consistent paragraph spacing */
+    color: #495057;
 }
 .info-content-section a {
-    color: #3182ce; /* Standard blue link */
+    color: #0056b3; /* Consistent blue link color */
     text-decoration: none;
     font-weight: 500;
 }
 .info-content-section a:hover {
     text-decoration: underline;
-    color: #2b6cb0;
+    color: #004085; /* Darker blue on hover */
 }
-.info-content-section .feature-item { margin-bottom: 0.8rem; }
-.info-content-section .feature-item h4 { font-size: 1rem; color: #2c5282; margin: 0 0 0.2rem 0; font-weight: 600; border: none; padding: 0;}
-.info-content-section .feature-item p { font-size: 0.9rem; color: #4a5568; margin: 0; }
+.info-content-section .feature-item {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem; /* Indent feature items */
+    position: relative;
+    border-left: 3px solid #a7f3d0; /* Use sidebar accent for features */
+    padding: 0.5rem 0 0.5rem 1rem;
+    background-color: rgba(230, 255, 240, 0.5); /* Very subtle green background */
+    border-radius: 4px;
+}
+.info-content-section .feature-item h4 {
+    font-size: 1rem;
+    color: #212529; /* Dark heading */
+    margin: 0 0 0.2rem 0;
+    font-weight: 600;
+    border: none; padding: 0;
+}
+.info-content-section .feature-item p {
+    font-size: 0.88rem; /* Slightly smaller */
+    color: #495057;
+    margin: 0;
+    line-height: 1.5;
+}
 /* ======================================= */
 
 
-/* Role Select Group (If using dropdown) */
-.role-group { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; text-align: left; }
-.role-group label { color: #4a5568; font-size: 0.9rem; font-weight: 500; flex-shrink: 0; }
-.role-select { flex-grow: 1; padding: 0.8rem 1rem; border-radius: 10px; border: 2px solid #48bb78; background: #fff; font-size: 1rem; color: #1a202c; box-sizing: border-box; transition: box-shadow 0.3s ease; font-family: inherit; cursor: pointer; }
-.role-select:focus { outline: none; box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.3); }
+/* Role Select Group (Keep if using dropdown) */
+/* .role-group { ... } */
+/* .role-select { ... } */
+/* .role-select:focus { ... } */
 
 /* Input Fields */
 .input-field { width: 100%; padding: 0.8rem 1rem; margin-bottom: 1rem; border-radius: 10px; border: 2px solid #48bb78; background: #fff; font-size: 1rem; color: #1a202c; box-sizing: border-box; transition: box-shadow 0.3s ease; font-family: inherit; }
@@ -108,4 +137,6 @@ html, body { margin: 0; padding: 0; height: 100%; font-family: "Courier New", mo
 
   .form-section { padding: 2rem 1rem; align-items: flex-start; padding-left: 1rem; flex: 1; }
   .login-card { margin-top: 2rem; padding: 2rem 1.5rem; }
+  .info-content-section { font-size: 0.85rem; } /* Adjust base size */
+  .info-content-section h3 { font-size: 1.1rem; }
 }

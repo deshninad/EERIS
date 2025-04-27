@@ -4,7 +4,7 @@
     "email": "dkarmariya@usf.edu",
     "expenseType": "Office",
     "category": "Equipment",
-    "status": "Approved",
+    "status": "Clarification Requested",
     "amount": 376.04,
     "name": "User49"
   },
@@ -13,7 +13,7 @@
     "email": "dkarmariya@usf.edu",
     "expenseType": "Travel",
     "category": "Taxi",
-    "status": "Pending",
+    "status": "Clarification Requested",
     "amount": 149.31,
     "name": "User72"
   },
@@ -70,15 +70,6 @@
     "status": "Pending",
     "amount": 271.35,
     "name": "User76"
-  },
-  {
-    "id": 15,
-    "email": "user72@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Pending",
-    "amount": 433.14,
-    "name": "User72"
   },
   {
     "id": 16,
@@ -8944,5 +8935,77 @@
     "status": "Pending",
     "amount": 98.91,
     "name": "User59"
+  },
+  {
+    "id": 1745787299561,
+    "email": "dkarmariya@usf.edu",
+    "expenseType": "Travel",
+    "vendor": "Cole-Parmer",
+    "date": "2025-03-24",
+    "total": 79.04,
+    "notes": "",
+    "status": "Pending",
+    "submittedAt": "2025-04-27T20:54:59.561Z",
+    "receiptUrl": "/uploads/WhatsApp Image 2025-04-23 at 17.24.31-1745787299556.jpeg"
+  },
+  {
+    "id": 1745793757132,
+    "email": "dkarmariya@usf.edu",
+    "expenseType": "Office Supplies",
+    "vendor": "Cole-Parmer",
+    "date": "2025-03-24",
+    "total": 79.04,
+    "notes": "",
+    "status": "Pending",
+    "submittedAt": "2025-04-27T22:42:37.132Z",
+    "receiptUrl": "/uploads/WhatsApp Image 2025-04-23 at 17.24.31-1745793757129.jpeg"
+  },
+  {
+    "id": 1745795565358,
+    "email": "dkarmariya@usf.edu",
+    "expenseType": "Office Supplies",
+    "vendor": "Cole-Parmer",
+    "date": "2025-03-24",
+    "total": 79.04,
+    "notes": "",
+    "status": "Pending",
+    "submittedAt": "2025-04-27T23:12:45.358Z",
+    "receiptUrl": "/uploads/WhatsApp Image 2025-04-23 at 17.24.31-1745795565356.jpeg"
+  },
+  {
+    "id": 1745795659137,
+    "email": "dkarmariya@usf.edu",
+    "expenseType": "Meals & Entertainment",
+    "vendor": "Cole-Parmer",
+    "date": "2025-03-24",
+    "total": 79.04,
+    "notes": "",
+    "status": "Pending",
+    "submittedAt": "2025-04-27T23:14:19.137Z",
+    "receiptUrl": "/uploads/WhatsApp Image 2025-04-23 at 17.24.31-1745795659135.jpeg"
+  },
+  {
+    "id": 1745796526199,
+    "email": "dkarmariya@usf.edu",
+    "expenseType": "Travel",
+    "vendor": "Cole-Parmer",
+    "date": "2025-03-24",
+    "total": 79.04,
+    "notes": "",
+    "status": "Pending",
+    "submittedAt": "2025-04-27T23:28:46.199Z",
+    "receiptUrl": "/uploads/WhatsApp Image 2025-04-23 at 17.24.31-1745796526197.jpeg"
+  },
+  {
+    "id": 1745797313967,
+    "email": "dkarmariya@usf.edu",
+    "expenseType": "Travel",
+    "vendor": "Cole-Parmer",
+    "date": "2025-03-24",
+    "total": 79.04,
+    "notes": "",
+    "status": "Pending",
+    "submittedAt": "2025-04-27T23:41:53.967Z",
+    "receiptUrl": "/uploads/WhatsApp Image 2025-04-23 at 17.24.31-1745797313963.jpeg"
   }
 ]
