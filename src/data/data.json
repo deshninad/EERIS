@@ -9,15 +9,6 @@
     "name": "User49"
   },
   {
-    "id": 5,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Pending",
-    "amount": 394.75,
-    "name": "User3"
-  },
-  {
     "id": 6,
     "email": "dkarmariya@usf.edu",
     "expenseType": "Travel",
@@ -52,15 +43,6 @@
     "status": "Approved",
     "amount": 428.11,
     "name": "User49"
-  },
-  {
-    "id": 10,
-    "email": "user36@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Pending",
-    "amount": 118.24,
-    "name": "User36"
   },
   {
     "id": 12,
