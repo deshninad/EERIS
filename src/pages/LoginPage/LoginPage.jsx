@@ -56,7 +56,7 @@ const LoginPage = () => {
     setLoadingSignIn(true); setError('');
     if (otp === generatedOtp && otp !== '') {
       login(email, role.toLowerCase(), false); // Pass role, remember=false
-      navigate(role === "Admin" ? "/adminDashboard" : "/upload", { replace: true });
+      navigate(role === "Admin" ? "/adminDashboard" : "/dashboard", { replace: true });
     } else { setError('Invalid OTP entered.'); setLoadingSignIn(false); }
   };
 
