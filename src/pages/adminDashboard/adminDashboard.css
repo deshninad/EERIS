@@ -705,3 +705,47 @@
   .policies-pane h2 { font-size: 1.5rem; }
   .policies-pane h3 { font-size: 1.1rem; }
 }
+
+/* ─── CLEAN ONE-PIXEL GRID  ─────────────────────────────────── */
+
+/* use the browser’s normal collapsed-border model */
+.dynamic-table,
+.users-table{
+  border-collapse: collapse;
+}
+
+/* OUTER outline is drawn by the wrapper again */
+.table-wrapper,
+.users-table-wrapper{
+  border: 1px solid var(--table-border-color);
+}
+
+/* HEADER cells – one-pixel bottom + right edge only              */
+/* (left edge merges with the cell before, top edge is wrapper)   */
+.dynamic-table thead th,
+.users-table   thead th{
+  border: 0;
+  border-right: 1px solid var(--table-border-color);
+  border-bottom: 1px solid var(--table-border-color);
+}
+.dynamic-table thead th:last-child,
+.users-table   thead th:last-child{
+  border-right: 0;                   /* avoid doubling on the far right */
+}
+
+/* BODY cells – one-pixel top + right edge only                    */
+.dynamic-table tbody td,
+.users-table   tbody td{
+  border: 0;
+  border-right: 1px solid var(--table-border-color);
+}
+/* add the horizontal divider */
+.dynamic-table tbody tr+tr td,
+.users-table   tbody tr+tr td{
+  border-top: 1px solid var(--table-border-color);
+}
+/* kill the extra right edge on the last column */
+.dynamic-table tbody td:last-child,
+.users-table   tbody td:last-child{
+  border-right: 0;
+}
