@@ -14,7 +14,7 @@
     "name": "dk",
     "expenseType": "Meal",
     "category": "Office",
-    "status": "Rejected",
+    "status": "Approved",
     "amount": 393.99
   },
   {
@@ -144,15 +144,6 @@
     "amount": 18.7
   },
   {
-    "id": 17,
-    "email": "dkarmariya@usf.edu",
-    "name": "dk",
-    "expenseType": "Supplies",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 51.86
-  },
-  {
     "id": 18,
     "email": "snagraj@usf.edu",
     "name": "srishti",
@@ -222,7 +213,7 @@
     "expenseType": "Meal",
     "category": "Conference",
     "status": "Approved",
-    "amount": 408.0
+    "amount": 408
   },
   {
     "id": 26,
@@ -988,15 +979,6 @@
     "category": "Office",
     "status": "Request Clarification",
     "amount": 444.57
-  },
-  {
-    "id": 111,
-    "email": "dkarmariya@usf.edu",
-    "name": "dk",
-    "expenseType": "Travel",
-    "category": "Equipment",
-    "status": "Rejected",
-    "amount": 319.28
   },
   {
     "id": 112,

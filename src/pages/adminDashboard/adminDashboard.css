@@ -168,74 +168,94 @@
   font-size: 0.9rem;
 }
 
-/* FILTERS (Space Optimized) */
+/* FILTERS (Space Optimized) -> Make container more compact vertically */
 .filters {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem; /* More gap */
-  margin-bottom: 1.5rem; /* More space below */
-  padding-bottom: 1rem;
+  gap: 0.5rem; /* Reduced gap between items */
+  margin-bottom: 0.75rem; /* Reduced space below filter bar */
+  padding-bottom: 0.5rem; /* Reduced padding below items within the bar */
   border-bottom: 1px solid var(--border-color);
 }
-.filters label {
+
+.filters label { /* Label styling unchanged */
   margin-right: 0.25rem;
   font-size: 0.9rem;
   color: var(--text-secondary);
   font-weight: 500;
 }
+
+/* Restore original larger internal padding and font size for filter elements */
 .filters input, .filters select {
-  background: var(--bg-secondary); /* White background */
+  padding: 0.5rem 0.8rem; /* Restored larger padding */
+  font-size: 0.9rem; /* Restored larger font size */
+  /* Keep other styles */
+  background: var(--bg-secondary);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
-  padding: 0.5rem 0.8rem; /* More padding */
   border-radius: var(--border-radius);
-  font-size: 0.9rem;
   transition: border-color var(--transition), box-shadow var(--transition);
 }
+
 .filters input::placeholder {
   color: var(--text-secondary);
   opacity: 0.7;
 }
+
 .filters input:focus, .filters select:focus {
   outline: none;
   border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.15); /* Slightly larger shadow */
+  box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.15);
 }
+
 .filters select {
   cursor: pointer;
 }
+
+/* Restore original larger internal padding and font size for filter buttons */
 .filters button {
-  padding: 0.5rem 1rem; /* Match input padding */
-  font-size: 0.9rem;
+  padding: 0.5rem 1rem; /* Restored larger padding */
+  font-size: 0.9rem; /* Restored larger font size */
+  /* Keep other styles */
   border-radius: var(--border-radius);
   cursor: pointer;
   transition: all var(--transition);
   border: 1px solid var(--text-secondary);
   background: transparent;
   color: var(--text-secondary);
+  line-height: 1.2; /* Ensure text aligns */
 }
+
 .filters button:hover:not(:disabled) {
   background: var(--text-secondary);
   color: var(--bg-secondary);
   border-color: var(--text-secondary);
 }
+
 .filters button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-.filters button[style*="marginLeft: auto"] { /* Target clear button */
+
+/* Target clear button specifically */
+.filters button[style*="marginLeft: auto"] {
   margin-left: auto;
 }
-.filters button[style*="background: var(--accent-primary"] { /* Target PDF button */
+
+/* Target PDF export button specifically */
+.filters button[style*="marginLeft: 1rem"] {
    border: none;
    background: var(--accent-primary);
    color: #fff;
-}
-.filters button[style*="background: var(--accent-primary"]:hover:not(:disabled) {
-    background: #004085; /* Darker blue */
+   /* Ensure size matches other filter buttons */
+   padding: 0.5rem 1rem; /* Restored larger padding */
+   font-size: 0.9rem; /* Restored larger font size */
 }
 
+.filters button[style*="marginLeft: 1rem"]:hover:not(:disabled) {
+    background: #004085; /* Darker blue */
+}
 
 /* Metrics Row Styling (with Colors) */
 .metrics-row {
@@ -332,7 +352,7 @@
   padding: 0.9rem 1rem; /* More padding */
   text-align: left;
   vertical-align: middle;
-  border-bottom: 1px solid var(--table-border-color);
+  /* border-bottom: 1px solid var(--table-border-color); */ /* Use clean grid styles instead */
   white-space: normal; /* Allow wrapping */
 }
 .dynamic-table th, .users-table th {
@@ -343,8 +363,8 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   cursor: pointer;
-  border-bottom-width: 2px; /* Thicker bottom border */
-  border-top: 1px solid var(--table-border-color);
+  /* border-bottom-width: 2px; */ /* Use clean grid styles instead */
+  /* border-top: 1px solid var(--table-border-color); */ /* Use clean grid styles instead */
   position: sticky; /* Make header sticky */
   top: 0; /* Stick to top */
   z-index: 10; /* Ensure header is above content */
@@ -361,10 +381,10 @@
   color: var(--text-primary);
   font-size: 0.9rem;
 }
-.dynamic-table tbody tr:last-child td,
-.users-table tbody tr:last-child td {
-  border-bottom: none; /* No border on last row */
-}
+/* .dynamic-table tbody tr:last-child td, */
+/* .users-table tbody tr:last-child td { */
+  /* border-bottom: none; */ /* Handled by clean grid styles */
+/* } */
 .dynamic-table td:last-child,
 .users-table td:last-child {
   text-align: right;
@@ -418,33 +438,66 @@
   box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.15);
 }
 
-/* ACTION BUTTONS (Text Links) */
+/* === ACTION BUTTONS Styling Update === */
 .actions {
   display: flex;
-  gap: 1rem; /* More space between actions */
+  gap: 0.75rem; /* Slightly reduced gap */
   justify-content: flex-end;
   align-items: center;
 }
-.actions button, .actions .edit-btn, .actions .delete-btn {
+
+/* Base style for all action items (buttons or links) */
+.actions button, .actions a { /* Include links if any */
   border: none;
-  padding: 0;
-  border-radius: 0;
   font-weight: 500;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: color var(--transition), text-decoration var(--transition);
-  background: transparent;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, opacity 0.15s ease-in-out;
   text-decoration: none;
   line-height: 1;
+  vertical-align: middle; /* Align items nicely */
 }
-.actions button:hover, .actions .edit-btn:hover, .actions .delete-btn:hover {
-  opacity: 1;
+
+/* Default text-link style (if needed for other actions) */
+.actions button:not(.delete-btn):not(.edit-btn) {
+  padding: 0;
+  background: transparent;
+  color: var(--text-secondary);
+}
+.actions button:not(.delete-btn):not(.edit-btn):hover {
+  color: var(--text-primary);
   text-decoration: underline;
 }
-.actions .edit-btn { color: var(--accent-primary); }
-.actions .delete-btn { color: var(--status-rejected-text); }
-.actions button:not(.edit-btn):not(.delete-btn) { color: var(--text-secondary); }
-.actions button:not(.edit-btn):not(.delete-btn):hover { color: var(--text-primary); }
+
+/* Specific styling for EDIT button (as a link) */
+.actions .edit-btn {
+  padding: 0; /* No padding for link style */
+  background: transparent;
+  color: var(--accent-primary);
+}
+.actions .edit-btn:hover {
+   color: #004085; /* Darker blue */
+   text-decoration: underline;
+}
+
+/* Specific styling for DELETE button (as an actual button) */
+.actions .delete-btn {
+  color: #fff !important; /* White text */
+  background-color: var(--status-rejected-text) !important; /* Red background */
+  padding: 0.3rem 0.7rem !important; /* Add padding */
+  border-radius: var(--border-radius) !important; /* Add border radius */
+  border: 1px solid var(--status-rejected-text) !important; /* Optional: border */
+  text-decoration: none !important; /* Remove underline */
+  line-height: 1.2; /* Adjust line height for padding */
+}
+.actions .delete-btn:hover {
+  background-color: #a01c28 !important; /* Darker red on hover */
+  border-color: #a01c28 !important;
+  text-decoration: none !important; /* Ensure no underline on hover */
+  opacity: 0.9;
+}
+/* === END ACTION BUTTONS Styling Update === */
+
 
 /* MANAGE USERS PANE */
 .users-view {
@@ -681,7 +734,15 @@
       height: auto; /* Allow content height */
       max-height: none;
   }
-  .actions button { font-size: 0.8rem; } /* Smaller action buttons */
+  /* Adjust action button size for smaller screens */
+  .actions button, .actions .delete-btn {
+     font-size: 0.8rem;
+     padding: 0.25rem 0.5rem; /* Slightly smaller padding for delete button */
+  }
+   /* Adjust padding for non-delete buttons */
+   .actions button:not(.delete-btn) {
+      padding: 0; /* Keep link-style buttons paddingless */
+   }
   .dynamic-table th, .users-table th, .dynamic-table td, .users-table td {
       white-space: normal; /* Ensure text wraps */
       padding: 0.7rem 0.8rem; /* Adjust padding */
@@ -692,6 +753,7 @@
 
 @media (max-width: 480px) {
   .table-pane, .users-view { padding: 1rem; }
+  /* Stack filters and make full width */
   .filters { flex-direction: column; align-items: stretch; gap: 0.75rem; }
   .filters input, .filters select, .filters button {
       width: 100%;
@@ -700,7 +762,15 @@
   .metrics-row { grid-template-columns: 1fr; gap: 1rem; }
   .metric-card { padding: 1rem;}
   .actions { gap: 0.5rem; }
-  .actions button { font-size: 0.75rem; }
+  /* Further reduce action button size if needed */
+  .actions button, .actions .delete-btn {
+     font-size: 0.75rem;
+     padding: 0.2rem 0.4rem;
+  }
+   /* Adjust padding for non-delete buttons */
+   .actions button:not(.delete-btn) {
+      padding: 0;
+   }
   .policies-pane { padding: 1rem; }
   .policies-pane h2 { font-size: 1.5rem; }
   .policies-pane h3 { font-size: 1.1rem; }

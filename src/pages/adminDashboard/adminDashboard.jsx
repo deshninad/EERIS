@@ -416,9 +416,9 @@ const AdminDashboard = () => {
                  <option value="">All Expense Types</option> {expenseTypes.map(t => <option key={t} value={t}>{t}</option>)}
               </select>
               <button onClick={() => { setSearchEmail(''); setFilterCategory(''); setFilterExpenseType(''); setFilterDashboardStatus(''); setSortConfig({ key: null, direction: 'asc' });}} style={{ marginLeft: 'auto' }} disabled={!searchEmail && !filterCategory && !filterExpenseType && !filterDashboardStatus}>Clear Filters</button>
-              <button onClick={handleExportPDF} style={{ marginLeft: '1rem', background: 'var(--accent-primary, #0056b3)', color: '#fff', border: 'none', padding: '0.4rem 0.8rem', borderRadius: 'var(--border-radius, 4px)', cursor:'pointer', fontSize:'0.8rem' }} disabled={displayedExpenses.length === 0}>
+              <button onClick={handleExportPDF} style={{ marginLeft: '1rem' }} disabled={displayedExpenses.length === 0}>
                   Export PDF
-              </button>
+              </button> {/* Removed inline styles to rely on CSS */}
             </div>
 
             {/* Expense Table */}
