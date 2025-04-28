@@ -59,42 +59,46 @@ function saveUsers(u) {
 
 // ─── OTP endpoint ───────────────────────────────────────────────
 app.post('/send-OTP', (req, res) => {
-  const { email, otp, role } = req.body;
-  if (!email || !otp || !role) {
-    return res.status(400).json({ message: 'Missing fields.' });
-  }
-
-  const users = getUsers();
-  const authorized =
-    (role === 'employee' && users.employees.includes(email)) ||
-    (role === 'admin'    && users.admins.includes(email));
-
-  if (!authorized) {
-    return res.status(403).json({ message: 'Not registered for this role.' });
-  }
-
-        // Execute Python Script using venv python
-        const command = `"python3" "${PYTHON_SCRIPT}" "${email}" "${otp}"`;
-        console.log(`Executing command: ${command}`);
-
-        exec(command, (err, stdout, stderr) => {
-            if (err) {
-                console.error(`Error executing Python script: ${err.message}`);
-                return res.status(500).json({ success: false, message: 'Server error: Failed to execute OTP sender.' });
-            }
-            if (stderr) {
-                console.error(`Python script stderr: ${stderr}`);
-                // Consider if stderr should always indicate failure
-            }
-            console.log(`Python script stdout: ${stdout}`);
-            console.log(`OTP successfully processed for ${email}`);
-            res.json({ success: true, message: 'OTP sent.' }); // Send success back
-        });
-
-    } catch (readErr) {
-        console.error("Error processing /send-OTP (likely reading users file):", readErr);
-        res.status(500).json({ success: false, message: 'Server error checking user roles.' });
+  try {
+    const { email, otp, role } = req.body;
+    if (!email || !otp || !role) {
+      return res.status(400).json({ message: 'Missing fields.' });
     }
+
+    const users = getUsers();
+    const authorized =
+      (role === 'employee' && users.employees.includes(email)) ||
+      (role === 'admin'    && users.admins.includes(email));
+
+    if (!authorized) {
+      return res.status(403).json({ message: 'Not registered for this role.' });
+    }
+
+    // Execute Python script
+    const command = `python3 "${PYTHON_SCRIPT}" "${email}" "${otp}"`;
+    console.log(`Executing command: ${command}`);
+    exec(command, (err, stdout, stderr) => {
+      if (err) {
+        console.error(`Error executing Python script: ${err.message}`);
+        return res.status(500).json({
+          success: false,
+          message: 'Server error: Failed to send OTP.'
+        });
+      }
+      if (stderr) {
+        console.warn(`Python script stderr: ${stderr.trim()}`);
+      }
+      console.log(`Python script stdout: ${stdout.trim()}`);
+      return res.json({ success: true, message: 'OTP sent.' });
+    });
+
+  } catch (readErr) {
+    console.error('Error processing /send-OTP:', readErr);
+    return res.status(500).json({
+      success: false,
+      message: 'Server error checking user roles.'
+    });
+  }
 });
 
 // ─── Users CRUD ─────────────────────────────────────────────────
