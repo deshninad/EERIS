@@ -4,16 +4,17 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { exec } from 'child_process'; // Ensure this is imported
+// import { exec } from 'child_process'; // Ensure this is imported
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { exec, execFile } from 'child_process';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 
 const app = express();
-
 // === CORS Configuration ===
 // Allow requests only from your Vite frontend origin
 const corsOptions = {
@@ -29,7 +30,7 @@ app.use(bodyParser.json());
 const USERS_FILE   = path.join(__dirname, 'src/data/USERS.json');
 const EXPENSES_FILE = path.join(__dirname, 'src/data/data.json');
 const PYTHON_SCRIPT = path.join(__dirname, 'src/backend/OTP_emailer.py');
-const PYTHON_VENV_EXECUTABLE = path.join(__dirname, '.venv/bin/python'); // Path to Python in venv (adjust for Windows/venv name)
+const PYTHON_VENV_EXECUTABLE = 'python'; // Path to Python in venv (adjust for Windows/venv name)
 // ------------------------------------------------------------------
 
 // === HELPER FUNCTIONS ===
@@ -103,7 +104,7 @@ app.post('/send-OTP', (req, res) => {
         console.log(`Role check passed for ${email} as ${role}`);
 
         // Execute Python Script using venv python
-        const command = `"${PYTHON_VENV_EXECUTABLE}" "${PYTHON_SCRIPT}" "${email}" "${otp}"`;
+        const command = `"python" "${PYTHON_SCRIPT}" "${email}" "${otp}"`;
         console.log(`Executing command: ${command}`);
 
         exec(command, (err, stdout, stderr) => {
@@ -237,21 +238,72 @@ app.get('/get-expenses', (req, res) => {
 
 app.post('/update-expense', (req, res) => {
   try {
-    const { expenseId, field, newValue } = req.body;
-    if (expenseId === undefined || field === undefined || newValue === undefined) { return res.status(400).json({ message: 'Missing required fields' }); }
+    // 1) pull in comment
+    const { expenseId, field, newValue, comment = '' } = req.body;
+    if (
+      expenseId === undefined ||
+      field     === undefined ||
+      newValue  === undefined
+    ) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
 
+    // 2) load & update JSON file
     const exps = readJSON(EXPENSES_FILE);
-    const idx = exps.findIndex(e => e.id === expenseId);
-    if (idx === -1) return res.status(404).json({ message: 'Expense not found.' });
+    const idx  = exps.findIndex(e => e.id === expenseId);
+    if (idx === -1) {
+      return res.status(404).json({ message: 'Expense not found.' });
+    }
+    exps[idx][field] = field === 'amount'
+      ? (parseFloat(newValue) || 0)
+      : newValue;
 
-    exps[idx][field] = (field === 'amount') ? (parseFloat(newValue) || 0) : newValue; // Ensure amount is number
-
+    // 3) write it back
     writeJSON(EXPENSES_FILE, exps);
-    res.json({ success: true });
-   } catch (err) {
-      console.error("Update expense error:", err);
-      res.status(500).json({ message: "Failed to update expense."});
-   }
+
+    // 4) if status changed, fire off notification email
+    if (field === 'status') {
+      const exp     = exps[idx];
+      const to      = exp.email;
+      const subject = `Expense #${expenseId} — Status: ${newValue}`;
+      const body    = [
+        `Hello ${exp.name || exp.email},`,
+        ``,
+        `Your expense request (ID: ${expenseId}) has been updated to: "${newValue}".`,
+        ``,
+        comment ? `Admin’s note:\n${comment}\n` : '',
+        `Thank you,`,
+        `Finance Team`
+      ].join('\n');
+
+      const scriptPath = path.join(
+        __dirname,
+        'src', 'backend',
+        'Notification_emailer.py'
+      );
+
+      // non-blocking; logs success/failure to your console
+      execFile(
+        'python3',
+        [ scriptPath, to, subject, body ],
+        { cwd: path.join(__dirname, 'src', 'backend') },
+        (err, stdout, stderr) => {
+          if (err) {
+            console.error('📧 Notification error:', stderr || err);
+          } else {
+            console.log('📧 Notification sent:', stdout.trim());
+          }
+        }
+      );
+    }
+
+    // 5) respond immediately
+    return res.json({ success: true });
+  }
+  catch (err) {
+    console.error('Update expense error:', err);
+    return res.status(500).json({ message: 'Failed to update expense.' });
+  }
 });
 
 app.post('/delete-expense', (req, res) => {

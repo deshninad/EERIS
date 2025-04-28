@@ -1,23 +1,5 @@
 [
   {
-    "id": 4,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Approved",
-    "amount": 376.04,
-    "name": "User49"
-  },
-  {
-    "id": 6,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Travel",
-    "category": "Taxi",
-    "status": "Pending",
-    "amount": 149.31,
-    "name": "User72"
-  },
-  {
     "id": 7,
     "email": "dkarmariya@usf.edu",
     "expenseType": "Office",
@@ -40,7 +22,7 @@
     "email": "ndeshpande2@usf.edu",
     "expenseType": "Entertainment",
     "category": "Team Building",
-    "status": "Approved",
+    "status": "Request Clarification",
     "amount": 428.11,
     "name": "User49"
   },
