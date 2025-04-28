@@ -10,6 +10,8 @@ import ManageUsersPane from '../components/ManageUsersPane.jsx';
 import './AdminDashboard.css';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import PerformancePane from '../components/PerformancePane.jsx';
+
 
 const BASE_URL = 'http://localhost:5001';
 
@@ -374,6 +376,13 @@ const AdminDashboard = () => {
       case 'users': return ( <ManageUsersPane userList={userList || []} /* ... other props ... */ filterRole={filterUserRole} setFilterRole={setFilterUserRole} isLoading={isLoading} error={error} userMessage={userMessage} newUserEmail={newUserEmail} newUserRole={newUserRole} isAddingUser={isAddingUser} sortConfig={sortConfig} searchEmail={searchEmail} fetchUsers={fetchUsers} setError={setError} setUserMessage={setUserMessage} setNewUserEmail={setNewUserEmail} setNewUserRole={setNewUserRole} requestSort={requestSort} handleAddUser={handleAddUser} handleRemoveUser={handleRemoveUser} handleChangeUserRole={handleChangeUserRole} setSearchEmail={setSearchEmail} /> );
       case 'analytics':
         return <AnalyticsPane expenses={expenses} isLoading={isLoading} error={error}/>;
+        case 'performance':                 
+    return (
+      <PerformancePane
+        isLoading={isLoading}       
+        error={error}
+      />
+    );
       default:
         return <h2>Invalid view selected.</h2>;
     }
@@ -390,6 +399,7 @@ const AdminDashboard = () => {
           <button className={view === 'dashboard' ? 'active' : ''} onClick={() => setView('dashboard')}>Dashboard</button>
           <button className={view === 'users' ? 'active' : ''} onClick={() => setView('users')}>Manage Users</button>
           <button className={view === 'analytics' ? 'active' : ''} onClick={() => setView('analytics')}>Analytics</button>
+          <button className={view === 'performance' ? 'active' : ''} onClick={() => setView('performance')}> Performance</button>
           { <button className="sign-out" onClick={handleSignOut}>Sign Out</button> }
         </div>
       </aside>

@@ -306,6 +306,10 @@ app.post('/update-expense', (req, res) => {
   }
 });
 
+// server.js
+app.get('/health', (_, res) => res.sendStatus(200));   // replies 200 if server is alive
+
+
 app.post('/delete-expense', (req, res) => {
   try {
     const { expenseId } = req.body;
