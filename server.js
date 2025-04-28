@@ -12,7 +12,8 @@ import dotenv from 'dotenv';
 import Tesseract from 'tesseract.js';
 import OpenAI from 'openai';
 
-dotenv.config({ path: './src/backend/.env' })
+
+dotenv.config({ path: './src/backend/.env' });
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 
