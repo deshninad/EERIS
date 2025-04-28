@@ -1,60 +1,294 @@
-.dashboard-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-    font-family: Arial, sans-serif;
-  }
-  
-  h2 {
-    text-align: center;
-    color: #333;
-  }
-  
-  .navbar{
-    display: flex;
-    background-color: #159c49;
-    text-emphasis-color: #fff;
-    padding: 20px;
+/*******************************
+ *  ESummaryPage.css – EERIS UI
+ *  Updated:
+ *    • Table grid lines → dark green
+ *    • Global font → “Google Sans”
+ *    • Preserves shared EERIS design tokens (radius, shadows, transitions, etc.)
+ *******************************/
 
-  }
-  .user-section {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  h3 {
-    margin-bottom: 15px;
-    color: #333;
-  }
-  
-  .requests-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  
-  .requests-table th, .requests-table td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ccc;
-  }
-  
-  .requests-table th {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .requests-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  .requests-table tr:hover {
-    background-color: #ddd;
-  }
-  
-  .requests-table td {
-    font-size: 14px;
-  }
-  
+/*— Google Sans font —*/
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ===== Core Palette ===== */
+  --bg-body:            #f8f9fa;
+  --bg-card:            #ffffff;
+  --text-primary:       #212529;
+  --text-secondary:     #6c757d;
+  --accent-color:       black;
+  --accent-color-dark:  #0a58ca;
+  --shadow-color:       rgba(0,0,0,0.075);
+
+  /* ===== Status Colours ===== */
+  --status-approved-bg:   #d1e7dd;
+  --status-approved-text: #0f5132;
+  --status-approved-border:#badbcc;
+
+  --status-pending-bg:    #fff3cd;
+  --status-pending-text:  #664d03;
+  --status-pending-border:#ffecb5;
+
+  --status-rejected-bg:   #f8d7da;
+  --status-rejected-text: #842029;
+  --status-rejected-border:#f5c2c7;
+
+  /* ===== Table Specific ===== */
+  --table-header-bg:   #f1f3f5;
+  --table-hover-bg:    #e9ecef;
+  --table-border:      #14532d;  /* ⬅ dark-green grid lines */
+
+  /* ===== Misc ===== */
+  --border-color:      #dee2e6;
+  --border-radius:     .375rem;
+  --transition:        .2s ease-in-out;
+}
+
+/* === CSS Reset / Base === */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{
+  font-family:'Google Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background:var(--bg-body);
+  color:var(--text-primary);
+  line-height:1.6;
+  overflow-x:hidden;
+  width:100%;
+}
+
+/* === Layout Containers === */
+.dashboard-container{display:flex;flex-direction:column;min-height:100vh;width:100vw}
+
+/* === Navbar === */
+.navbar{
+  position:sticky;top:0;left:0;width:100%;
+  min-height:4.5rem;padding:.5rem 2rem;
+  background:var(--bg-card);border-bottom:1px solid var(--border-color);
+  display:flex;justify-content:space-between;align-items:center;
+  box-shadow:0 2px 4px var(--shadow-color);z-index:100
+}
+.navbar-logo{font-size:1.6rem;font-weight:600;color:var(--accent-color)}
+.nav-links{display:flex;align-items:center;gap:1.5rem}
+.nav-links .nav-btn{
+  background:var(--accent-color);border:1px solid var(--accent-color);
+  color:#fff;border-radius:var(--border-radius);
+  padding:.45rem 1.1rem;font-size:.9rem;font-weight:500;
+  cursor:pointer;transition:background var(--transition),border-color var(--transition);
+  text-decoration:none
+}
+.nav-links .nav-btn:hover,.nav-links .nav-btn:focus{
+  background:var(--accent-color-dark);border-color:var(--accent-color-dark);outline:none
+}
+
+/* === Profile dropdown (unchanged) === */
+.profile-dropdown{position:relative;display:flex;align-items:center}
+.profile-pic{
+  width:40px;height:40px;border-radius:50%;object-fit:cover;cursor:pointer;
+  border:2px solid transparent;transition:border-color var(--transition)
+}
+.profile-pic:hover{border-color:var(--border-color)}
+.profile-menu{
+  position:absolute;top:calc(100% + 10px);right:0;width:240px;
+  background:var(--bg-card);border:1px solid var(--border-color);
+  border-radius:var(--border-radius);box-shadow:0 5px 15px var(--shadow-color);
+  list-style:none;z-index:1000;padding:.5rem 0
+}
+.profile-menu li{font-size:.9rem;color:var(--text-primary)}
+.profile-menu li.profile-email{
+  padding:.75rem 1.2rem;font-weight:500;border-bottom:1px solid var(--border-color);
+  color:var(--text-secondary);word-break:break-all;font-size:.85rem;margin-bottom:.5rem
+}
+.profile-menu li button{
+  width:100%;background:none;border:none;text-align:left;
+  padding:.7rem 1.2rem;font-size:inherit;color:var(--text-primary);
+  cursor:pointer;transition:background var(--transition),color var(--transition)
+}
+.profile-menu li button:hover{background:var(--accent-color);color:#fff}
+
+/* === Main Content === */
+.dashboard-content{
+  margin-top:4.5rem;padding:2.5rem;max-width:1400px;width:100%;
+  margin-inline:auto;display:flex;flex-direction:column;gap:2.5rem
+}
+
+/* === Metric Cards === */
+.metrics-row{display:grid;gap:1.75rem;grid-template-columns:repeat(auto-fit, minmax(240px,1fr))}
+.metric-card{
+  background:var(--bg-card);border:1px solid var(--border-color);
+  padding:1.75rem;text-align:center;border-radius:var(--border-radius);
+  box-shadow:0 3px 6px var(--shadow-color);
+  transition:transform var(--transition),box-shadow var(--transition)
+}
+.metric-card:hover{transform:translateY(-4px);box-shadow:0 6px 12px var(--shadow-color)}
+.metric-card h4{
+  font-size:.9rem;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--text-secondary);margin-bottom:.75rem;font-weight:500
+}
+.metric-card p{font-size:2.5rem;font-weight:600;color:var(--text-primary)}
+
+/* === Requests Table Card === */
+.requests-card{
+  background:var(--bg-card);border:1px solid var(--border-color);
+  border-radius:var(--border-radius);padding:2rem;box-shadow:0 3px 6px var(--shadow-color)
+}
+.requests-card h3{font-size:1.4rem;font-weight:600;color:var(--text-primary);margin-bottom:1.5rem}
+
+/* === Requests Table === */
+.requests-table{
+  width:100%;min-width:600px;border-collapse:collapse;font-size:.95rem
+}
+.requests-table th,
+.requests-table td{
+  padding:1rem;text-align:left;vertical-align:middle;white-space:nowrap;
+  border:1px solid var(--table-border) /* ⬅ green grid lines */
+}
+.requests-table th{
+  background:var(--table-header-bg);font-weight:600;color:var(--text-primary);
+  position:sticky;top:0;z-index:10
+}
+.requests-table tr{background:var(--bg-card);transition:background-color var(--transition)}
+.requests-table tr:hover{background:var(--table-hover-bg)}
+.requests-table td:last-child{text-align:center}
+
+/* === Status Badges === */
+.status-badge{
+  display:inline-block;padding:.35rem .9rem;border-radius:1rem;
+  font-size:.8rem;font-weight:500;border:1px solid;text-align:center
+}
+td[data-status="Approved"] .status-badge{
+  background:var(--status-approved-bg);color:var(--status-approved-text);border-color:var(--status-approved-border)
+}
+td[data-status="Pending"] .status-badge{
+  background:var(--status-pending-bg);color:var(--status-pending-text);border-color:var(--status-pending-border)
+}
+td[data-status="Rejected"] .status-badge{
+  background:var(--status-rejected-bg);color:var(--status-rejected-text);border-color:var(--status-rejected-border)
+}
+
+/* === Action Buttons === */
+.requests-table td button{margin:0 .25rem;vertical-align:middle;cursor:pointer;transition:all var(--transition)}
+.delete-btn,.edit-btn,.save-btn,.cancel-btn{
+  padding:.5rem .75rem;border-radius:var(--border-radius);font-weight:600;font-size:.85rem;border:1px solid
+}
+.delete-btn{background:var(--status-rejected-bg);color:var(--status-rejected-text);border-color:var(--status-rejected-border)}
+.edit-btn{background:transparent;color:var(--accent-color);border-color:var(--accent-color)}
+.save-btn{background:var(--status-approved-bg);color:var(--status-approved-text);border-color:var(--status-approved-border)}
+.cancel-btn{background:transparent;color:var(--text-secondary);border-color:var(--border-color)}
+.delete-btn:hover,.edit-btn:hover,.save-btn:hover,.cancel-btn:hover{transform:translateY(-1px);opacity:.9}
+
+/* === Inputs in Editable Rows === */
+.requests-table td input[type="text"],
+.requests-table td input[type="number"]{
+  width:100%;padding:.5rem .75rem;border-radius:4px;
+  border:1px solid var(--border-color);background:var(--bg-card);
+  transition:border-color var(--transition),box-shadow var(--transition);font-size:inherit
+}
+.requests-table td input:focus{
+  outline:none;border-color:var(--accent-color);
+  box-shadow:0 0 0 3px rgba(13,110,253,.15)
+}
+
+/* === Error Message === */
+.error-message{
+  color:var(--status-rejected-text);background:var(--status-rejected-bg);
+  border:1px solid var(--status-rejected-border);border-radius:var(--border-radius);
+  text-align:center;font-weight:500;padding:.85rem 1rem;margin-bottom:1.5rem
+}
+
+/* === Responsive Tweaks (unchanged thresholds) === */
+@media (max-width:992px){
+  .dashboard-content{padding:1.5rem;gap:1.5rem}
+  .requests-card{padding:1.5rem}
+  .requests-table th,.requests-table td{padding:.75rem}
+}
+@media (max-width:768px){
+  .navbar{padding:.5rem 1rem;min-height:4rem}.nav-links{gap:.75rem}
+  .nav-links .nav-btn{padding:.4rem .8rem;font-size:.85rem}
+  .dashboard-content{padding:1rem;margin-top:4rem;gap:1rem}
+  .requests-table th,.requests-table td{padding:.6rem .5rem;font-size:.9rem;white-space:normal}
+}
+@media (max-width:480px){
+  html{font-size:14px}
+  .metrics-row{grid-template-columns:1fr;gap:1rem}
+  .navbar-logo{font-size:1.2rem}.nav-links{gap:.5rem}
+  .requests-table th,.requests-table td{padding:.5rem .4rem;font-size:.85rem}
+}
+/* ─────────────────────────────────────────────
+ *  PATCH – polish the “Actions” column & grid
+ *  Drop this **after** ESummaryPage.css
+ *  (only overrides / extends a few rules)
+ * ───────────────────────────────────────────── */
+
+/* 1) Thinner, softer grid lines  */
+:root{
+  --table-border: rgba(20,83,45,.35);   /* dark-green @35 % opacity  */
+}
+.requests-table th,
+.requests-table td{
+  border:1px solid var(--table-border); /* was opaque → now subtle  */
+}
+
+/* 2) Uniform cell height & nice vertical rhythm */
+.requests-table tr>th,
+.requests-table tr>td{
+  padding:.8rem 1rem;                   /* balanced (was 1 rem)     */
+  line-height:1.45;
+}
+
+/* 3) Improved “Actions” column */
+.requests-table td:last-child{          /* actions cell */
+  text-align:center;min-width:140px;    /* keeps buttons on one line */
+}
+
+/* placeholder dash → muted */
+.requests-table td:last-child .placeholder{
+  color:var(--text-secondary);
+}
+
+/* Action links → pill buttons */
+.action-btn{
+  display:inline-block;
+  padding:.3rem .9rem;
+  border-radius:1.25rem;                /* pill */
+  font-size:.8rem;
+  font-weight:500;
+  line-height:1.2;
+  border:1px solid;
+  transition:all var(--transition);
+  cursor:pointer;
+  user-select:none;
+}
+.action-btn.edit{
+  color:var(--accent-color);
+  border-color:var(--accent-color);
+}
+.action-btn.edit:hover{
+  background:var(--accent-color);
+  color:#fff;
+}
+
+.action-btn.delete{
+  color:var(--status-rejected-text);
+  border-color:var(--status-rejected-text);
+}
+.action-btn.delete:hover{
+  background:var(--status-rejected-text);
+  color:#fff;
+}
+
+/* 4) Fix: remove double top-border under header */
+.requests-table thead th{
+  border-bottom-width:1px;              /* match body rows */
+}
+
+/* 5) Optional: row hover shading a touch lighter for elegance */
+.requests-table tr:hover{
+  background:rgba(20,83,45,.05);        /* green-tinted hover */
+}
+
+/* --- tiny gap between action pills --- */
+.actions-cell .action-btn{
+  margin-right: .45rem;          /* 7-8 px */
+}
+.actions-cell .action-btn:last-child{
+  margin-right: 0;               /* no extra space on the end */
+}

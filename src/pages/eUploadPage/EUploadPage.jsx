@@ -1,82 +1,249 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./EUploadPage.css";
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate, Navigate } from 'react-router-dom';
+import { useAuth } from '../../AuthProvider.jsx';
+import axios from 'axios';
+import profileSvg from '../../assets/profile.svg';
+import './EUploadPage.css';
 
 const EUploadPage = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState("");
-  const [expenseType, setExpenseType] = useState("");
-  const [notes, setNotes] = useState("");
-  
-  const navigate = useNavigate();
+  const BASE_URL = 'http://localhost:5001';
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
+  const nav = useNavigate();
+  const auth = useAuth();
+  const profileRef = useRef();
 
-    // Preview the file if it's an image
-    if (file && file.type.startsWith("image/")) {
-      const url = URL.createObjectURL(file);
-      setPreviewUrl(url);
-    } else {
-      setPreviewUrl("");
+  const [file, setFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState('');
+  const [type, setType] = useState('');
+  const [notes, setNotes] = useState('');
+  const [vendor, setVendor] = useState('');
+  const [date, setDate] = useState('');
+  const [total, setTotal] = useState('');
+  const [msg, setMsg] = useState({ type: '', text: '' });
+  const [uploading, setUploading] = useState(false);
+
+  const [showProfile, setShowProfile] = useState(false);
+
+  // auth guard
+  if (auth === undefined) return <div>Loading session...</div>;
+  if (!auth || !auth.email) return <Navigate to="/login" replace />;
+
+  const { logout, email } = auth;
+
+  // close dropdown on outside click
+  useEffect(() => {
+    const handler = e => {
+      if (showProfile && profileRef.current && !profileRef.current.contains(e.target)) {
+        setShowProfile(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [showProfile]);
+
+  // cleanup preview URL
+  useEffect(() => {
+    return () => {
+      previewUrl && URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
+
+  // file → OCR + AI parse
+  const handleFile = async e => {
+    setMsg({ type: '', text: '' });
+    const f = e.target.files?.[0] ?? null;
+    if (!f) return;
+    setFile(f);
+    setPreviewUrl(URL.createObjectURL(f));
+
+    try {
+      const fd = new FormData();
+      fd.append('receipt', f);
+      const { data } = await axios.post(
+        'http://localhost:5001/upload-receipt',
+        fd,
+        { headers: { 'Content-Type': 'multipart/form-data' } }
+      );
+      setVendor(data.vendor || '');
+      setDate(data.date || '');
+      setTotal(data.total || '');
+    } catch (err) {
+      console.error('Parsing failed:', err);
+      setMsg({ type: 'error', text: 'Could not auto-parse. Fill manually.' });
     }
   };
 
-  const handleUpload = () => {
-    if (!selectedFile || !expenseType) {
-      alert("Please select a file and expense type.");
-      return;
+  // final upload
+  const doUpload = async () => {
+    if (!file || !type) {
+      return setMsg({ type: 'error', text: 'Please choose a file and expense type.' });
     }
+    setUploading(true);
+    setMsg({ type: '', text: '' });
 
-    // Simulate an upload process
-    console.log("Uploading:", selectedFile.name);
-    console.log("Expense Type:", expenseType);
-    console.log("Notes:", notes);
-    
-    alert("File uploaded successfully!");
+    try {
+    // 1) Upload receipt file + parse (you already do that in handleFile)
+    // 2) Now persist the new expense
+      const payload = {
+        email:     auth.email,
+        expenseType: type,
+        category:  type,           // or whatever field you choose
+        date,
+        total,
+        name:      auth.email.split('@')[0], // or pull from profile
+        notes
+      };
+
+      const { data: created } = await axios.post(
+        `${BASE_URL}/add-expense`,
+        payload
+      );
+      setMsg({ type: 'success', text: 'Uploaded successfully!' });
+
+      // Optionally redirect back to summary so it will re‐fetch
+      nav('/dashboard', { replace: true });
+      
+      // reset form
+      setFile(null);
+      setPreviewUrl('');
+      setVendor('');
+      setDate('');
+      setTotal('');
+      setType('');
+      setNotes('');
+      document.getElementById('file-input').value = '';
+    } catch {
+      setMsg({ type: 'error', text: 'Upload failed.' });
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleSignOut = () => {
+    logout?.();
+    nav('/login', { replace: true });
   };
 
   return (
     <div className="upload-page">
-      {/* Navigation Bar */}
-      <nav className="navbar">
-        <h2>EERIS</h2>
-        <div className="nav-links">
-          <button onClick={() => navigate("/dashboard")}>Dashboard</button>
-          <button onClick={() => navigate("/login")}>Sign Out</button>
+      <header className="upload-header">
+        <div
+          className="header-logo"
+          onClick={() => nav('/dashboard')}
+        >
+          EERIS
         </div>
-      </nav>
+        <nav className="nav-links">
+          <button
+            className="nav-btn"
+            onClick={() => nav('/dashboard')}
+          >
+            ← Return to Dashboard
+          </button>
 
-      <div className="upload-container">
-        <h2>E-Upload Page</h2>
-        
-        {/* File Upload */}
-        <input type="file" onChange={handleFileChange} />
-        
-        {previewUrl && <img src={previewUrl} alt="Preview" className="file-preview" />}
+          <div
+            className="profile-dropdown"
+            ref={profileRef}
+          >
+            <img
+              src={profileSvg}
+              alt="Profile"
+              className="profile-icon"
+              onClick={() => setShowProfile(p => !p)}
+            />
+            {showProfile && (
+              <ul className="profile-menu">
+                <li className="profile-email">{email}</li>
+                <li onClick={handleSignOut}>Sign Out</li>
+              </ul>
+            )}
+          </div>
+        </nav>
+      </header>
 
-        {/* Expense Type Dropdown */}
-        <select value={expenseType} onChange={(e) => setExpenseType(e.target.value)}>
-          <option value="">Select Expense Type</option>
-          <option value="Travel">Travel</option>
-          <option value="Food">Food</option>
-          <option value="Office Supplies">Office Supplies</option>
-          <option value="Other">Other</option>
-        </select>
+      <main className="content-area">
+        <div className="upload-card">
+          <h2>Upload Expense Receipt</h2>
+          <p className="sub">Please upload a receipt and fill the details.</p>
 
-        {/* Notes Input Field */}
-        <textarea
-          placeholder="Enter any additional notes..."
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-        ></textarea>
+          {msg.text && (
+            <div className={`alert ${msg.type === 'error' ? 'error' : 'success'}`}>
+              {msg.text}
+            </div>
+          )}
 
-        {/* Upload Button */}
-        <button onClick={handleUpload} disabled={!selectedFile || !expenseType}>
-          Upload
-        </button>
-      </div>
+          <label>Receipt Image (JPG, PNG)</label>
+          <input
+            id="file-input"
+            type="file"
+            accept="image/jpeg,image/png"
+            onChange={handleFile}
+            disabled={uploading}
+          />
+
+          {previewUrl && (
+            <img className="preview" src={previewUrl} alt="Receipt preview" />
+          )}
+
+          <label>Vendor</label>
+          <input
+            type="text"
+            value={vendor}
+            onChange={e => setVendor(e.target.value)}
+            placeholder="Vendor Name"
+            disabled={uploading}
+          />
+
+          <label>Date</label>
+          <input
+            type="date"
+            value={date}
+            onChange={e => setDate(e.target.value)}
+            disabled={uploading}
+          />
+
+          <label>Total Amount</label>
+          <input
+            type="number"
+            step="0.01"
+            value={total}
+            onChange={e => setTotal(e.target.value)}
+            placeholder="0.00"
+            disabled={uploading}
+          />
+
+          <label>Expense Type</label>
+          <select
+            value={type}
+            onChange={e => setType(e.target.value)}
+            disabled={uploading}
+          >
+            <option value="">Select Expense Type</option>
+            <option>Travel</option>
+            <option>Meals &amp; Entertainment</option>
+            <option>Office Supplies</option>
+            <option>Software/Subscriptions</option>
+            <option>Utilities</option>
+            <option>Other</option>
+          </select>
+
+          <label>Notes (optional)</label>
+          <textarea
+            value={notes}
+            onChange={e => setNotes(e.target.value)}
+            disabled={uploading}
+            placeholder="Any additional notes…"
+          />
+
+          <button
+            className="btn-upload"
+            onClick={doUpload}
+            disabled={!file || !type || uploading}
+          >
+            {uploading ? 'Uploading…' : 'Upload Receipt'}
+          </button>
+        </div>
+      </main>
     </div>
   );
 };

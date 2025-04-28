@@ -1,38 +1,1064 @@
 [
   {
-    "email": "user1@example.com",
-    "requests": [
-      {
-        "receiptId": "12345",
-        "expenseType": "Food",
-        "category": "Lunch",
-        "status": "Pending",
-        "amount": 25.5,
-        "name": "John Doe"
-      },
-      {
-        "receiptId": "12346",
-        "expenseType": "Travel",
-        "category": "Taxi",
-        "status": "Approved",
-        "amount": 50,
-        "name": "John Doe"
-      }
-    ],
-    "amount": "",
-    "status": "Approved"
+    "id": 1,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Training",
+    "status": "Rejected",
+    "amount": 106.97
   },
   {
+    "id": 2,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Meal",
+    "category": "Office",
+    "status": "Approved",
+    "amount": 393.99
+  },
+  {
+    "id": 3,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 413.88
+  },
+  {
+    "id": 4,
     "email": "ndeshpande2@usf.edu",
-    "requests": [
-      {
-        "receiptId": "12347",
-        "expenseType": "Food",
-        "category": "Dinner",
-        "status": "Rejected",
-        "amount": 30,
-        "name": "Jane Smith"
-      }
-    ]
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 23.44
+  },
+  {
+    "id": 5,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Conference",
+    "status": "Request Clarification",
+    "amount": 121.12
+  },
+  {
+    "id": 6,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 236.86
+  },
+  {
+    "id": 7,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Rejected",
+    "amount": 131.21
+  },
+  {
+    "id": 8,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Meal",
+    "category": "Office",
+    "status": "Rejected",
+    "amount": 228.19
+  },
+  {
+    "id": 9,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Pending",
+    "amount": 37.5
+  },
+  {
+    "id": 10,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Office",
+    "status": "Request Clarification",
+    "amount": 302.21
+  },
+  {
+    "id": 11,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Office",
+    "status": "Request Clarification",
+    "amount": 294.12
+  },
+  {
+    "id": 12,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Office",
+    "status": "Rejected",
+    "amount": 43.89
+  },
+  {
+    "id": 13,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Training",
+    "status": "Approved",
+    "amount": 475.81
+  },
+  {
+    "id": 14,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 177.36
+  },
+  {
+    "id": 15,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Travel",
+    "category": "Office",
+    "status": "Rejected",
+    "amount": 115.23
+  },
+  {
+    "id": 16,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Approved",
+    "amount": 18.7
+  },
+  {
+    "id": 18,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Office",
+    "status": "Rejected",
+    "amount": 405.76
+  },
+  {
+    "id": 19,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 31.53
+  },
+  {
+    "id": 20,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 133.61
+  },
+  {
+    "id": 21,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 68.46
+  },
+  {
+    "id": 22,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Training",
+    "status": "Rejected",
+    "amount": 140.81
+  },
+  {
+    "id": 23,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Travel",
+    "category": "Training",
+    "status": "Pending",
+    "amount": 370.3
+  },
+  {
+    "id": 24,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Conference",
+    "status": "Request Clarification",
+    "amount": 422.28
+  },
+  {
+    "id": 25,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 408
+  },
+  {
+    "id": 26,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Meal",
+    "category": "Office",
+    "status": "Approved",
+    "amount": 474.62
+  },
+  {
+    "id": 27,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Lodging",
+    "category": "Office",
+    "status": "Rejected",
+    "amount": 362.41
+  },
+  {
+    "id": 28,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Pending",
+    "amount": 141.02
+  },
+  {
+    "id": 29,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Request Clarification",
+    "amount": 175.29
+  },
+  {
+    "id": 30,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Lodging",
+    "category": "Office",
+    "status": "Request Clarification",
+    "amount": 278.54
+  },
+  {
+    "id": 31,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Request Clarification",
+    "amount": 259.29
+  },
+  {
+    "id": 32,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Meal",
+    "category": "Training",
+    "status": "Pending",
+    "amount": 244.14
+  },
+  {
+    "id": 33,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 149.56
+  },
+  {
+    "id": 34,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Pending",
+    "amount": 76.26
+  },
+  {
+    "id": 35,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Request Clarification",
+    "amount": 370.59
+  },
+  {
+    "id": 36,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 336.58
+  },
+  {
+    "id": 37,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Lodging",
+    "category": "Office",
+    "status": "Approved",
+    "amount": 105.49
+  },
+  {
+    "id": 38,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Pending",
+    "amount": 92.09
+  },
+  {
+    "id": 39,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Meal",
+    "category": "Training",
+    "status": "Pending",
+    "amount": 23.99
+  },
+  {
+    "id": 40,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Request Clarification",
+    "amount": 253.76
+  },
+  {
+    "id": 41,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Office",
+    "status": "Rejected",
+    "amount": 379.94
+  },
+  {
+    "id": 42,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Office",
+    "status": "Rejected",
+    "amount": 301.09
+  },
+  {
+    "id": 43,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Office",
+    "status": "Rejected",
+    "amount": 16.51
+  },
+  {
+    "id": 44,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Conference",
+    "status": "Request Clarification",
+    "amount": 245.91
+  },
+  {
+    "id": 45,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 454.88
+  },
+  {
+    "id": 46,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Pending",
+    "amount": 13.94
+  },
+  {
+    "id": 47,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Office",
+    "status": "Approved",
+    "amount": 458.94
+  },
+  {
+    "id": 48,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Office",
+    "status": "Approved",
+    "amount": 297.01
+  },
+  {
+    "id": 49,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 213.99
+  },
+  {
+    "id": 50,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 231.46
+  },
+  {
+    "id": 51,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Supplies",
+    "category": "Equipment",
+    "status": "Pending",
+    "amount": 498.37
+  },
+  {
+    "id": 52,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Travel",
+    "category": "Office",
+    "status": "Pending",
+    "amount": 210.41
+  },
+  {
+    "id": 53,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Equipment",
+    "status": "Request Clarification",
+    "amount": 375.73
+  },
+  {
+    "id": 54,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Training",
+    "status": "Request Clarification",
+    "amount": 370.99
+  },
+  {
+    "id": 55,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Request Clarification",
+    "amount": 461.83
+  },
+  {
+    "id": 56,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 196.65
+  },
+  {
+    "id": 57,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Lodging",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 367.07
+  },
+  {
+    "id": 58,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Training",
+    "status": "Approved",
+    "amount": 377.12
+  },
+  {
+    "id": 59,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Office",
+    "status": "Approved",
+    "amount": 392.31
+  },
+  {
+    "id": 60,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 92.75
+  },
+  {
+    "id": 61,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Supplies",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 479.74
+  },
+  {
+    "id": 62,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Lodging",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 57.37
+  },
+  {
+    "id": 63,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Pending",
+    "amount": 19.36
+  },
+  {
+    "id": 64,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Meal",
+    "category": "Training",
+    "status": "Rejected",
+    "amount": 479.23
+  },
+  {
+    "id": 65,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Supplies",
+    "category": "Office",
+    "status": "Request Clarification",
+    "amount": 378.71
+  },
+  {
+    "id": 66,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 152.31
+  },
+  {
+    "id": 67,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Lodging",
+    "category": "Conference",
+    "status": "Pending",
+    "amount": 494.43
+  },
+  {
+    "id": 68,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Pending",
+    "amount": 268.32
+  },
+  {
+    "id": 69,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Office",
+    "status": "Pending",
+    "amount": 376.09
+  },
+  {
+    "id": 70,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Supplies",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 215.11
+  },
+  {
+    "id": 71,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Training",
+    "status": "Pending",
+    "amount": 55.72
+  },
+  {
+    "id": 72,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Lodging",
+    "category": "Training",
+    "status": "Approved",
+    "amount": 467.62
+  },
+  {
+    "id": 73,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Equipment",
+    "status": "Request Clarification",
+    "amount": 202.04
+  },
+  {
+    "id": 74,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 169.09
+  },
+  {
+    "id": 75,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Request Clarification",
+    "amount": 155.55
+  },
+  {
+    "id": 76,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Travel",
+    "category": "Training",
+    "status": "Request Clarification",
+    "amount": 201.85
+  },
+  {
+    "id": 77,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Request Clarification",
+    "amount": 342.84
+  },
+  {
+    "id": 78,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 369.12
+  },
+  {
+    "id": 79,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 212.58
+  },
+  {
+    "id": 80,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Travel",
+    "category": "Office",
+    "status": "Request Clarification",
+    "amount": 498.34
+  },
+  {
+    "id": 81,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Lodging",
+    "category": "Conference",
+    "status": "Pending",
+    "amount": 341.51
+  },
+  {
+    "id": 82,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 132.53
+  },
+  {
+    "id": 83,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 159.83
+  },
+  {
+    "id": 84,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Request Clarification",
+    "amount": 105.58
+  },
+  {
+    "id": 85,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Supplies",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 233.31
+  },
+  {
+    "id": 86,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Lodging",
+    "category": "Training",
+    "status": "Pending",
+    "amount": 40.61
+  },
+  {
+    "id": 87,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 151.86
+  },
+  {
+    "id": 88,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Travel",
+    "category": "Office",
+    "status": "Rejected",
+    "amount": 286.36
+  },
+  {
+    "id": 89,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Conference",
+    "status": "Pending",
+    "amount": 451.07
+  },
+  {
+    "id": 90,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 139.71
+  },
+  {
+    "id": 91,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 269.34
+  },
+  {
+    "id": 92,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 264.82
+  },
+  {
+    "id": 93,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 257.93
+  },
+  {
+    "id": 94,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Pending",
+    "amount": 362.3
+  },
+  {
+    "id": 95,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Pending",
+    "amount": 86.29
+  },
+  {
+    "id": 96,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 392.52
+  },
+  {
+    "id": 97,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Pending",
+    "amount": 411.1
+  },
+  {
+    "id": 98,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Request Clarification",
+    "amount": 170.45
+  },
+  {
+    "id": 99,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 207.03
+  },
+  {
+    "id": 100,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Request Clarification",
+    "amount": 81.41
+  },
+  {
+    "id": 101,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Training",
+    "status": "Approved",
+    "amount": 88.46
+  },
+  {
+    "id": 102,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Training",
+    "status": "Approved",
+    "amount": 219.24
+  },
+  {
+    "id": 103,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 462.79
+  },
+  {
+    "id": 104,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Office",
+    "status": "Approved",
+    "amount": 422.25
+  },
+  {
+    "id": 105,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 485.1
+  },
+  {
+    "id": 106,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Rejected",
+    "amount": 493.53
+  },
+  {
+    "id": 107,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Training",
+    "status": "Approved",
+    "amount": 256.99
+  },
+  {
+    "id": 108,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 435.18
+  },
+  {
+    "id": 109,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Office",
+    "status": "Pending",
+    "amount": 152.01
+  },
+  {
+    "id": 110,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Office",
+    "status": "Request Clarification",
+    "amount": 444.57
+  },
+  {
+    "id": 112,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 25.54
+  },
+  {
+    "id": 113,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Office",
+    "status": "Pending",
+    "amount": 175.64
+  },
+  {
+    "id": 114,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Rejected",
+    "amount": 74.11
+  },
+  {
+    "id": 115,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 248.84
+  },
+  {
+    "id": 116,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 300.05
+  },
+  {
+    "id": 117,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Office",
+    "status": "Pending",
+    "amount": 343.03
+  },
+  {
+    "id": 118,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Rejected",
+    "amount": 63.1
+  },
+  {
+    "id": 119,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 153.6
+  },
+  {
+    "id": 120,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Supplies",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 275.55
   }
 ]

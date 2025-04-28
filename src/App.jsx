@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import EUploadPage from "./pages/eUploadPage/EUploadPage";
 import ESummaryPage from "./pages/eSummaryPage/eSummaryPage";
-import { AuthProvider } from "./AuthProvider";  
+import AuthProvider from "./AuthProvider";  
 import ProtectedRoute from "./ProtectedRoute"; 
 import AdminDashboard from "./pages/adminDashboard/adminDashboard";
 

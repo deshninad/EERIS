@@ -1,134 +1,413 @@
+/* LoginPage.css - New Theme with Sidebar Content Toggle (Google Sans) */
+
+/* === GOOGLE SANS IMPORT === */
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap');
+
+/* === GLOBAL RESET (Minimal) === */
+html,
 body {
-  
-    color: #000000; /* Black text color */
-    font-family: Arial, sans-serif; /* Font family for consistency */
-    margin: 0;
-    padding: 0;
-    background-image: url("https://catalog.usf.edu/mime/media/21/1925/Mission%20Vision%20Values%20and%20Goals.png");
-    background-size: cover;
-    justify-content: center;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Google Sans", sans-serif;
+}
+
+/* === LAYOUT & BACKGROUND === */
+.login-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Google Sans", sans-serif;
+  background: linear-gradient(-45deg, #d9f99d, #e2e8f0, #a7f3d0, #d1d5db);
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite;
+  overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* === Sidebar === */
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  height: 100%;
+  background-color: black;
+  color: #e2e8f0;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #a7f3d0;
+}
+
+/* Sidebar Navigation Styling */
+.sidebar-nav {
+  margin-top: 1.5rem;
+  flex-grow: 1;
+}
+
+.menu-item {
+  margin: 0.75rem 0;
+  padding: 0.6rem 0.5rem;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 1rem;
+  border-left: 3px solid transparent;
+  color: #cbd5e0;
+}
+
+.menu-item.selected,
+.menu-item:hover {
+  opacity: 1;
+  font-weight: bold;
+  color: #a7f3d0;
+  border-left-color: #a7f3d0;
+  background-color: rgba(167, 243, 208, 0.05);
+}
+
+/* === Form Section === */
+.form-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  }
-  
-  /* Container styling */
-  .login-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px; /* Adjust to your desired container size */
-  }
-  
-  /* Title styling */
-  .login-title {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #000000;
-  }
-  
-  /* Input group styling */
-  .input-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    position: relative; /* For tooltip positioning */
-  }
-  
-  /* Input field styling */
-  .input-field {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  /* Info button styling */
-  .info-button {
-    background: none;
-    border: 1px solid #007bff; /* Border for the info icon */
-    border-radius: 50%; /* Make it circular */
-    font-size: 16px;
-    color: #007bff;
-    margin-left: 5px;
-    cursor: pointer;
-    padding: 5px;
-  }
-  
-  .info-button:hover {
-    color: #0056b3;
-    border-color: #0056b3;
-  }
-  
-  /* Tooltip container */
-  .tooltip-container {
-    display: inline-block;
-    position: relative;
-  }
-  
-  /* Tooltip text */
-  .tooltip-text {
-    visibility: hidden;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 4px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%; /* Position above the info button */
-    left: 50%;
-    transform: translateX(-50%);
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.login-card {
+  background: #ffffffdd;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  max-width: 420px; /* Slightly wider card */
+  text-align: center;
+  animation: fadeInUp 0.6s ease-in-out;
+  box-sizing: border-box;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(40px);
     opacity: 0;
-    transition: opacity 0.3s;
-    font-size: 12px;
-    width: 160px;
   }
-  
-  /* Show tooltip on hover */
-  .tooltip-container:hover .tooltip-text {
-    visibility: visible;
+  to {
+    transform: translateY(0);
     opacity: 1;
   }
-  
-  /* Send OTP button styling */
-  .send-otp-button {
+}
+
+.login-card h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #1a202c;
+  font-size: 1.6rem;
+}
+
+/* === ADDED: Info Content Section Styling === */
+.info-content-section {
+  text-align: left; /* Align info text left */
+  animation: fadeInUp 0.4s ease-out; /* Fade in info */
+  color: #2d3748; /* Darker text for info */
+}
+
+.info-content-section h3 {
+  font-size: 1.2rem;
+  color: #2c5282; /* Darker blue heading */
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.info-content-section ul {
+  list-style-position: outside;
+  margin: 0.5rem 0 1rem 1.2rem;
+  padding: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.info-content-section li {
+  margin-bottom: 0.5rem;
+}
+
+.info-content-section p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0.8rem 0;
+}
+
+.info-content-section a {
+  color: #3182ce; /* Standard blue link */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.info-content-section a:hover {
+  text-decoration: underline;
+  color: #2b6cb0;
+}
+
+.info-content-section .feature-item {
+  margin-bottom: 0.8rem;
+}
+
+.info-content-section .feature-item h4 {
+  font-size: 1rem;
+  color: #2c5282;
+  margin: 0 0 0.2rem 0;
+  font-weight: 600;
+  border: none;
+  padding: 0;
+}
+
+.info-content-section .feature-item p {
+  font-size: 0.9rem;
+  color: #4a5568;
+  margin: 0;
+}
+/* ======================================= */
+
+/* Role Select Group (If using dropdown) */
+.role-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.role-group label {
+  color: #4a5568;
+  font-size: 0.9rem;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.role-select {
+  flex-grow: 1;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: 2px solid #48bb78;
+  background: #fff;
+  font-size: 1rem;
+  color: #1a202c;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.role-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.3);
+}
+
+/* Input Fields */
+.input-field {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  border: 2px solid #48bb78;
+  background: #fff;
+  font-size: 1rem;
+  color: #1a202c;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease;
+  font-family: inherit;
+}
+
+.input-field:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.3);
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  flex: 1;
+  height: 44px;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  font-family: inherit;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.login-btn {
+  background: linear-gradient(to right, #38a169, #48bb78);
+  color: white;
+}
+
+.login-btn:hover:not(:disabled) {
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(72, 187, 120, 0.4);
+}
+
+.otp-btn {
+  background: #1a202c;
+  color: white;
+}
+
+.otp-btn:hover:not(:disabled) {
+  background: #2d3748;
+  transform: scale(1.03);
+}
+
+/* Toggle Button Style */
+.toggle-btn {
+  background: #4a5568;
+  color: white;
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 0.5rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn:hover:not(:disabled) {
+  background: #2d3748;
+  transform: scale(1.02);
+}
+
+.toggle-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Error Message */
+.error-message {
+  color: #c53030;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Resend/Back Button */
+.resend-btn {
+  background: none;
+  border: none;
+  color: #3182ce;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.resend-btn:hover {
+  text-decoration: underline;
+  color: #2b6cb0;
+}
+
+.resend-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
     width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid #333;
+    padding: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    overflow-y: visible;
+  }
+
+  .logo {
+    margin-bottom: 0;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-right: 1rem;
+  }
+
+  .sidebar-nav {
+    margin-top: 0;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  .menu-item {
+    margin: 0.25rem;
+    padding: 0.4rem 0.6rem;
     border: none;
+    font-size: 0.85rem;
     border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
   }
-  
-  .send-otp-button:hover {
-    background-color: #218838;
-  }
-  
-  /* Sign in button styling */
-  .sign-in-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
+
+  .menu-item:hover,
+  .menu-item.selected {
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
+    background-color: #222;
   }
-  
-  .sign-in-button:hover {
-    background-color: #0056b3;
+
+  .form-section {
+    padding: 2rem 1rem;
+    align-items: flex-start;
+    padding-left: 1rem;
+    flex: 1;
   }
-  
+
+  .login-card {
+    margin-top: 2rem;
+    padding: 2rem 1.5rem;
+  }
+}

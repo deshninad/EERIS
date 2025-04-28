@@ -1,144 +1,185 @@
+// src/pages/LoginPage/LoginPage.jsx
+// Sidebar links now toggle content displayed in the main card area.
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useAuth } from '../../AuthProvider.jsx'; // Correct import path
-import './LoginPage.css';
+import { useAuth } from '../../AuthProvider.jsx'; // Verify path
+import './LoginPage.css'; // Import the login page CSS
+
+// Verify backend URL
+const BASE_URL = 'http://localhost:5001';
 
 const LoginPage = () => {
+  // --- State ---
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
+  const [role, setRole] = useState("Admin"); // Default role
   const [generatedOtp, setGeneratedOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [error, setError] = useState('');
   const [loadingOtp, setLoadingOtp] = useState(false);
   const [loadingSignIn, setLoadingSignIn] = useState(false);
-  const [role, setRole] = useState('employee'); // Default to employee
+  const [activeSection, setActiveSection] = useState('login'); // <<< NEW STATE: 'login', 'howToUse', 'features', 'support', 'terms'
+
+  // --- Hooks ---
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const auth = useAuth();
+  const login = auth ? auth.login : null;
 
+  // --- Handlers ---
   const generateOtp = () => Math.floor(1000 + Math.random() * 9000).toString();
-
-  const validateEmail = (email) => email.endsWith('@usf.edu');
+  const validateEmail = (email) => email.includes('@');
 
   const handleSendOtp = async () => {
-    if (!validateEmail(email)) {
-      setError('Email must end in @usf.edu');
-      return;
-    }
-  
-    setLoadingOtp(true);
     setError('');
-  
+    if (!email.endsWith("@usf.edu")) { setError("Please enter a valid USF email."); return; }
+    setLoadingOtp(true);
     try {
-      const response = await axios.get('http://localhost:5000/get-users');
-      console.log('Users data received:', response.data); // Debugging log
-  
-      const users = response.data;
-      const isEmployee = users.employees.includes(email);
-      const isAdmin = users.admins.includes(email);
-  
-      // Debugging logs
-      console.log(`Checking email: ${email}`);
-      console.log(`Role selected: ${role}`);
-      console.log(`Is Employee: ${isEmployee}, Is Admin: ${isAdmin}`);
-  
-      if (role === 'employee' && !isEmployee) {
-        setError('Access denied: You are not registered as an employee.');
-        setLoadingOtp(false);
-        return;
-      }
-  
-      if (role === 'admin' && !isAdmin && !isEmployee) {
-        setError('Access denied: You are not registered as an admin.');
-        setLoadingOtp(false);
-        return;
-      }
-  
-      const generated = generateOtp();
-      setGeneratedOtp(generated);
-  
-      const otpResponse = await axios.post('http://localhost:5000/send-OTP', { email, otp: generated, role });
-  
-      if (otpResponse.data.success) {
-        alert('OTP sent to your email!');
-        setOtpSent(true);
-      } else {
-        setError('Failed to send OTP. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error in handleSendOtp:', error); // Log exact error
-      setError('Error verifying email. Please try again later.');
-    } finally {
-      setLoadingOtp(false);
-    }
-  };
-  
-  const handleSignIn = () => {
-    setLoadingSignIn(true);
+      const { data: users } = await axios.get(`${BASE_URL}/get-users`);
+      const isEmployee = users.employees?.includes(email);
+      const isAdmin = users.admins?.includes(email);
+      if (role === 'Employee' && !isEmployee) { setError('Access denied: Not registered as an employee.'); setLoadingOtp(false); return; }
+      if (role === 'Admin' && !isAdmin && !isEmployee) { setError('Access denied: Not registered for admin access.'); setLoadingOtp(false); return; }
 
-    if (otp === generatedOtp) {
-      alert('Signed in successfully!');
-      login(email, role);
-      if(role=="admin"){
-        navigate('/adminDashboard')
-      }
-      else{
-      navigate('/upload');
-      }
-    } else {
-      setError('Invalid OTP. Please try again.');
-    }
-
-    setLoadingSignIn(false);
+      const gen = generateOtp(); setGeneratedOtp(gen); console.log("Generated OTP:", gen);
+      const { data: otpRes } = await axios.post(`${BASE_URL}/send-OTP`, { email, otp: gen, role: role.toLowerCase() });
+      if (otpRes && otpRes.success) { setError(''); setOtpSent(true); /* alert('OTP sent!'); */ } // Removed alert
+      else { setError(otpRes?.message || 'Failed to send OTP.'); }
+    } catch (err) { console.error("Error sending OTP:", err); setError(err.response?.data?.message || 'Server error sending OTP.'); setOtpSent(false); }
+    finally { setLoadingOtp(false); }
   };
 
+  const handleLogin = () => {
+    if (!login) { setError("Auth system not ready."); return; }
+    if (!otp || !email) { setError("Please enter email and OTP."); return; }
+    setLoadingSignIn(true); setError('');
+    if (otp === generatedOtp && otp !== '') {
+      login(email, role.toLowerCase(), false); // Pass role, remember=false
+      navigate(role === "Admin" ? "/adminDashboard" : "/dashboard", { replace: true });
+    } else { setError('Invalid OTP entered.'); setLoadingSignIn(false); }
+  };
+
+  const toggleRole = () => {
+    setRole((prev) => (prev === "Admin" ? "Employee" : "Admin"));
+    setError(''); setOtpSent(false); setOtp('');
+  };
+
+  // --- Helper to render content based on activeSection ---
+  const renderInfoContent = (section) => {
+      switch(section) {
+          case 'howToUse':
+              return (
+                  <div className="info-content-section">
+                      <h3>How to Get Started</h3>
+                      <ul>
+                          <li>Select your role using the toggle button below the form.</li>
+                          <li>Enter your registered USF email address.</li>
+                          <li>Click “Send OTP” — check your inbox.</li>
+                          <li>Enter the 4‑digit code and hit “Login.”</li>
+                      </ul>
+                      <p> Need help? Contact <a href="mailto:support@example.com">support@example.com</a>. </p>
+                  </div>
+              );
+          case 'features':
+              return (
+                  <div className="info-content-section">
+                      <h3>Features</h3>
+                      <div className="feature-item"> <h4>📊 Live Reports</h4> <p>Real‑time analytics.</p> </div>
+                      <div className="feature-item"> <h4>🔒 Secure Access</h4> <p>Two‑factor authentication.</p> </div>
+                      <div className="feature-item"> <h4>⚙️ Easy Administration</h4> <p>Manage users & requests.</p> </div>
+                  </div>
+              );
+          case 'support':
+              return (
+                  <div className="info-content-section">
+                      <h3>Support & Contact</h3>
+                      <p>If you encounter any issues or require assistance, please reach out to our support team:</p>
+                      <p><strong>Email:</strong> <a href="mailto:support@example.com">support@example.com</a></p>
+                      <p><strong>Phone:</strong> (555) 123-4567 (Mon-Fri, 9am-5pm)</p>
+                      {/* Add more support details if needed */}
+                  </div>
+              );
+          case 'terms':
+              return (
+                  <div className="info-content-section">
+                      <h3>Terms & Privacy</h3>
+                       {/* Link to actual policy pages */}
+                      <p><a href="/terms" target="_blank" rel="noopener noreferrer">⚖️ Read our Terms of Service</a></p>
+                      <p><a href="/privacy" target="_blank" rel="noopener noreferrer">🔒 Read our Privacy Policy</a></p>
+                      <p>By using EERIS, you agree to abide by our terms and policies regarding data usage and security.</p>
+                  </div>
+              );
+          default:
+              return null; // Should not happen if 'login' is handled separately
+      }
+  }
+
+  // --- Render ---
   return (
-    <div className="login-container">
-      <h2 className="login-title">WELCOME TO EERIS</h2>
+    <div className="login-container"> {/* Main container with gradient */}
 
-      <div className="input-group">
-        <select className="role-select" value={role} onChange={(e) => setRole(e.target.value)} disabled={otpSent}>
-          <option value="employee">Employee</option>
-          <option value="admin">Admin</option>
-        </select>
-      </div>
-
-      <div className="input-group">
-        <input
-          type="email"
-          className="input-field"
-          placeholder="USF Email **ONLY**"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          disabled={otpSent || loadingOtp || loadingSignIn}
-        />
-      </div>
-
-      <div className="input-group">
-        <button className="send-otp-button" onClick={handleSendOtp} disabled={loadingOtp || otpSent}>
-          {loadingOtp ? 'Loading...' : 'Send OTP'}
-        </button>
-      </div>
-
-      {otpSent && (
-        <>
-          <div className="input-group">
-            <input
-              type="text"
-              className="input-field"
-              placeholder="Enter OTP"
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
-              disabled={loadingSignIn}
-            />
+      {/* Sidebar */}
+      <aside className="sidebar">
+        <div className="logo">EERIS</div>
+        <nav className="sidebar-nav">
+          {/* Update onClick to set activeSection state */}
+          <div className={`menu-item ${activeSection === 'login' ? 'selected' : ''}`} onClick={() => setActiveSection('login')}>
+            🔑 Login
           </div>
-          <button className="sign-in-button" onClick={handleSignIn} disabled={loadingSignIn}>
-            {loadingSignIn ? 'Signing in...' : 'Sign In'}
-          </button>
-        </>
-      )}
+          <div className={`menu-item ${activeSection === 'howToUse' ? 'selected' : ''}`} onClick={() => setActiveSection('howToUse')}>
+            📖 How to Use
+          </div>
+          <div className={`menu-item ${activeSection === 'features' ? 'selected' : ''}`} onClick={() => setActiveSection('features')}>
+             ✨ Features
+          </div>
+          <div className={`menu-item ${activeSection === 'support' ? 'selected' : ''}`} onClick={() => setActiveSection('support')}>
+             📞 Support & Contact
+          </div>
+          <div className={`menu-item ${activeSection === 'terms' ? 'selected' : ''}`} onClick={() => setActiveSection('terms')}>
+             ⚖️ Terms & Privacy
+          </div>
+        </nav>
+      </aside>
 
-      {error && <p className="error-message">{error}</p>}
+      {/* Form Section */}
+      <main className="form-section">
+        <div className="login-card">
+          {/* Conditionally render Login Form or Info Content */}
+          {activeSection === 'login' ? (
+            // Login Form Content
+            <>
+              <h2>{otpSent ? 'Enter OTP Code' : `${role} Login`}</h2>
+              {error && <p className="error-message">{error}</p>}
+
+              {!otpSent ? (
+                <>
+                  <input id="email" name="email" type="email" className="input-field" placeholder="Enter USF Email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={loadingOtp} autoComplete="email" />
+                  <div className="button-group">
+                    <button className="btn otp-btn" onClick={handleSendOtp} disabled={loadingOtp || !validateEmail(email)} > {loadingOtp ? 'Sending...' : 'Send OTP'} </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p style={{fontSize: '0.9rem', color: '#4a5568', marginBottom: '1rem'}}> An OTP has been sent to {email}. </p>
+                  <input id="otp" name="otp" type="text" inputMode="numeric" pattern="\d{4}" maxLength="4" className="input-field" placeholder="Enter 4-digit OTP" value={otp} onChange={(e) => setOtp(e.target.value)} disabled={loadingSignIn} autoComplete="one-time-code" />
+                   <div className="button-group">
+                    <button className="btn login-btn" onClick={handleLogin} disabled={loadingSignIn || otp.length !== 4} > {loadingSignIn ? 'Logging In...' : '✔ Login'} </button>
+                   </div>
+                   <button className="resend-btn" style={{ background: 'none', border: 'none', color: '#3182ce', cursor: 'pointer', marginTop: '0.5rem', fontSize: '0.9rem' }} onClick={() => setOtpSent(false)} disabled={loadingSignIn || loadingOtp} > Back to Email </button>
+                </>
+              )}
+
+              <button className="toggle-btn" onClick={toggleRole} disabled={loadingOtp || loadingSignIn}>
+                👤 Login as {role === "Admin" ? "Employee" : "Admin"} instead
+              </button>
+            </>
+          ) : (
+            // Informational Content
+            renderInfoContent(activeSection)
+          )}
+        </div>
+      </main>
     </div>
   );
 };

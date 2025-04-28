@@ -1,103 +1,145 @@
-/* Page layout */
-.upload-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Navigation bar */
-  .navbar {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    color: white;
-  }
-  
-  .nav-links button {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    margin-left: 15px;
-  }
-  
-  .nav-links button:hover {
-    text-decoration: underline;
-  }
-  
-  /* Upload container */
-  .upload-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    margin: 20px auto;
-  }
-  
-  h2 {
-    margin-bottom: 15px;
-    color: #333;
-  }
-  
-  /* File input */
-  input[type="file"] {
-    margin-bottom: 15px;
-  }
-  
-  /* Expense dropdown */
-  select {
-    width: 100%;
-    padding: 8px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  /* Notes text area */
-  textarea {
-    width: 100%;
-    height: 80px;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  /* Upload button */
-  button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  button:hover:not(:disabled) {
-    background-color: #0056b3;
-  }
-  
-  /* File preview */
-  .file-preview {
-    margin-top: 10px;
-    width: 100px;
-    height: auto;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-  
+/* ──────────────────────────────────────────────────────────────
+   EUploadPage.css  •  Pastel-green gradient + Google Sans family
+   Matches the visual language of Dashboard / Policies pages
+   ──────────────────────────────────────────────────────────── */
+
+/*  1.  Global tokens  ---------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap");
+
+:root {
+  --grad-1: #e7f9e7;          /* light mint   */
+  --grad-2: #d2f4d2;          /* soft green   */
+  --grad-3: #f0fdfa;          /* icy white    */
+
+  --bg-card:   #ffffff;
+  --border:    #e2e8f0;
+  --text-dark: #1f2937;
+  --text-sub:  #4b5563;
+  --accent:    #2f855a;       /* green button / focus ring   */
+  --accent-dark: #1f6c46;
+  --error:     #c53030;
+  --success:   #2f855a;
+
+  --radius: 10px;
+  --shadow: 0 10px 25px rgba(0,0,0,.06);
+  --trans:  .2s ease;
+}
+
+/*  2.  Resets  ------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+html,body {
+  margin:0; height:100%; width:100%;
+  font-family: "Google Sans", sans-serif;
+  color: var(--text-dark);
+  background: linear-gradient(
+      135deg,
+      var(--grad-1) 0%,
+      var(--grad-2) 50%,
+      var(--grad-3) 100%
+  );
+  background-size: 400% 400%;
+  animation: bgShift 15s ease infinite;
+}
+@keyframes bgShift {
+  0%,100% { background-position: 0% 50%; }
+  50%     { background-position: 100% 50%; }
+}
+
+/*  3.  Layout containers  ------------------------------------ */
+.upload-page         { display:flex; flex-direction:column; height:100%; }
+.upload-header       {
+  height:60px; padding:0 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+  backdrop-filter: blur(6px);
+  background: rgba(255,255,255,.8);
+  border-bottom:1px solid var(--border);
+}
+.header-logo         { font-size:1.4rem; font-weight:700; letter-spacing:.5px; }
+.nav-btn             {
+  background:none; border:none; color:var(--accent);
+  font-weight:500; cursor:pointer; transition:color var(--trans);
+}
+.nav-btn:hover       { color:var(--accent-dark); }
+
+.content-area        {
+  flex:1; display:flex; justify-content:center; align-items:flex-start;
+  padding:3vh 1rem 6vh;
+  overflow-y:auto;
+}
+
+/*  4.  Card  -------------------------------------------------- */
+.upload-card {
+  width:100%; max-width:600px;
+  border-radius:var(--radius);
+  background:var(--bg-card);
+  box-shadow:var(--shadow);
+  padding:2.5rem 2.75rem;
+}
+.upload-card h2   { margin:0 0 .25rem; font-size:1.9rem; text-align:center; }
+.upload-card .sub{ margin:0 0 2rem; color:var(--text-sub); text-align:center; }
+
+/*  5.  Alerts  ------------------------------------------------ */
+.alert {
+  margin-bottom:1.25rem; padding:.9rem 1rem;
+  border-radius:var(--radius); text-align:center; font-weight:500;
+}
+.alert.error   { background:#fed7d7; color:var(--error); }
+.alert.success { background:#c6f6d5; color:var(--success); }
+
+/*  6.  Form elements  ---------------------------------------- */
+label { font-weight:600; font-size:.95rem; display:block; margin:.9rem 0 .35rem; }
+
+input[type="file"],
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select, textarea {
+  width:100%; font-size:1rem; padding:.75rem .9rem;
+  border:1px solid var(--border); border-radius:var(--radius);
+  transition:border var(--trans), box-shadow var(--trans);
+}
+textarea          { min-height:110px; resize:vertical; }
+input:focus,
+select:focus,
+textarea:focus    {
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(47,133,90,.25);
+  outline:none;
+}
+
+/* image preview */
+.preview {
+  display:block; max-width:100%; max-height:200px;
+  margin:.9rem auto 0; border:1px solid var(--border); border-radius:var(--radius);
+}
+
+/*  7.  Buttons  ---------------------------------------------- */
+.btn-upload {
+  margin-top:2rem;
+  width:100%; padding:.9rem 1rem;
+  border:none; border-radius:var(--radius);
+  font-weight:600; font-size:1rem; color:#fff;
+  background:var(--accent); cursor:pointer;
+  transition:background var(--trans), transform var(--trans), opacity var(--trans);
+}
+.btn-upload:hover:not(:disabled) { background:var(--accent-dark); transform:translateY(-2px); }
+.btn-upload:disabled            { opacity:.5; cursor:not-allowed; }
+
+/*  8.  Profile picture  -------------------------------------- */
+.profile-dropdown { position:relative; }
+.profile-icon     { width:32px; height:32px; cursor:pointer; }
+.profile-menu     {
+  position:absolute; top:42px; right:0; z-index:60;
+  min-width:160px; padding:.5rem 0; list-style:none;
+  border:1px solid var(--border); border-radius:var(--radius);
+  background:var(--bg-card); box-shadow:var(--shadow);
+}
+.profile-menu li         { padding:.6rem 1rem; font-size:.9rem; cursor:pointer; }
+.profile-menu li:hover   { background:var(--grad-1); }
+.profile-email           { font-weight:600; cursor:default; }
+
+/*  9.  Responsive tweaks  ------------------------------------ */
+@media(max-width:768px){
+  .upload-header{ padding:0 1rem; }
+  .upload-card  { padding:2rem 1.5rem; }
+}
