@@ -59,6 +59,7 @@ function saveUsers(u) {
 
 // ─── OTP endpoint ───────────────────────────────────────────────
 app.post('/send-OTP', (req, res) => {
+  // more try catch blocks
   try {
     const { email, otp, role } = req.body;
     if (!email || !otp || !role) {
@@ -319,7 +320,7 @@ app.post('/add-expense', (req, res) => {
     email,
     expenseType,
     category,
-    status:   'Pending',    // default for newly submitted
+    status:   'Pending',    // default for newly submitted// 
     amount:   parseFloat(total) || 0,
     name,
     date,
