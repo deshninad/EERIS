@@ -78,9 +78,22 @@ export default function ESummaryPage() {
                         <td data-status={req.status}><span className="status-badge">{req.status}</span></td>
                         <td style={{ textAlign: 'right' }}>{isEditing ? (<input type="number" name="amount" value={draft.amount ?? ''} onChange={handleDraftChange} step="0.01" min="0" style={{width: '80px', textAlign: 'right'}}/>) : ( `$${req.amount.toFixed(2)}` )}</td>
                         <td>{req.name ?? 'N/A'}</td>
-                        <td className="actions">
-                          {req.status === 'Pending' && ( isEditing ? ( <> <button className="save-btn" onClick={saveEdit}>Save</button> <button className="cancel-btn" onClick={cancelEdit}>Cancel</button> </> ) : ( <> <button className="edit-btn" onClick={() => startEdit(req)}>Edit</button> <button className="delete-btn" onClick={() => handleDelete(req.id)}>Delete</button> </> ) )}
-                          {req.status !== 'Pending' && <span>-</span>}
+                        <td className="actions-cell">
+                          {req.status === 'Pending' ? (
+                            isEditing ? (
+                              <>
+                                <span className="action-btn save"   onClick={saveEdit}>Save</span>
+                                <span className="action-btn cancel" onClick={cancelEdit}>Cancel</span>
+                              </>
+                            ) : (
+                              <>
+                                <span className="action-btn edit"   onClick={() => startEdit(req)}>Edit</span>
+                                <span className="action-btn delete" onClick={() => handleDelete(req.id)}>Delete</span>
+                              </>
+                            )
+                          ) : (
+                            <span className="placeholder">—</span>
+                          )}
                         </td>
                       </tr> ); }) )}
               </tbody>
