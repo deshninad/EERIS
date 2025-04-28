@@ -1,279 +1,274 @@
-// server.js
-// Includes fixes for missing helper functions and improved error handling
+// server.js (FINAL MERGED + ACCURATE PARSING)
 
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { exec } from 'child_process'; // Ensure this is imported
+import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { exec, execFile } from 'child_process';
+import dotenv from 'dotenv';
+import Tesseract from 'tesseract.js';
+import OpenAI from 'openai';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname  = path.dirname(__filename);
+dotenv.config();
 
-const app = express();
+const __filename     = fileURLToPath(import.meta.url);
+const __dirname      = path.dirname(__filename);
+const app            = express();
+const upload         = multer({ dest: 'uploads/' });
+const openai         = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// === CORS Configuration ===
-// Allow requests only from your Vite frontend origin
-const corsOptions = {
-  origin: 'http://localhost:5173', // Adjust if your frontend runs on a different port
-  optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
-// =========================
-
+app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(bodyParser.json());
 
-// --- File Paths (Verify these are correct relative to server.js) ---
-const USERS_FILE   = path.join(__dirname, 'src/data/USERS.json');
+// ─── File paths ─────────────────────────────────────────────────
+const USERS_FILE    = path.join(__dirname, 'src/data/USERS.json');
 const EXPENSES_FILE = path.join(__dirname, 'src/data/data.json');
 const PYTHON_SCRIPT = path.join(__dirname, 'src/backend/OTP_emailer.py');
-const PYTHON_VENV_EXECUTABLE = path.join(__dirname, '.venv/bin/python'); // Path to Python in venv (adjust for Windows/venv name)
-// ------------------------------------------------------------------
 
-// === HELPER FUNCTIONS ===
+// ─── Helpers ────────────────────────────────────────────────────
 function readJSON(file) {
-  try {
-    if (!fs.existsSync(file)) {
-        console.warn(`File not found: ${file}. Returning default structure.`);
-        // Return a default structure if the file doesn't exist
-        if (file === USERS_FILE) return { employees: [], admins: [] };
-        if (file === EXPENSES_FILE) return [];
-        return {}; // Default empty object for unknown files
-    }
-    const fileContent = fs.readFileSync(file, 'utf-8');
-    return JSON.parse(fileContent); // Parse the content
-  } catch (error) {
-      console.error(`Error reading or parsing JSON file ${file}:`, error);
-      // Return a default structure on error
-      if (file === USERS_FILE) return { employees: [], admins: [] };
-      if (file === EXPENSES_FILE) return [];
-      // Re-throw other errors or return a specific error object
-      throw new Error(`Failed to process file ${path.basename(file)}`);
+  if (!fs.existsSync(file)) {
+    return file === USERS_FILE ? { employees: [], admins: [] } : [];
   }
+  return JSON.parse(fs.readFileSync(file, 'utf-8'));
 }
 
 function writeJSON(file, data) {
-   try {
-       // Optional: Ensure directory exists before writing
-       // fs.mkdirSync(path.dirname(file), { recursive: true });
-       fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf-8'); // Added encoding
-       console.log(`Successfully wrote to ${file}`);
-   } catch (error) {
-       console.error(`Error writing JSON file ${file}:`, error);
-       throw error; // Allow endpoint handler to catch and respond
-   }
+  fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf-8');
 }
 
-// --- Added missing helper functions ---
 function getUsers() {
-    return readJSON(USERS_FILE);
+  return readJSON(USERS_FILE);
 }
 
-function saveUsers(users) {
-    // Optional: Add validation here to ensure users object has correct structure
-    if (!users || !Array.isArray(users.employees) || !Array.isArray(users.admins)) {
-        console.error("Attempted to save invalid users structure:", users);
-        throw new Error("Invalid users data structure provided to saveUsers");
-    }
-    writeJSON(USERS_FILE, users);
+function saveUsers(u) {
+  writeJSON(USERS_FILE, u);
 }
-// ---------------------------------------
 
-// === API ENDPOINTS ===
-
-// --- OTP ---
+// ─── OTP endpoint ───────────────────────────────────────────────
 app.post('/send-OTP', (req, res) => {
-    console.log("Received /send-OTP request:", req.body);
-    const { email, otp, role } = req.body;
+  const { email, otp, role } = req.body;
+  if (!email || !otp || !role) {
+    return res.status(400).json({ message: 'Missing fields.' });
+  }
 
-    // Validation
-    if (!email || !otp || !role) { console.error("Missing data in /send-OTP"); return res.status(400).json({ success: false, message: 'Email, role and OTP required.' }); }
-    if (!email.includes('@')) { console.error("Invalid email format:", email); return res.status(400).json({ success: false, message: 'Invalid email format.' }); }
+  const users = getUsers();
+  const authorized =
+    (role === 'employee' && users.employees.includes(email)) ||
+    (role === 'admin'    && users.admins.includes(email));
 
-    try {
-        const users = getUsers(); // Use helper
-        const isEmp = users.employees?.includes(email);
-        const isAdm = users.admins?.includes(email);
+  if (!authorized) {
+    return res.status(403).json({ message: 'Not registered for this role.' });
+  }
 
-        // Role Check
-        if (role === 'employee' && !isEmp) { console.warn(`OTP Denied: ${email} not employee.`); return res.status(403).json({ success: false, message: 'Not registered as employee.' }); }
-        if (role === 'admin' && !isAdm) { console.warn(`OTP Denied: ${email} not admin.`); return res.status(403).json({ success: false, message: 'Not registered for admin access.' }); }
-        console.log(`Role check passed for ${email} as ${role}`);
-
-        // Execute Python Script using venv python
-        const command = `"${PYTHON_VENV_EXECUTABLE}" "${PYTHON_SCRIPT}" "${email}" "${otp}"`;
-        console.log(`Executing command: ${command}`);
-
-        exec(command, (err, stdout, stderr) => {
-            if (err) {
-                console.error(`Error executing Python script: ${err.message}`);
-                return res.status(500).json({ success: false, message: 'Server error: Failed to execute OTP sender.' });
-            }
-            if (stderr) {
-                console.error(`Python script stderr: ${stderr}`);
-                // Consider if stderr should always indicate failure
-            }
-            console.log(`Python script stdout: ${stdout}`);
-            console.log(`OTP successfully processed for ${email}`);
-            res.json({ success: true, message: 'OTP sent.' }); // Send success back
-        });
-
-    } catch (readErr) {
-        console.error("Error processing /send-OTP (likely reading users file):", readErr);
-        res.status(500).json({ success: false, message: 'Server error checking user roles.' });
+  exec(`python3 "${PYTHON_SCRIPT}" "${email}" "${otp}"`, (err) => {
+    if (err) {
+      return res.status(500).json({ message: 'OTP send failed.' });
     }
+    return res.json({ success: true });
+  });
 });
 
-// --- USERS ---
+// ─── Users CRUD ─────────────────────────────────────────────────
 app.get('/get-users', (req, res) => {
-  try {
-    const usersData = getUsers(); // Calls readJSON which handles file not found/parse errors
-
-    // Explicit check for the expected structure AFTER reading/defaulting
-    if (!usersData || !Array.isArray(usersData.employees) || !Array.isArray(usersData.admins)) {
-        console.error("Data read from USERS_FILE is not in the expected format:", usersData);
-        return res.status(500).json({ message: 'Server error: Invalid user data structure.' });
-    }
-
-    // If structure is valid, send it
-    res.json(usersData);
-
-  } catch (err){
-    // Catch any *other* unexpected errors during the process
-    console.error("Unexpected error in /get-users endpoint:", err);
-    res.status(500).json({ message: 'Server error: Cannot load users.' });
-  }
+  return res.json(getUsers());
 });
 
 app.post('/add-user', (req, res) => {
-  try {
-    const { email, role } = req.body;
-    if (!email || !email.includes('@') || !role) return res.status(400).json({ message: 'Valid email and role required.' });
-    if (role !== 'admin' && role !== 'employee') return res.status(400).json({ message: 'Role must be admin or employee.' });
-
-    const users = getUsers();
-    const list = role + 's'; // 'admins' or 'employees'
-
-    if (users[list]?.includes(email)) { return res.status(409).json({ message: `User already exists as ${role}.` }); }
-
-    users[list] = users[list] || []; // Ensure array exists
-    users[list].push(email);
-    saveUsers(users); // Use helper
-    res.json({ success: true, message: `${email} added as ${role}` });
-  } catch (err) {
-      console.error("Add user error:", err);
-      res.status(500).json({ message: "Failed to add user."});
+  const { email, role } = req.body;
+  if (!email || !role) {
+    return res.status(400).json({ message: 'Missing fields.' });
   }
+  const u = getUsers();
+  u[role + 's'] = u[role + 's'] || [];
+  u[role + 's'].push(email);
+  saveUsers(u);
+  return res.json({ success: true });
 });
 
 app.post('/update-user', (req, res) => {
-  try {
-    const { email, newRole } = req.body;
-    if (!email || !newRole) return res.status(400).json({ message: 'Email and newRole required.' });
-    if (newRole !== 'admin' && newRole !== 'employee') return res.status(400).json({ message: 'Invalid role' });
-
-    let users = getUsers(); // Use helper
-
-    // Remove from both lists first
-    users.employees = (users.employees || []).filter(e => e !== email);
-    users.admins    = (users.admins || []).filter(a => a !== email);
-
-    // Add to the correct new list
-    const list = newRole + 's';
-    users[list] = users[list] || []; // Ensure list exists
-    if (!users[list].includes(email)) { users[list].push(email); }
-
-    saveUsers(users); // Use helper
-    res.json({ success: true });
-  } catch (err) {
-      console.error("Update user error:", err);
-      res.status(500).json({ message: "Failed to update user role."});
+  const { email, newRole } = req.body;
+  if (!email || !newRole) {
+    return res.status(400).json({ message: 'Missing fields.' });
   }
+  let u = getUsers();
+  u.employees = (u.employees || []).filter(e => e !== email);
+  u.admins    = (u.admins    || []).filter(a => a !== email);
+  u[newRole + 's'] = u[newRole + 's'] || [];
+  u[newRole + 's'].push(email);
+  saveUsers(u);
+  return res.json({ success: true });
 });
 
 app.post('/delete-user', (req, res) => {
-  try {
-    const { email } = req.body;
-    if (!email) return res.status(400).json({ message: 'Email required.' });
-
-    let users = getUsers(); // Use helper
-
-    const initialEmployeeCount = (users.employees || []).length;
-    const initialAdminCount = (users.admins || []).length;
-    users.employees = (users.employees || []).filter(e => e !== email);
-    users.admins    = (users.admins || []).filter(a => a !== email);
-    const finalEmployeeCount = (users.employees || []).length;
-    const finalAdminCount = (users.admins || []).length;
-
-    if (initialEmployeeCount === finalEmployeeCount && initialAdminCount === finalAdminCount) {
-        console.log(`User ${email} not found for deletion.`);
-        // Optionally return 404: return res.status(404).json({ message: 'User not found.' });
-    }
-
-    saveUsers(users); // Use helper
-    res.json({ success: true });
-   } catch (err) {
-      console.error("Delete user error:", err);
-      res.status(500).json({ message: "Failed to delete user."});
+  const { email } = req.body;
+  if (!email) {
+    return res.status(400).json({ message: 'Missing fields.' });
   }
+  let u = getUsers();
+  u.employees = (u.employees || []).filter(e => e !== email);
+  u.admins    = (u.admins    || []).filter(a => a !== email);
+  saveUsers(u);
+  return res.json({ success: true });
 });
 
-// --- EXPENSES ---
+// ─── Expenses CRUD ──────────────────────────────────────────────
 app.get('/get-expenses', (req, res) => {
-    const file = EXPENSES_FILE;
-    console.log('[get-expenses] looking for file at:', file);
-    try {
-        if (!fs.existsSync(file)) { console.error('[get-expenses] file does not exist:', file); return res.status(500).json({ error: 'Expenses file missing' }); }
-        const data = readJSON(file);
-        console.log('[get-expenses] loaded', data.length, 'records');
-        return res.json(data);
-    } catch (err) {
-        console.error('[get-expenses] error reading file:', err);
-        return res.status(500).json({ error: 'Failed to load expenses' });
-    }
+  return res.json(readJSON(EXPENSES_FILE));
 });
 
 app.post('/update-expense', (req, res) => {
-  try {
-    const { expenseId, field, newValue } = req.body;
-    if (expenseId === undefined || field === undefined || newValue === undefined) { return res.status(400).json({ message: 'Missing required fields' }); }
+  const { expenseId, field, newValue, comment = '' } = req.body;
+  if (expenseId == null || !field || newValue == null) {
+    return res.status(400).json({ message: 'Missing fields.' });
+  }
+  const exps = readJSON(EXPENSES_FILE);
+  const idx  = exps.findIndex(e => e.id === expenseId);
+  if (idx === -1) {
+    return res.status(404).json({ message: 'Not found.' });
+  }
 
-    const exps = readJSON(EXPENSES_FILE);
-    const idx = exps.findIndex(e => e.id === expenseId);
-    if (idx === -1) return res.status(404).json({ message: 'Expense not found.' });
+  exps[idx][field] = field === 'amount'
+    ? parseFloat(newValue) || 0
+    : newValue;
+  writeJSON(EXPENSES_FILE, exps);
 
-    exps[idx][field] = (field === 'amount') ? (parseFloat(newValue) || 0) : newValue; // Ensure amount is number
+  // send notification if status changed
+  if (field === 'status') {
+    const exp       = exps[idx];
+    const to        = exp.email;
+    const subject   = `Expense #${expenseId} – ${newValue}`;
+    const bodyLines = [
+      `Hello ${exp.name || exp.email},`,
+      ``,
+      `Your expense request #${expenseId} is now "${newValue}".`,
+      comment ? `\nNote: ${comment}` : '',
+      ``,
+      `Thank you,`,
+      `Finance Team`
+    ];
+    const notifyScript = path.join(__dirname, 'src/backend/Notification_emailer.py');
+    execFile('python3', [ notifyScript, to, subject, bodyLines.join('\n') ], { cwd: path.join(__dirname, 'src/backend') }, (err) => {
+      if (err) console.error('Notify email error:', err);
+    });
+  }
 
-    writeJSON(EXPENSES_FILE, exps);
-    res.json({ success: true });
-   } catch (err) {
-      console.error("Update expense error:", err);
-      res.status(500).json({ message: "Failed to update expense."});
-   }
+  return res.json({ success: true });
 });
 
 app.post('/delete-expense', (req, res) => {
+  const { expenseId } = req.body;
+  if (expenseId == null) {
+    return res.status(400).json({ message: 'Missing fields.' });
+  }
+  let exps = readJSON(EXPENSES_FILE);
+  exps     = exps.filter(e => e.id !== expenseId);
+  writeJSON(EXPENSES_FILE, exps);
+  return res.json({ success: true });
+});
+
+// ─── Upload Receipt + OCR + OpenAI Parse ────────────────────────
+app.post('/upload-receipt', upload.single('receipt'), async (req, res) => {
   try {
-    const { expenseId } = req.body;
-    if (expenseId === undefined) return res.status(400).json({ message: 'expenseId required.' });
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded.' });
+    }
 
-    let exps = readJSON(EXPENSES_FILE);
-    const initialLength = exps.length;
-    exps = exps.filter(e => e.id !== expenseId);
+    // 1) OCR with Tesseract
+    const filePath       = path.join(__dirname, req.file.path);
+    const { data: { text } } = await Tesseract.recognize(filePath, 'eng');
+    fs.unlink(filePath, err => { if (err) console.error('Temp delete err:', err); });
 
-    if (exps.length === initialLength) { console.log(`Expense ID ${expenseId} not found for deletion.`); }
+    // 2) Extract via OpenAI
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-3.5-turbo',
+      messages: [
+        {
+          role: 'system',
+          content:
+            `You are a JSON-only extractor. No code fences or markdown.\n` +
+            `From the receipt text extract exactly these fields:\n` +
+            `• vendor (string)\n` +
+            `• date   (YYYY-MM-DD string)\n` +
+            `• total  (decimal string, e.g. "78.90")`
+        },
+        { role: 'user', content: `Receipt Text:\n${text}` }
+      ],
+      temperature: 0
+    });
 
-    writeJSON(EXPENSES_FILE, exps);
-    res.json({ success: true });
+    let raw   = completion.choices[0].message.content.trim();
+    let clean = raw
+      .replace(/^```json/, '')
+      .replace(/^```/, '')
+      .replace(/```$/, '')
+      .trim();
+
+    let parsed = {};
+    try {
+      parsed = JSON.parse(clean);
+    } catch {
+      console.error('AI JSON parse fail:', raw);
+    }
+
+    // 3) Fallbacks & normalization
+    let vendor = parsed.vendor || '';
+    let date   = parsed.date   || '';
+    let total  = parsed.total  || '';
+
+    // normalize date
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      const m = text.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
+      if (m) {
+        const [mo, da, yr] = m[1].split('/');
+        date = `${yr}-${mo.padStart(2, '0')}-${da.padStart(2, '0')}`;
+      }
+    }
+
+    // normalize total
+    if (!/^\d+(\.\d{2})$/.test(total)) {
+      const m = text.match(/(?:Total\s*[:]?|\bEST\.\s*TOTAL AMOUNT US\$)\s*\$?([\d,]+\.?\d{2})/i);
+      if (m) total = m[1];
+    }
+
+    return res.json({ vendor, date, total });
   } catch (err) {
-      console.error("Delete expense error:", err);
-      res.status(500).json({ message: "Failed to delete expense."});
+    console.error('/upload-receipt error:', err);
+    return res.status(500).json({ message: 'Server error parsing receipt.' });
   }
 });
 
 
-// --- Server Start ---
-const PORT = process.env.PORT || 5001; // Ensure this port is free
-app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
+// ─── Create New Expense ─────────────────────────────────────────
+app.post('/add-expense', (req, res) => {
+  const exps = readJSON(EXPENSES_FILE);
+  const newId = exps.length ? Math.max(...exps.map(e => e.id)) + 1 : 1;
+
+  // pull the bits you care about from the body
+  const { email, expenseType, category, date, total, name, notes } = req.body;
+
+  const newExp = {
+    id:       newId,
+    email,
+    expenseType,
+    category,
+    status:   'Pending',    // default for newly submitted
+    amount:   parseFloat(total) || 0,
+    name,
+    date,
+    notes:    notes || ''
+  };
+
+  exps.push(newExp);
+  writeJSON(EXPENSES_FILE, exps);
+  res.json(newExp);
+});
+
+// ─── Start Server ───────────────────────────────────────────────
+const PORT = process.env.PORT || 5001;
+app.listen(PORT, () => {
+  console.log(`Server listening on ${PORT}`);
+});

@@ -9,6 +9,15 @@
     "name": "User49"
   },
   {
+    "id": 3,
+    "email": "neerajpillai@usf.edu",
+    "expenseType": "Office",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 376.04,
+    "name": "User49"
+  },
+  {
     "id": 6,
     "email": "dkarmariya@usf.edu",
     "expenseType": "Travel",
@@ -8944,5 +8953,27 @@
     "status": "Pending",
     "amount": 98.91,
     "name": "User59"
+  },
+  {
+    "id": 1001,
+    "email": "neerajpillai@usf.edu",
+    "expenseType": "Office Supplies",
+    "category": "Office Supplies",
+    "status": "Pending",
+    "amount": 4.51,
+    "name": "neerajpillai",
+    "date": "2025-03-29",
+    "notes": "pineapple"
+  },
+  {
+    "id": 1002,
+    "email": "neerajpillai@usf.edu",
+    "expenseType": "Utilities",
+    "category": "Utilities",
+    "status": "Pending",
+    "amount": 7804,
+    "name": "neerajpillai",
+    "date": "2025-03-24",
+    "notes": ""
   }
 ]

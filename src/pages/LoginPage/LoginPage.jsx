@@ -43,7 +43,7 @@ const LoginPage = () => {
       if (role === 'Admin' && !isAdmin && !isEmployee) { setError('Access denied: Not registered for admin access.'); setLoadingOtp(false); return; }
 
       const gen = generateOtp(); setGeneratedOtp(gen); console.log("Generated OTP:", gen);
-      const { data: otpRes } = await axios.post(`${BASE_URL}/send-OTP`, { email, otp: gen, role });
+      const { data: otpRes } = await axios.post(`${BASE_URL}/send-OTP`, { email, otp: gen, role: role.toLowerCase() });
       if (otpRes && otpRes.success) { setError(''); setOtpSent(true); /* alert('OTP sent!'); */ } // Removed alert
       else { setError(otpRes?.message || 'Failed to send OTP.'); }
     } catch (err) { console.error("Error sending OTP:", err); setError(err.response?.data?.message || 'Server error sending OTP.'); setOtpSent(false); }
@@ -55,7 +55,7 @@ const LoginPage = () => {
     if (!otp || !email) { setError("Please enter email and OTP."); return; }
     setLoadingSignIn(true); setError('');
     if (otp === generatedOtp && otp !== '') {
-      login(email, role, false); // Pass role, remember=false
+      login(email, role.toLowerCase(), false); // Pass role, remember=false
       navigate(role === "Admin" ? "/adminDashboard" : "/upload", { replace: true });
     } else { setError('Invalid OTP entered.'); setLoadingSignIn(false); }
   };
