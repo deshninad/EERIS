@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 const USERS_FILE   = path.join(__dirname, 'src/data/USERS.json');
 const EXPENSES_FILE = path.join(__dirname, 'src/data/data.json');
 const PYTHON_SCRIPT = path.join(__dirname, 'src/backend/OTP_emailer.py');
-const PYTHON_VENV_EXECUTABLE = 'python'; // Path to Python in venv (adjust for Windows/venv name)
+const PYTHON_VENV_EXECUTABLE = path.join(__dirname, '.venv/bin/python'); // Path to Python in venv (adjust for Windows/venv name)
 // ------------------------------------------------------------------
 
 // === HELPER FUNCTIONS ===
@@ -104,7 +104,7 @@ app.post('/send-OTP', (req, res) => {
         console.log(`Role check passed for ${email} as ${role}`);
 
         // Execute Python Script using venv python
-        const command = `"python" "${PYTHON_SCRIPT}" "${email}" "${otp}"`;
+        const command = `"python3" "${PYTHON_SCRIPT}" "${email}" "${otp}"`;
         console.log(`Executing command: ${command}`);
 
         exec(command, (err, stdout, stderr) => {

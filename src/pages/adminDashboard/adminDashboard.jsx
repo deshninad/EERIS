@@ -8,6 +8,8 @@ import { useAuth } from '../../AuthProvider.jsx';
 import AnalyticsPane   from '../components/AnalyticsPane.jsx';
 import ManageUsersPane from '../components/ManageUsersPane.jsx';
 import './AdminDashboard.css';
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 const BASE_URL = 'http://localhost:5001';
 
@@ -258,6 +260,39 @@ const AdminDashboard = () => {
     navigate('/login', { replace: true });
   }, [auth, navigate]);
 
+    // === EXPORT PDF HANDLER ===
+    const handleExportPDF = useCallback(() => {
+      console.log('🚀 Export PDF clicked!', displayedExpenses.length);
+      const doc = new jsPDF();
+    
+      const columns = expenseTableColumns
+        .filter(c => c.key !== 'actions')
+        .map(c => c.label);
+    
+      const rows = displayedExpenses.map(exp =>
+        expenseTableColumns
+          .filter(c => c.key !== 'actions')
+          .map(c => {
+            const v = exp[c.key];
+            return c.key === 'amount'
+              ? `$${(v||0).toFixed(2)}`
+              : String(v ?? '');
+          })
+      );
+    
+      // <-- use the standalone autoTable() call
+      autoTable(doc, {
+        head: [columns],
+        body: rows,
+        startY: 20,
+        theme: 'striped',
+        headStyles: { fillColor: [0, 86, 179] }
+      });
+    
+      doc.text('Expense Requests', 14, 14);
+      doc.save('expense-requests.pdf');
+    }, [displayedExpenses]);    
+  
   const renderMainContent = () => {
     if (isLoading) return <div>Loading...</div>;
     if (error && ((view==='dashboard' && !expenses.length) || (view==='users' && !userList.length))) {
@@ -283,7 +318,9 @@ const AdminDashboard = () => {
             </div>
             <h2>Expense Requests {filterDashboardStatus?`(${filterDashboardStatus})`:''}</h2>
             {error && <div className="error">{error}</div>}
-            <div className="filters"><input id="expense-search-email" name="expenseSearchEmail" type="text" placeholder="Search by email..." value={searchEmail} onChange={e => setSearchEmail(e.target.value)} /><select id="expense-filter-category" name="expenseFilterCategory" value={filterCategory} onChange={e => setFilterCategory(e.target.value)}> <option value="">All Categories</option> {categories.map(c => <option key={c} value={c}>{c}</option>)} </select><select id="expense-filter-type" name="expenseFilterType" value={filterExpenseType} onChange={e => setFilterExpenseType(e.target.value)}> <option value="">All Expense Types</option> {expenseTypes.map(t => <option key={t} value={t}>{t}</option>)} </select><button onClick={() => { setSearchEmail(''); setFilterCategory(''); setFilterExpenseType(''); setFilterDashboardStatus('');}} style={{ marginLeft: 'auto' }} disabled={!searchEmail && !filterCategory && !filterExpenseType && !filterDashboardStatus}>Clear All Filters</button></div>
+            <div className="filters"><input id="expense-search-email" name="expenseSearchEmail" type="text" placeholder="Search by email..." value={searchEmail} onChange={e => setSearchEmail(e.target.value)} /><select id="expense-filter-category" name="expenseFilterCategory" value={filterCategory} onChange={e => setFilterCategory(e.target.value)}> <option value="">All Categories</option> {categories.map(c => <option key={c} value={c}>{c}</option>)} </select><select id="expense-filter-type" name="expenseFilterType" value={filterExpenseType} onChange={e => setFilterExpenseType(e.target.value)}> <option value="">All Expense Types</option> {expenseTypes.map(t => <option key={t} value={t}>{t}</option>)} </select><button onClick={() => { setSearchEmail(''); setFilterCategory(''); setFilterExpenseType(''); setFilterDashboardStatus('');}} style={{ marginLeft: 'auto' }} disabled={!searchEmail && !filterCategory && !filterExpenseType && !filterDashboardStatus}>Clear All Filters</button>
+            <button onClick={handleExportPDF} style={{ marginLeft: '1rem', background: '#0056b3', color: '#fff' }}>Export PDF</button>
+            </div>
             <div className="table-wrapper">
               <table className="dynamic-table">
               <thead>
