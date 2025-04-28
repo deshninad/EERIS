@@ -1,4177 +1,1082 @@
 [
   {
-    "id": 4,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Approved",
-    "amount": 376.04,
-    "name": "User49"
-  },
-  {
-    "id": 3,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Approved",
-    "amount": 376.04,
-    "name": "User49"
-  },
-  {
-    "id": 6,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Travel",
-    "category": "Taxi",
-    "status": "Pending",
-    "amount": 149.31,
-    "name": "User72"
-  },
-  {
-    "id": 7,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Pending",
-    "amount": "400.08",
-    "name": "User97"
-  },
-  {
-    "id": 8,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Approved",
-    "amount": 38.56,
-    "name": "User60"
-  },
-  {
-    "id": 9,
+    "id": 1,
     "email": "ndeshpande2@usf.edu",
-    "expenseType": "Meals",
-    "category": "Supplies",
-    "status": "Approved",
-    "amount": "662.94",
-    "name": "Ninad Deshpande"
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Training",
+    "status": "Rejected",
+    "amount": 106.97
   },
   {
     "id": 2,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Meals",
-    "category": "Transportation",
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Meal",
+    "category": "Office",
     "status": "Rejected",
-    "amount": "585.92",
-    "name": "Srishti Nagraj"
+    "amount": 393.99
   },
   {
     "id": 3,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Office",
-    "category": "Hardware",
-    "status": "Approved",
-    "amount": "186.84",
-    "name": "Ninad Deshpande"
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 413.88
   },
   {
     "id": 4,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Pending",
-    "amount": "910.89",
-    "name": "Srishti Nagraj"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 23.44
   },
   {
     "id": 5,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Supplies",
-    "status": "Rejected",
-    "amount": "682.47",
-    "name": "Ninad Deshpande"
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Conference",
+    "status": "Request Clarification",
+    "amount": 121.12
   },
   {
     "id": 6,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Meals",
-    "category": "Lodging",
-    "status": "Request Clarification",
-    "amount": "905.24",
-    "name": "Ninad Deshpande"
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 236.86
   },
   {
     "id": 7,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Misc",
-    "category": "Software License",
-    "status": "Approved",
-    "amount": "111.92",
-    "name": "Neeraj Pillai"
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Rejected",
+    "amount": 131.21
   },
   {
     "id": 8,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hardware",
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Meal",
+    "category": "Office",
     "status": "Rejected",
-    "amount": "672.20",
-    "name": "Ninad Deshpande"
+    "amount": 228.19
   },
   {
     "id": 9,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Supplies",
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Meal",
+    "category": "Conference",
     "status": "Pending",
-    "amount": "88.29",
-    "name": "Neeraj Pillai"
+    "amount": 37.5
   },
   {
     "id": 10,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Hardware",
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Office",
     "status": "Request Clarification",
-    "amount": "172.82",
-    "name": "Neeraj Pillai"
+    "amount": 302.21
   },
   {
     "id": 11,
     "email": "snagraj@usf.edu",
-    "expenseType": "Office",
-    "category": "Hardware",
-    "status": "Rejected",
-    "amount": "962.54",
-    "name": "Srishti Nagraj"
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Office",
+    "status": "Request Clarification",
+    "amount": 294.12
   },
   {
     "id": 12,
-    "email": "snagraj@usf.edu",
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
     "expenseType": "Travel",
-    "category": "Transportation",
+    "category": "Office",
     "status": "Rejected",
-    "amount": "504.37",
-    "name": "Srishti Nagraj"
+    "amount": 43.89
   },
   {
     "id": 13,
     "email": "ndeshpande2@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Hardware",
-    "status": "Rejected",
-    "amount": "290.80",
-    "name": "Ninad Deshpande"
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Training",
+    "status": "Approved",
+    "amount": 475.81
   },
   {
     "id": 14,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Software",
-    "category": "Software License",
-    "status": "Pending",
-    "amount": "161.52",
-    "name": "Neeraj Pillai"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 177.36
   },
   {
     "id": 15,
-    "email": "dkarmariya@usf.edu",
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
     "expenseType": "Travel",
-    "category": "Transportation",
-    "status": "Pending",
-    "amount": "875.25",
-    "name": "Divyarajsinh Karmaria"
+    "category": "Office",
+    "status": "Rejected",
+    "amount": 115.23
   },
   {
     "id": 16,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Stationery",
-    "status": "Request Clarification",
-    "amount": "31.44",
-    "name": "Divyarajsinh Karmaria"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Approved",
+    "amount": 18.7
   },
   {
     "id": 17,
     "email": "dkarmariya@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Hardware",
-    "status": "Request Clarification",
-    "amount": "925.91",
-    "name": "Divyarajsinh Karmaria"
+    "name": "dk",
+    "expenseType": "Supplies",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 51.86
   },
   {
     "id": 18,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Travel",
-    "category": "Stationery",
-    "status": "Pending",
-    "amount": "706.15",
-    "name": "Divyarajsinh Karmaria"
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Office",
+    "status": "Rejected",
+    "amount": 405.76
   },
   {
     "id": 19,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Lodging",
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Equipment",
     "status": "Approved",
-    "amount": "472.98",
-    "name": "Divyarajsinh Karmaria"
+    "amount": 31.53
   },
   {
     "id": 20,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Lodging",
-    "status": "Pending",
-    "amount": "747.24",
-    "name": "Divyarajsinh Karmaria"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 133.61
   },
   {
     "id": 21,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Supplies",
-    "status": "Request Clarification",
-    "amount": "462.78",
-    "name": "Neeraj Pillai"
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 68.46
   },
   {
     "id": 22,
-    "email": "snagraj@usf.edu",
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
     "expenseType": "Travel",
-    "category": "Stationery",
-    "status": "Pending",
-    "amount": "758.81",
-    "name": "Srishti Nagraj"
+    "category": "Training",
+    "status": "Rejected",
+    "amount": 140.81
   },
   {
     "id": 23,
     "email": "neerajpillai@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
+    "name": "neeraj",
+    "expenseType": "Travel",
+    "category": "Training",
     "status": "Pending",
-    "amount": "732.25",
-    "name": "Neeraj Pillai"
+    "amount": 370.3
   },
   {
     "id": 24,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Conference",
     "status": "Request Clarification",
-    "amount": "560.82",
-    "name": "Ninad Deshpande"
+    "amount": 422.28
   },
   {
     "id": 25,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Misc",
-    "category": "Hardware",
-    "status": "Rejected",
-    "amount": "207.23",
-    "name": "Srishti Nagraj"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 408.0
   },
   {
     "id": 26,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Misc",
-    "category": "Transportation",
-    "status": "Pending",
-    "amount": "969.86",
-    "name": "Ninad Deshpande"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Meal",
+    "category": "Office",
+    "status": "Approved",
+    "amount": 474.62
   },
   {
     "id": 27,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Hardware",
-    "status": "Approved",
-    "amount": "264.26",
-    "name": "Srishti Nagraj"
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Lodging",
+    "category": "Office",
+    "status": "Rejected",
+    "amount": 362.41
   },
   {
     "id": 28,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Supplies",
-    "status": "Rejected",
-    "amount": "619.13",
-    "name": "Ninad Deshpande"
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Pending",
+    "amount": 141.02
   },
   {
     "id": 29,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Meals",
-    "category": "Hardware",
-    "status": "Pending",
-    "amount": "187.32",
-    "name": "Ninad Deshpande"
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Request Clarification",
+    "amount": 175.29
   },
   {
     "id": 30,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Software",
-    "category": "Stationery",
-    "status": "Rejected",
-    "amount": "936.07",
-    "name": "Neeraj Pillai"
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Lodging",
+    "category": "Office",
+    "status": "Request Clarification",
+    "amount": 278.54
   },
   {
     "id": 31,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Misc",
-    "category": "Transportation",
-    "status": "Approved",
-    "amount": "634.62",
-    "name": "Neeraj Pillai"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Request Clarification",
+    "amount": 259.29
   },
   {
     "id": 32,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Meals",
-    "category": "Lodging",
-    "status": "Rejected",
-    "amount": "573.74",
-    "name": "Ninad Deshpande"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Meal",
+    "category": "Training",
+    "status": "Pending",
+    "amount": 244.14
   },
   {
     "id": 33,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Software",
-    "category": "Hardware",
-    "status": "Rejected",
-    "amount": "502.30",
-    "name": "Neeraj Pillai"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 149.56
   },
   {
     "id": 34,
     "email": "ndeshpande2@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Lodging",
-    "status": "Approved",
-    "amount": "707.41",
-    "name": "Ninad Deshpande"
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Pending",
+    "amount": 76.26
   },
   {
     "id": 35,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Misc",
-    "category": "Stationery",
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Travel",
+    "category": "Equipment",
     "status": "Request Clarification",
-    "amount": "82.41",
-    "name": "Srishti Nagraj"
+    "amount": 370.59
   },
   {
     "id": 36,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Misc",
-    "category": "Stationery",
-    "status": "Rejected",
-    "amount": "708.02",
-    "name": "Divyarajsinh Karmaria"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 336.58
   },
   {
     "id": 37,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hardware",
-    "status": "Rejected",
-    "amount": "104.38",
-    "name": "Neeraj Pillai"
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Lodging",
+    "category": "Office",
+    "status": "Approved",
+    "amount": 105.49
   },
   {
     "id": 38,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Transportation",
-    "status": "Rejected",
-    "amount": "493.55",
-    "name": "Srishti Nagraj"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Pending",
+    "amount": 92.09
   },
   {
     "id": 39,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Software License",
-    "status": "Request Clarification",
-    "amount": "558.41",
-    "name": "Ninad Deshpande"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Meal",
+    "category": "Training",
+    "status": "Pending",
+    "amount": 23.99
   },
   {
     "id": 40,
     "email": "ndeshpande2@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Hardware",
-    "status": "Pending",
-    "amount": "764.20",
-    "name": "Ninad Deshpande"
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Request Clarification",
+    "amount": 253.76
   },
   {
     "id": 41,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Hardware",
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Office",
     "status": "Rejected",
-    "amount": "58.20",
-    "name": "Divyarajsinh Karmaria"
+    "amount": 379.94
   },
   {
     "id": 42,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Travel",
-    "category": "Supplies",
-    "status": "Request Clarification",
-    "amount": "994.81",
-    "name": "Srishti Nagraj"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Office",
+    "status": "Rejected",
+    "amount": 301.09
   },
   {
     "id": 43,
     "email": "snagraj@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Stationery",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Office",
     "status": "Rejected",
-    "amount": "970.55",
-    "name": "Srishti Nagraj"
+    "amount": 16.51
   },
   {
     "id": 44,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Misc",
-    "category": "Transportation",
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Conference",
     "status": "Request Clarification",
-    "amount": "825.40",
-    "name": "Divyarajsinh Karmaria"
+    "amount": 245.91
   },
   {
     "id": 45,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Travel",
-    "category": "Supplies",
-    "status": "Request Clarification",
-    "amount": "589.64",
-    "name": "Neeraj Pillai"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 454.88
   },
   {
     "id": 46,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Office",
-    "category": "Transportation",
-    "status": "Approved",
-    "amount": "801.96",
-    "name": "Neeraj Pillai"
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Pending",
+    "amount": 13.94
   },
   {
     "id": 47,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Meals",
-    "category": "Supplies",
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Office",
     "status": "Approved",
-    "amount": "533.04",
-    "name": "Divyarajsinh Karmaria"
+    "amount": 458.94
   },
   {
     "id": 48,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Software",
-    "category": "Lodging",
-    "status": "Rejected",
-    "amount": "805.81",
-    "name": "Ninad Deshpande"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Office",
+    "status": "Approved",
+    "amount": 297.01
   },
   {
     "id": 49,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Misc",
-    "category": "Stationery",
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Conference",
     "status": "Approved",
-    "amount": "533.15",
-    "name": "Divyarajsinh Karmaria"
+    "amount": 213.99
   },
   {
     "id": 50,
-    "email": "ndeshpande2@usf.edu",
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
     "expenseType": "Travel",
-    "category": "Lodging",
-    "status": "Approved",
-    "amount": "945.72",
-    "name": "Ninad Deshpande"
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 231.46
   },
   {
     "id": 51,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Hardware",
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Supplies",
+    "category": "Equipment",
     "status": "Pending",
-    "amount": "772.01",
-    "name": "Neeraj Pillai"
+    "amount": 498.37
   },
   {
     "id": 52,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Software",
-    "category": "Software License",
-    "status": "Request Clarification",
-    "amount": "974.18",
-    "name": "Ninad Deshpande"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Travel",
+    "category": "Office",
+    "status": "Pending",
+    "amount": 210.41
   },
   {
     "id": 53,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Transportation",
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Equipment",
     "status": "Request Clarification",
-    "amount": "475.59",
-    "name": "Neeraj Pillai"
+    "amount": 375.73
   },
   {
     "id": 54,
     "email": "ndeshpande2@usf.edu",
-    "expenseType": "Misc",
-    "category": "Supplies",
-    "status": "Pending",
-    "amount": "405.48",
-    "name": "Ninad Deshpande"
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Training",
+    "status": "Request Clarification",
+    "amount": 370.99
   },
   {
     "id": 55,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Office",
-    "category": "Lodging",
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Conference",
     "status": "Request Clarification",
-    "amount": "450.17",
-    "name": "Neeraj Pillai"
+    "amount": 461.83
   },
   {
     "id": 56,
     "email": "snagraj@usf.edu",
-    "expenseType": "Office",
-    "category": "Supplies",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Conference",
     "status": "Rejected",
-    "amount": "598.03",
-    "name": "Srishti Nagraj"
+    "amount": 196.65
   },
   {
     "id": 57,
     "email": "dkarmariya@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Lodging",
-    "status": "Pending",
-    "amount": "662.28",
-    "name": "Divyarajsinh Karmaria"
+    "name": "dk",
+    "expenseType": "Lodging",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 367.07
   },
   {
     "id": 58,
-    "email": "snagraj@usf.edu",
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
     "expenseType": "Travel",
-    "category": "Transportation",
-    "status": "Pending",
-    "amount": "85.00",
-    "name": "Srishti Nagraj"
+    "category": "Training",
+    "status": "Approved",
+    "amount": 377.12
   },
   {
     "id": 59,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Hardware",
-    "status": "Request Clarification",
-    "amount": "858.73",
-    "name": "Neeraj Pillai"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Office",
+    "status": "Approved",
+    "amount": 392.31
   },
   {
     "id": 60,
     "email": "dkarmariya@usf.edu",
-    "expenseType": "Misc",
-    "category": "Stationery",
-    "status": "Request Clarification",
-    "amount": "718.52",
-    "name": "Divyarajsinh Karmaria"
+    "name": "dk",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 92.75
   },
   {
     "id": 61,
     "email": "dkarmariya@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Lodging",
-    "status": "Request Clarification",
-    "amount": "66.49",
-    "name": "Divyarajsinh Karmaria"
+    "name": "dk",
+    "expenseType": "Supplies",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 479.74
   },
   {
     "id": 62,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Pending",
-    "amount": "534.23",
-    "name": "Divyarajsinh Karmaria"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Lodging",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 57.37
   },
   {
     "id": 63,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Software",
-    "category": "Transportation",
-    "status": "Approved",
-    "amount": "352.56",
-    "name": "Divyarajsinh Karmaria"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Pending",
+    "amount": 19.36
   },
   {
     "id": 64,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Software",
-    "category": "Transportation",
-    "status": "Pending",
-    "amount": "274.70",
-    "name": "Srishti Nagraj"
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Meal",
+    "category": "Training",
+    "status": "Rejected",
+    "amount": 479.23
   },
   {
     "id": 65,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Software",
-    "category": "Transportation",
-    "status": "Pending",
-    "amount": "666.82",
-    "name": "Ninad Deshpande"
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Supplies",
+    "category": "Office",
+    "status": "Request Clarification",
+    "amount": 378.71
   },
   {
     "id": 66,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Meals",
-    "category": "Software License",
-    "status": "Request Clarification",
-    "amount": "425.31",
-    "name": "Srishti Nagraj"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 152.31
   },
   {
     "id": 67,
     "email": "neerajpillai@usf.edu",
-    "expenseType": "Meals",
-    "category": "Software License",
-    "status": "Request Clarification",
-    "amount": "409.96",
-    "name": "Neeraj Pillai"
+    "name": "neeraj",
+    "expenseType": "Lodging",
+    "category": "Conference",
+    "status": "Pending",
+    "amount": 494.43
   },
   {
     "id": 68,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Office",
-    "category": "Hardware",
-    "status": "Approved",
-    "amount": "823.30",
-    "name": "Neeraj Pillai"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Pending",
+    "amount": 268.32
   },
   {
     "id": 69,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Misc",
-    "category": "Supplies",
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Office",
     "status": "Pending",
-    "amount": "592.27",
-    "name": "Ninad Deshpande"
+    "amount": 376.09
   },
   {
     "id": 70,
     "email": "snagraj@usf.edu",
-    "expenseType": "Meals",
-    "category": "Software License",
-    "status": "Request Clarification",
-    "amount": "766.69",
-    "name": "Srishti Nagraj"
+    "name": "srishti",
+    "expenseType": "Supplies",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 215.11
   },
   {
     "id": 71,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Meals",
-    "category": "Hardware",
-    "status": "Request Clarification",
-    "amount": "698.13",
-    "name": "Srishti Nagraj"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Training",
+    "status": "Pending",
+    "amount": 55.72
   },
   {
     "id": 72,
     "email": "neerajpillai@usf.edu",
-    "expenseType": "Meals",
-    "category": "Software License",
-    "status": "Pending",
-    "amount": "898.64",
-    "name": "Neeraj Pillai"
+    "name": "neeraj",
+    "expenseType": "Lodging",
+    "category": "Training",
+    "status": "Approved",
+    "amount": 467.62
   },
   {
     "id": 73,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Stationery",
-    "status": "Pending",
-    "amount": "373.51",
-    "name": "Srishti Nagraj"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Equipment",
+    "status": "Request Clarification",
+    "amount": 202.04
   },
   {
     "id": 74,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Office",
-    "category": "Lodging",
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Equipment",
     "status": "Approved",
-    "amount": "24.26",
-    "name": "Divyarajsinh Karmaria"
+    "amount": 169.09
   },
   {
     "id": 75,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Meals",
-    "category": "Lodging",
-    "status": "Approved",
-    "amount": "561.17",
-    "name": "Srishti Nagraj"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Request Clarification",
+    "amount": 155.55
   },
   {
     "id": 76,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Misc",
-    "category": "Stationery",
-    "status": "Pending",
-    "amount": "509.65",
-    "name": "Divyarajsinh Karmaria"
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Travel",
+    "category": "Training",
+    "status": "Request Clarification",
+    "amount": 201.85
   },
   {
     "id": 77,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Meals",
-    "category": "Stationery",
-    "status": "Pending",
-    "amount": "938.25",
-    "name": "Neeraj Pillai"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Request Clarification",
+    "amount": 342.84
   },
   {
     "id": 78,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Meals",
-    "category": "Transportation",
-    "status": "Pending",
-    "amount": "155.42",
-    "name": "Divyarajsinh Karmaria"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 369.12
   },
   {
     "id": 79,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Lodging",
-    "status": "Pending",
-    "amount": "913.53",
-    "name": "Divyarajsinh Karmaria"
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 212.58
   },
   {
     "id": 80,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Misc",
-    "category": "Lodging",
-    "status": "Approved",
-    "amount": "359.73",
-    "name": "Divyarajsinh Karmaria"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Travel",
+    "category": "Office",
+    "status": "Request Clarification",
+    "amount": 498.34
   },
   {
     "id": 81,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Software",
-    "category": "Stationery",
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Lodging",
+    "category": "Conference",
     "status": "Pending",
-    "amount": "530.24",
-    "name": "Ninad Deshpande"
+    "amount": 341.51
   },
   {
     "id": 82,
     "email": "ndeshpande2@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Lodging",
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Equipment",
     "status": "Approved",
-    "amount": "612.85",
-    "name": "Ninad Deshpande"
+    "amount": 132.53
   },
   {
     "id": 83,
     "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
     "expenseType": "Travel",
-    "category": "Lodging",
-    "status": "Request Clarification",
-    "amount": "618.47",
-    "name": "Neeraj Pillai"
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 159.83
   },
   {
     "id": 84,
-    "email": "neerajpillai@usf.edu",
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
     "expenseType": "Travel",
-    "category": "Meals",
-    "status": "Approved",
-    "amount": "407.72",
-    "name": "Neeraj Pillai"
+    "category": "Equipment",
+    "status": "Request Clarification",
+    "amount": 105.58
   },
   {
     "id": 85,
     "email": "snagraj@usf.edu",
-    "expenseType": "Misc",
-    "category": "Stationery",
-    "status": "Request Clarification",
-    "amount": "587.98",
-    "name": "Srishti Nagraj"
+    "name": "srishti",
+    "expenseType": "Supplies",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 233.31
   },
   {
     "id": 86,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Stationery",
-    "status": "Request Clarification",
-    "amount": "467.84",
-    "name": "Ninad Deshpande"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Lodging",
+    "category": "Training",
+    "status": "Pending",
+    "amount": 40.61
   },
   {
     "id": 87,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hardware",
-    "status": "Pending",
-    "amount": "457.13",
-    "name": "Srishti Nagraj"
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 151.86
   },
   {
     "id": 88,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Meals",
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Travel",
+    "category": "Office",
     "status": "Rejected",
-    "amount": "561.05",
-    "name": "Neeraj Pillai"
+    "amount": 286.36
   },
   {
     "id": 89,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Software License",
-    "status": "Rejected",
-    "amount": "454.37",
-    "name": "Neeraj Pillai"
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Conference",
+    "status": "Pending",
+    "amount": 451.07
   },
   {
     "id": 90,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Transportation",
-    "status": "Request Clarification",
-    "amount": "84.60",
-    "name": "Srishti Nagraj"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 139.71
   },
   {
     "id": 91,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Software",
-    "category": "Supplies",
-    "status": "Rejected",
-    "amount": "918.96",
-    "name": "Neeraj Pillai"
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 269.34
   },
   {
     "id": 92,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Office",
-    "category": "Hardware",
-    "status": "Rejected",
-    "amount": "210.68",
-    "name": "Ninad Deshpande"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 264.82
   },
   {
     "id": 93,
-    "email": "dkarmariya@usf.edu",
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
     "expenseType": "Travel",
-    "category": "Transportation",
-    "status": "Request Clarification",
-    "amount": "149.18",
-    "name": "Divyarajsinh Karmaria"
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 257.93
   },
   {
     "id": 94,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Misc",
-    "category": "Lodging",
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Training",
     "status": "Pending",
-    "amount": "68.97",
-    "name": "Ninad Deshpande"
+    "amount": 362.3
   },
   {
     "id": 95,
     "email": "neerajpillai@usf.edu",
-    "expenseType": "Software",
-    "category": "Software License",
-    "status": "Request Clarification",
-    "amount": "612.70",
-    "name": "Neeraj Pillai"
+    "name": "neeraj",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Pending",
+    "amount": 86.29
   },
   {
     "id": 96,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Software",
-    "category": "Software License",
-    "status": "Request Clarification",
-    "amount": "675.48",
-    "name": "Srishti Nagraj"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 392.52
   },
   {
     "id": 97,
-    "email": "dkarmariya@usf.edu",
-    "expenseType": "Software",
-    "category": "Meals",
-    "status": "Rejected",
-    "amount": "81.34",
-    "name": "Divyarajsinh Karmaria"
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Pending",
+    "amount": 411.1
   },
   {
     "id": 98,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Equipment",
-    "category": "Hardware",
-    "status": "Pending",
-    "amount": "381.43",
-    "name": "Neeraj Pillai"
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Request Clarification",
+    "amount": 170.45
   },
   {
     "id": 99,
-    "email": "snagraj@usf.edu",
-    "expenseType": "Software",
-    "category": "Transportation",
-    "status": "Rejected",
-    "amount": "736.00",
-    "name": "Srishti Nagraj"
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 207.03
   },
   {
     "id": 100,
-    "email": "ndeshpande2@usf.edu",
-    "expenseType": "Meals",
-    "category": "Lodging",
-    "status": "Rejected",
-    "amount": 360.53,
-    "name": "User11"
-  },
-  {
-    "id": 647,
-    "email": "user45@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Approved",
-    "amount": 387.91,
-    "name": "User45"
-  },
-  {
-    "id": 648,
-    "email": "user22@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 310.27,
-    "name": "User22"
-  },
-  {
-    "id": 649,
-    "email": "user93@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Rejected",
-    "amount": 266.33,
-    "name": "User93"
-  },
-  {
-    "id": 650,
-    "email": "user6@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Pending",
-    "amount": 72.78,
-    "name": "User6"
-  },
-  {
-    "id": 651,
-    "email": "user24@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Rejected",
-    "amount": 20.82,
-    "name": "User24"
-  },
-  {
-    "id": 652,
-    "email": "user55@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Rejected",
-    "amount": 315.52,
-    "name": "User55"
-  },
-  {
-    "id": 653,
-    "email": "user1@usf.edu",
-    "expenseType": "Food",
-    "category": "Lunch",
-    "status": "Approved",
-    "amount": 117.3,
-    "name": "User1"
-  },
-  {
-    "id": 654,
-    "email": "user40@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Rejected",
-    "amount": 109.54,
-    "name": "User40"
-  },
-  {
-    "id": 655,
-    "email": "user96@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Pending",
-    "amount": 11.78,
-    "name": "User96"
-  },
-  {
-    "id": 656,
-    "email": "user50@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Pending",
-    "amount": 18.86,
-    "name": "User50"
-  },
-  {
-    "id": 657,
-    "email": "user6@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Approved",
-    "amount": 303.67,
-    "name": "User6"
-  },
-  {
-    "id": 658,
-    "email": "user90@usf.edu",
-    "expenseType": "Food",
-    "category": "Lunch",
-    "status": "Pending",
-    "amount": 279.9,
-    "name": "User90"
-  },
-  {
-    "id": 659,
-    "email": "user3@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Pending",
-    "amount": 456.59,
-    "name": "User3"
-  },
-  {
-    "id": 660,
-    "email": "user53@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Approved",
-    "amount": 309.59,
-    "name": "User53"
-  },
-  {
-    "id": 661,
-    "email": "user71@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Rejected",
-    "amount": 220.5,
-    "name": "User71"
-  },
-  {
-    "id": 662,
-    "email": "user83@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Rejected",
-    "amount": 275.71,
-    "name": "User83"
-  },
-  {
-    "id": 663,
-    "email": "user96@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 318.93,
-    "name": "User96"
-  },
-  {
-    "id": 664,
-    "email": "user74@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Rejected",
-    "amount": 482.74,
-    "name": "User74"
-  },
-  {
-    "id": 665,
-    "email": "user10@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Approved",
-    "amount": 200.13,
-    "name": "User10"
-  },
-  {
-    "id": 666,
-    "email": "user35@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Approved",
-    "amount": 225.94,
-    "name": "User35"
-  },
-  {
-    "id": 667,
-    "email": "user45@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Pending",
-    "amount": 41.57,
-    "name": "User45"
-  },
-  {
-    "id": 668,
-    "email": "user65@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Rejected",
-    "amount": 173.14,
-    "name": "User65"
-  },
-  {
-    "id": 669,
-    "email": "user48@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Pending",
-    "amount": 83.51,
-    "name": "User48"
-  },
-  {
-    "id": 670,
-    "email": "user62@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Rejected",
-    "amount": 371.1,
-    "name": "User62"
-  },
-  {
-    "id": 671,
-    "email": "user24@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Rejected",
-    "amount": 282.15,
-    "name": "User24"
-  },
-  {
-    "id": 672,
-    "email": "user80@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Rejected",
-    "amount": 363.99,
-    "name": "User80"
-  },
-  {
-    "id": 673,
-    "email": "user98@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Rejected",
-    "amount": 264.16,
-    "name": "User98"
-  },
-  {
-    "id": 674,
-    "email": "user34@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Rejected",
-    "amount": 110.88,
-    "name": "User34"
-  },
-  {
-    "id": 675,
-    "email": "user28@usf.edu",
-    "expenseType": "Travel",
-    "category": "Flight",
-    "status": "Approved",
-    "amount": 121.24,
-    "name": "User28"
-  },
-  {
-    "id": 676,
-    "email": "user34@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Rejected",
-    "amount": 355.79,
-    "name": "User34"
-  },
-  {
-    "id": 677,
-    "email": "user9@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Approved",
-    "amount": 216.75,
-    "name": "User9"
-  },
-  {
-    "id": 678,
-    "email": "user58@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Rejected",
-    "amount": 356.82,
-    "name": "User58"
-  },
-  {
-    "id": 679,
-    "email": "user99@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 180.67,
-    "name": "User99"
-  },
-  {
-    "id": 680,
-    "email": "user90@usf.edu",
-    "expenseType": "Travel",
-    "category": "Taxi",
-    "status": "Pending",
-    "amount": 284.88,
-    "name": "User90"
-  },
-  {
-    "id": 681,
-    "email": "user39@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Pending",
-    "amount": 57.79,
-    "name": "User39"
-  },
-  {
-    "id": 682,
-    "email": "user100@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Rejected",
-    "amount": 321.45,
-    "name": "User100"
-  },
-  {
-    "id": 683,
-    "email": "user63@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 140.66,
-    "name": "User63"
-  },
-  {
-    "id": 684,
-    "email": "user37@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Approved",
-    "amount": 489.63,
-    "name": "User37"
-  },
-  {
-    "id": 685,
-    "email": "user20@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Pending",
-    "amount": 202.28,
-    "name": "User20"
-  },
-  {
-    "id": 686,
-    "email": "user10@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Pending",
-    "amount": 416.05,
-    "name": "User10"
-  },
-  {
-    "id": 687,
-    "email": "user47@usf.edu",
-    "expenseType": "Food",
-    "category": "Dinner",
-    "status": "Pending",
-    "amount": 251.36,
-    "name": "User47"
-  },
-  {
-    "id": 688,
-    "email": "user7@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Pending",
-    "amount": 207.98,
-    "name": "User7"
-  },
-  {
-    "id": 689,
-    "email": "user90@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Approved",
-    "amount": 292.09,
-    "name": "User90"
-  },
-  {
-    "id": 690,
-    "email": "user14@usf.edu",
-    "expenseType": "Food",
-    "category": "Coffee",
-    "status": "Approved",
-    "amount": 77.81,
-    "name": "User14"
-  },
-  {
-    "id": 691,
-    "email": "user5@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Approved",
-    "amount": 75.78,
-    "name": "User5"
-  },
-  {
-    "id": 692,
-    "email": "user95@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Rejected",
-    "amount": 241.45,
-    "name": "User95"
-  },
-  {
-    "id": 693,
-    "email": "user21@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Approved",
-    "amount": 137.06,
-    "name": "User21"
-  },
-  {
-    "id": 694,
-    "email": "user50@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Pending",
-    "amount": 95.62,
-    "name": "User50"
-  },
-  {
-    "id": 695,
-    "email": "user63@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Pending",
-    "amount": 331.9,
-    "name": "User63"
-  },
-  {
-    "id": 696,
-    "email": "user72@usf.edu",
-    "expenseType": "Food",
-    "category": "Dinner",
-    "status": "Approved",
-    "amount": 226.18,
-    "name": "User72"
-  },
-  {
-    "id": 697,
-    "email": "user91@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Pending",
-    "amount": 226.82,
-    "name": "User91"
-  },
-  {
-    "id": 698,
-    "email": "user22@usf.edu",
-    "expenseType": "Food",
-    "category": "Dinner",
-    "status": "Rejected",
-    "amount": 439.98,
-    "name": "User22"
-  },
-  {
-    "id": 699,
-    "email": "user2@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Approved",
-    "amount": 219.12,
-    "name": "User2"
-  },
-  {
-    "id": 700,
-    "email": "user60@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Approved",
-    "amount": 372.53,
-    "name": "User60"
-  },
-  {
-    "id": 701,
-    "email": "user20@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Pending",
-    "amount": 320.52,
-    "name": "User20"
-  },
-  {
-    "id": 702,
-    "email": "user26@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Rejected",
-    "amount": 414.15,
-    "name": "User26"
-  },
-  {
-    "id": 703,
-    "email": "user50@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Rejected",
-    "amount": 443.85,
-    "name": "User50"
-  },
-  {
-    "id": 704,
-    "email": "user18@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Rejected",
-    "amount": 450.8,
-    "name": "User18"
-  },
-  {
-    "id": 705,
-    "email": "user30@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Approved",
-    "amount": 313.71,
-    "name": "User30"
-  },
-  {
-    "id": 706,
-    "email": "user26@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 369.16,
-    "name": "User26"
-  },
-  {
-    "id": 707,
-    "email": "user55@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Approved",
-    "amount": 190.26,
-    "name": "User55"
-  },
-  {
-    "id": 708,
-    "email": "user98@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Approved",
-    "amount": 60.73,
-    "name": "User98"
-  },
-  {
-    "id": 709,
-    "email": "user23@usf.edu",
-    "expenseType": "Travel",
-    "category": "Flight",
-    "status": "Pending",
-    "amount": 492.24,
-    "name": "User23"
-  },
-  {
-    "id": 710,
-    "email": "user37@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 266.42,
-    "name": "User37"
-  },
-  {
-    "id": 711,
-    "email": "user52@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Rejected",
-    "amount": 457.19,
-    "name": "User52"
-  },
-  {
-    "id": 712,
-    "email": "user69@usf.edu",
-    "expenseType": "Food",
-    "category": "Dinner",
-    "status": "Pending",
-    "amount": 266.42,
-    "name": "User69"
-  },
-  {
-    "id": 713,
-    "email": "user79@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Pending",
-    "amount": 323.59,
-    "name": "User79"
-  },
-  {
-    "id": 714,
-    "email": "user76@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Approved",
-    "amount": 248.41,
-    "name": "User76"
-  },
-  {
-    "id": 715,
-    "email": "user87@usf.edu",
-    "expenseType": "Food",
-    "category": "Coffee",
-    "status": "Pending",
-    "amount": 340.92,
-    "name": "User87"
-  },
-  {
-    "id": 716,
-    "email": "user62@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Pending",
-    "amount": 32.2,
-    "name": "User62"
-  },
-  {
-    "id": 717,
-    "email": "user20@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 422.24,
-    "name": "User20"
-  },
-  {
-    "id": 718,
-    "email": "user29@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Pending",
-    "amount": 113.69,
-    "name": "User29"
-  },
-  {
-    "id": 719,
-    "email": "user33@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Pending",
-    "amount": 394.38,
-    "name": "User33"
-  },
-  {
-    "id": 720,
-    "email": "user78@usf.edu",
-    "expenseType": "Food",
-    "category": "Coffee",
-    "status": "Approved",
-    "amount": 332.93,
-    "name": "User78"
-  },
-  {
-    "id": 721,
-    "email": "user23@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Pending",
-    "amount": 22.56,
-    "name": "User23"
-  },
-  {
-    "id": 722,
-    "email": "user19@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Pending",
-    "amount": 289.23,
-    "name": "User19"
-  },
-  {
-    "id": 723,
-    "email": "user10@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Rejected",
-    "amount": 447.29,
-    "name": "User10"
-  },
-  {
-    "id": 724,
-    "email": "user72@usf.edu",
-    "expenseType": "Travel",
-    "category": "Taxi",
-    "status": "Pending",
-    "amount": 261.96,
-    "name": "User72"
-  },
-  {
-    "id": 725,
-    "email": "user68@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Pending",
-    "amount": 50.44,
-    "name": "User68"
-  },
-  {
-    "id": 726,
-    "email": "user14@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Pending",
-    "amount": 10.31,
-    "name": "User14"
-  },
-  {
-    "id": 727,
-    "email": "user3@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Approved",
-    "amount": 165.94,
-    "name": "User3"
-  },
-  {
-    "id": 728,
-    "email": "user61@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Approved",
-    "amount": 68.01,
-    "name": "User61"
-  },
-  {
-    "id": 729,
-    "email": "user1@usf.edu",
-    "expenseType": "Food",
-    "category": "Coffee",
-    "status": "Approved",
-    "amount": 18.02,
-    "name": "User1"
-  },
-  {
-    "id": 730,
-    "email": "user49@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Approved",
-    "amount": 343.97,
-    "name": "User49"
-  },
-  {
-    "id": 731,
-    "email": "user13@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Approved",
-    "amount": 379.3,
-    "name": "User13"
-  },
-  {
-    "id": 732,
-    "email": "user2@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Approved",
-    "amount": 172.18,
-    "name": "User2"
-  },
-  {
-    "id": 733,
-    "email": "user71@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 286.22,
-    "name": "User71"
-  },
-  {
-    "id": 734,
-    "email": "user75@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Approved",
-    "amount": 32.89,
-    "name": "User75"
-  },
-  {
-    "id": 735,
-    "email": "user81@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Pending",
-    "amount": 246.6,
-    "name": "User81"
-  },
-  {
-    "id": 736,
-    "email": "user45@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Pending",
-    "amount": 314.88,
-    "name": "User45"
-  },
-  {
-    "id": 737,
-    "email": "user70@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Rejected",
-    "amount": 199.21,
-    "name": "User70"
-  },
-  {
-    "id": 738,
-    "email": "user65@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Rejected",
-    "amount": 130.7,
-    "name": "User65"
-  },
-  {
-    "id": 739,
-    "email": "user45@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Rejected",
-    "amount": 390.43,
-    "name": "User45"
-  },
-  {
-    "id": 740,
-    "email": "user68@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Pending",
-    "amount": 189.46,
-    "name": "User68"
-  },
-  {
-    "id": 741,
-    "email": "user60@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Pending",
-    "amount": 429.05,
-    "name": "User60"
-  },
-  {
-    "id": 742,
-    "email": "user98@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Rejected",
-    "amount": 153.85,
-    "name": "User98"
-  },
-  {
-    "id": 743,
-    "email": "user26@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 236.95,
-    "name": "User26"
-  },
-  {
-    "id": 744,
-    "email": "user53@usf.edu",
-    "expenseType": "Food",
-    "category": "Lunch",
-    "status": "Rejected",
-    "amount": 144.06,
-    "name": "User53"
-  },
-  {
-    "id": 745,
-    "email": "user43@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Pending",
-    "amount": 489.58,
-    "name": "User43"
-  },
-  {
-    "id": 746,
-    "email": "user100@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Pending",
-    "amount": 356.3,
-    "name": "User100"
-  },
-  {
-    "id": 747,
-    "email": "user99@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Rejected",
-    "amount": 287.93,
-    "name": "User99"
-  },
-  {
-    "id": 748,
-    "email": "user60@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Rejected",
-    "amount": 102.38,
-    "name": "User60"
-  },
-  {
-    "id": 749,
-    "email": "user21@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Approved",
-    "amount": 266.38,
-    "name": "User21"
-  },
-  {
-    "id": 750,
-    "email": "user83@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Rejected",
-    "amount": 198.89,
-    "name": "User83"
-  },
-  {
-    "id": 751,
-    "email": "user41@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Pending",
-    "amount": 57.69,
-    "name": "User41"
-  },
-  {
-    "id": 752,
-    "email": "user36@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Pending",
-    "amount": 290.59,
-    "name": "User36"
-  },
-  {
-    "id": 753,
-    "email": "user65@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Rejected",
-    "amount": 387.73,
-    "name": "User65"
-  },
-  {
-    "id": 754,
-    "email": "user32@usf.edu",
-    "expenseType": "Food",
-    "category": "Coffee",
-    "status": "Pending",
-    "amount": 443.58,
-    "name": "User32"
-  },
-  {
-    "id": 755,
-    "email": "user25@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Rejected",
-    "amount": 200.03,
-    "name": "User25"
-  },
-  {
-    "id": 756,
-    "email": "user76@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Approved",
-    "amount": 160.6,
-    "name": "User76"
-  },
-  {
-    "id": 757,
-    "email": "user42@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Approved",
-    "amount": 297.42,
-    "name": "User42"
-  },
-  {
-    "id": 758,
-    "email": "user58@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Pending",
-    "amount": 233.82,
-    "name": "User58"
-  },
-  {
-    "id": 759,
-    "email": "user24@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Rejected",
-    "amount": 320.47,
-    "name": "User24"
-  },
-  {
-    "id": 760,
-    "email": "user82@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Pending",
-    "amount": 181.71,
-    "name": "User82"
-  },
-  {
-    "id": 761,
-    "email": "user74@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Approved",
-    "amount": 392.74,
-    "name": "User74"
-  },
-  {
-    "id": 762,
-    "email": "user20@usf.edu",
-    "expenseType": "Food",
-    "category": "Coffee",
-    "status": "Approved",
-    "amount": 74.08,
-    "name": "User20"
-  },
-  {
-    "id": 763,
-    "email": "user54@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Pending",
-    "amount": 441.81,
-    "name": "User54"
-  },
-  {
-    "id": 764,
-    "email": "user40@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Pending",
-    "amount": 490.89,
-    "name": "User40"
-  },
-  {
-    "id": 765,
-    "email": "user63@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Rejected",
-    "amount": 359.2,
-    "name": "User63"
-  },
-  {
-    "id": 766,
-    "email": "user5@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Approved",
-    "amount": 117.33,
-    "name": "User5"
-  },
-  {
-    "id": 767,
-    "email": "user87@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Rejected",
-    "amount": 145.74,
-    "name": "User87"
-  },
-  {
-    "id": 768,
-    "email": "user16@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Pending",
-    "amount": 295.55,
-    "name": "User16"
-  },
-  {
-    "id": 769,
-    "email": "user19@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Pending",
-    "amount": 130.26,
-    "name": "User19"
-  },
-  {
-    "id": 770,
-    "email": "user6@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Approved",
-    "amount": 437.95,
-    "name": "User6"
-  },
-  {
-    "id": 771,
-    "email": "user67@usf.edu",
-    "expenseType": "Food",
-    "category": "Lunch",
-    "status": "Rejected",
-    "amount": 378.11,
-    "name": "User67"
-  },
-  {
-    "id": 772,
-    "email": "user85@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Rejected",
-    "amount": 458.88,
-    "name": "User85"
-  },
-  {
-    "id": 773,
-    "email": "user33@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Pending",
-    "amount": 447.14,
-    "name": "User33"
-  },
-  {
-    "id": 774,
-    "email": "user35@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Pending",
-    "amount": 50.69,
-    "name": "User35"
-  },
-  {
-    "id": 775,
-    "email": "user99@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Approved",
-    "amount": 168.71,
-    "name": "User99"
-  },
-  {
-    "id": 776,
-    "email": "user85@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Rejected",
-    "amount": 495.68,
-    "name": "User85"
-  },
-  {
-    "id": 777,
-    "email": "user42@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 32.12,
-    "name": "User42"
-  },
-  {
-    "id": 778,
-    "email": "user14@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 275.78,
-    "name": "User14"
-  },
-  {
-    "id": 779,
-    "email": "user42@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Pending",
-    "amount": 184.54,
-    "name": "User42"
-  },
-  {
-    "id": 780,
-    "email": "user71@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Approved",
-    "amount": 84.49,
-    "name": "User71"
-  },
-  {
-    "id": 781,
-    "email": "user81@usf.edu",
-    "expenseType": "Travel",
-    "category": "Taxi",
-    "status": "Rejected",
-    "amount": 60.38,
-    "name": "User81"
-  },
-  {
-    "id": 782,
-    "email": "user11@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Approved",
-    "amount": 221.24,
-    "name": "User11"
-  },
-  {
-    "id": 783,
-    "email": "user66@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Approved",
-    "amount": 120.52,
-    "name": "User66"
-  },
-  {
-    "id": 784,
-    "email": "user64@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Rejected",
-    "amount": 388.47,
-    "name": "User64"
-  },
-  {
-    "id": 785,
-    "email": "user45@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Rejected",
-    "amount": 359.04,
-    "name": "User45"
-  },
-  {
-    "id": 786,
-    "email": "user13@usf.edu",
-    "expenseType": "Food",
-    "category": "Dinner",
-    "status": "Pending",
-    "amount": 464,
-    "name": "User13"
-  },
-  {
-    "id": 787,
-    "email": "user83@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Pending",
-    "amount": 481.38,
-    "name": "User83"
-  },
-  {
-    "id": 788,
-    "email": "user56@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Rejected",
-    "amount": 360.38,
-    "name": "User56"
-  },
-  {
-    "id": 789,
-    "email": "user26@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Approved",
-    "amount": 144.14,
-    "name": "User26"
-  },
-  {
-    "id": 790,
-    "email": "user76@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Rejected",
-    "amount": 497.08,
-    "name": "User76"
-  },
-  {
-    "id": 791,
-    "email": "user49@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Rejected",
-    "amount": 440.13,
-    "name": "User49"
-  },
-  {
-    "id": 792,
-    "email": "user34@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 281.42,
-    "name": "User34"
-  },
-  {
-    "id": 793,
-    "email": "user38@usf.edu",
-    "expenseType": "Travel",
-    "category": "Flight",
-    "status": "Pending",
-    "amount": 462.59,
-    "name": "User38"
-  },
-  {
-    "id": 794,
-    "email": "user32@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Pending",
-    "amount": 22.04,
-    "name": "User32"
-  },
-  {
-    "id": 795,
-    "email": "user88@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Approved",
-    "amount": 28.21,
-    "name": "User88"
-  },
-  {
-    "id": 796,
-    "email": "user18@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 14.39,
-    "name": "User18"
-  },
-  {
-    "id": 797,
-    "email": "user6@usf.edu",
-    "expenseType": "Travel",
-    "category": "Flight",
-    "status": "Pending",
-    "amount": 129.16,
-    "name": "User6"
-  },
-  {
-    "id": 798,
-    "email": "user70@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Pending",
-    "amount": 62.35,
-    "name": "User70"
-  },
-  {
-    "id": 799,
-    "email": "user54@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Approved",
-    "amount": 154.14,
-    "name": "User54"
-  },
-  {
-    "id": 800,
-    "email": "user93@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Pending",
-    "amount": 61.3,
-    "name": "User93"
-  },
-  {
-    "id": 801,
-    "email": "user17@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Approved",
-    "amount": 498.52,
-    "name": "User17"
-  },
-  {
-    "id": 802,
-    "email": "user57@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 228.28,
-    "name": "User57"
-  },
-  {
-    "id": 803,
-    "email": "user18@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Pending",
-    "amount": 111.33,
-    "name": "User18"
-  },
-  {
-    "id": 804,
-    "email": "user54@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Pending",
-    "amount": 193.4,
-    "name": "User54"
-  },
-  {
-    "id": 805,
-    "email": "user92@usf.edu",
-    "expenseType": "Travel",
-    "category": "Taxi",
-    "status": "Approved",
-    "amount": 184.6,
-    "name": "User92"
-  },
-  {
-    "id": 806,
-    "email": "user74@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Pending",
-    "amount": 197.27,
-    "name": "User74"
-  },
-  {
-    "id": 807,
-    "email": "user68@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Approved",
-    "amount": 69.09,
-    "name": "User68"
-  },
-  {
-    "id": 808,
-    "email": "user92@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Pending",
-    "amount": 146.73,
-    "name": "User92"
-  },
-  {
-    "id": 809,
-    "email": "user100@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Approved",
-    "amount": 454.27,
-    "name": "User100"
-  },
-  {
-    "id": 810,
-    "email": "user47@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Rejected",
-    "amount": 281.51,
-    "name": "User47"
-  },
-  {
-    "id": 811,
-    "email": "user97@usf.edu",
-    "expenseType": "Food",
-    "category": "Coffee",
-    "status": "Approved",
-    "amount": 232.43,
-    "name": "User97"
-  },
-  {
-    "id": 812,
-    "email": "user82@usf.edu",
-    "expenseType": "Travel",
-    "category": "Flight",
-    "status": "Rejected",
-    "amount": 169.9,
-    "name": "User82"
-  },
-  {
-    "id": 813,
-    "email": "user37@usf.edu",
-    "expenseType": "Food",
-    "category": "Coffee",
-    "status": "Approved",
-    "amount": 349.41,
-    "name": "User37"
-  },
-  {
-    "id": 814,
-    "email": "user40@usf.edu",
-    "expenseType": "Food",
-    "category": "Coffee",
-    "status": "Pending",
-    "amount": 326.76,
-    "name": "User40"
-  },
-  {
-    "id": 815,
-    "email": "user20@usf.edu",
-    "expenseType": "Food",
-    "category": "Lunch",
-    "status": "Approved",
-    "amount": 350.48,
-    "name": "User20"
-  },
-  {
-    "id": 816,
-    "email": "user61@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Pending",
-    "amount": 406.33,
-    "name": "User61"
-  },
-  {
-    "id": 817,
-    "email": "user93@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Pending",
-    "amount": 310.04,
-    "name": "User93"
-  },
-  {
-    "id": 818,
-    "email": "user97@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Rejected",
-    "amount": 233.75,
-    "name": "User97"
-  },
-  {
-    "id": 819,
-    "email": "user44@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Rejected",
-    "amount": 101.7,
-    "name": "User44"
-  },
-  {
-    "id": 820,
-    "email": "user71@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Approved",
-    "amount": 90.95,
-    "name": "User71"
-  },
-  {
-    "id": 821,
-    "email": "user42@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Approved",
-    "amount": 221.2,
-    "name": "User42"
-  },
-  {
-    "id": 822,
-    "email": "user13@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Rejected",
-    "amount": 253.33,
-    "name": "User13"
-  },
-  {
-    "id": 823,
-    "email": "user44@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Pending",
-    "amount": 292.38,
-    "name": "User44"
-  },
-  {
-    "id": 824,
-    "email": "user99@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Approved",
-    "amount": 34.16,
-    "name": "User99"
-  },
-  {
-    "id": 825,
-    "email": "user50@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Rejected",
-    "amount": 319.47,
-    "name": "User50"
-  },
-  {
-    "id": 826,
-    "email": "user31@usf.edu",
-    "expenseType": "Food",
-    "category": "Dinner",
-    "status": "Approved",
-    "amount": 300.49,
-    "name": "User31"
-  },
-  {
-    "id": 827,
-    "email": "user84@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 358.58,
-    "name": "User84"
-  },
-  {
-    "id": 828,
-    "email": "user79@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 169.33,
-    "name": "User79"
-  },
-  {
-    "id": 829,
-    "email": "user27@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Rejected",
-    "amount": 7.1,
-    "name": "User27"
-  },
-  {
-    "id": 830,
-    "email": "user29@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 473.51,
-    "name": "User29"
-  },
-  {
-    "id": 831,
-    "email": "user88@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Pending",
-    "amount": 321.52,
-    "name": "User88"
-  },
-  {
-    "id": 832,
-    "email": "user38@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Pending",
-    "amount": 27.17,
-    "name": "User38"
-  },
-  {
-    "id": 833,
-    "email": "user7@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Approved",
-    "amount": 423.87,
-    "name": "User7"
-  },
-  {
-    "id": 834,
-    "email": "user46@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Rejected",
-    "amount": 385.44,
-    "name": "User46"
-  },
-  {
-    "id": 835,
-    "email": "user4@usf.edu",
-    "expenseType": "Food",
-    "category": "Dinner",
-    "status": "Approved",
-    "amount": 256.71,
-    "name": "User4"
-  },
-  {
-    "id": 836,
-    "email": "user8@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Pending",
-    "amount": 419.15,
-    "name": "User8"
-  },
-  {
-    "id": 837,
-    "email": "user47@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Pending",
-    "amount": 472.98,
-    "name": "User47"
-  },
-  {
-    "id": 838,
-    "email": "user47@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Approved",
-    "amount": 152.18,
-    "name": "User47"
-  },
-  {
-    "id": 839,
-    "email": "user21@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Pending",
-    "amount": 282.41,
-    "name": "User21"
-  },
-  {
-    "id": 840,
-    "email": "user47@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Approved",
-    "amount": 432.92,
-    "name": "User47"
-  },
-  {
-    "id": 841,
-    "email": "user5@usf.edu",
-    "expenseType": "Food",
-    "category": "Lunch",
-    "status": "Approved",
-    "amount": 128.12,
-    "name": "User5"
-  },
-  {
-    "id": 842,
-    "email": "user80@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 78.16,
-    "name": "User80"
-  },
-  {
-    "id": 843,
-    "email": "user17@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Pending",
-    "amount": 66.61,
-    "name": "User17"
-  },
-  {
-    "id": 844,
-    "email": "user25@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Rejected",
-    "amount": 132.29,
-    "name": "User25"
-  },
-  {
-    "id": 845,
-    "email": "user57@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Rejected",
-    "amount": 290.19,
-    "name": "User57"
-  },
-  {
-    "id": 846,
-    "email": "user87@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Approved",
-    "amount": 256.07,
-    "name": "User87"
-  },
-  {
-    "id": 847,
-    "email": "user13@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Approved",
-    "amount": 339.85,
-    "name": "User13"
-  },
-  {
-    "id": 848,
-    "email": "user71@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Pending",
-    "amount": 30.08,
-    "name": "User71"
-  },
-  {
-    "id": 849,
-    "email": "user11@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Rejected",
-    "amount": 46.26,
-    "name": "User11"
-  },
-  {
-    "id": 850,
-    "email": "user56@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Rejected",
-    "amount": 455.66,
-    "name": "User56"
-  },
-  {
-    "id": 851,
-    "email": "user75@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Rejected",
-    "amount": 489.29,
-    "name": "User75"
-  },
-  {
-    "id": 852,
-    "email": "user74@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Approved",
-    "amount": 37.33,
-    "name": "User74"
-  },
-  {
-    "id": 853,
-    "email": "user66@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Approved",
-    "amount": 126.27,
-    "name": "User66"
-  },
-  {
-    "id": 854,
-    "email": "user32@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Rejected",
-    "amount": 84.19,
-    "name": "User32"
-  },
-  {
-    "id": 855,
-    "email": "user46@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Pending",
-    "amount": 15.14,
-    "name": "User46"
-  },
-  {
-    "id": 856,
-    "email": "user70@usf.edu",
-    "expenseType": "Food",
-    "category": "Dinner",
-    "status": "Approved",
-    "amount": 447.07,
-    "name": "User70"
-  },
-  {
-    "id": 857,
-    "email": "user45@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Pending",
-    "amount": 290.3,
-    "name": "User45"
-  },
-  {
-    "id": 858,
-    "email": "user59@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Pending",
-    "amount": 454.97,
-    "name": "User59"
-  },
-  {
-    "id": 859,
-    "email": "user34@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Approved",
-    "amount": 51.52,
-    "name": "User34"
-  },
-  {
-    "id": 860,
-    "email": "user8@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Pending",
-    "amount": 78.71,
-    "name": "User8"
-  },
-  {
-    "id": 861,
-    "email": "user41@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Rejected",
-    "amount": 356.59,
-    "name": "User41"
-  },
-  {
-    "id": 862,
-    "email": "user57@usf.edu",
-    "expenseType": "Travel",
-    "category": "Taxi",
-    "status": "Rejected",
-    "amount": 395.37,
-    "name": "User57"
-  },
-  {
-    "id": 863,
-    "email": "user7@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Approved",
-    "amount": 422.26,
-    "name": "User7"
-  },
-  {
-    "id": 864,
-    "email": "user8@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Pending",
-    "amount": 406.15,
-    "name": "User8"
-  },
-  {
-    "id": 865,
-    "email": "user21@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Pending",
-    "amount": 453.96,
-    "name": "User21"
-  },
-  {
-    "id": 866,
-    "email": "user20@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Rejected",
-    "amount": 73.85,
-    "name": "User20"
-  },
-  {
-    "id": 867,
-    "email": "user55@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Rejected",
-    "amount": 310.51,
-    "name": "User55"
-  },
-  {
-    "id": 868,
-    "email": "user66@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Approved",
-    "amount": 397.19,
-    "name": "User66"
-  },
-  {
-    "id": 869,
-    "email": "user20@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Rejected",
-    "amount": 279.24,
-    "name": "User20"
-  },
-  {
-    "id": 870,
-    "email": "user58@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 37.91,
-    "name": "User58"
-  },
-  {
-    "id": 871,
-    "email": "user43@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Pending",
-    "amount": 335.26,
-    "name": "User43"
-  },
-  {
-    "id": 872,
-    "email": "user96@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Rejected",
-    "amount": 14.16,
-    "name": "User96"
-  },
-  {
-    "id": 873,
-    "email": "user9@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Rejected",
-    "amount": 329.88,
-    "name": "User9"
-  },
-  {
-    "id": 874,
-    "email": "user20@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Approved",
-    "amount": 239.08,
-    "name": "User20"
-  },
-  {
-    "id": 875,
-    "email": "user34@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Rejected",
-    "amount": 277.74,
-    "name": "User34"
-  },
-  {
-    "id": 876,
-    "email": "user25@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 379.7,
-    "name": "User25"
-  },
-  {
-    "id": 877,
-    "email": "user23@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Pending",
-    "amount": 413.58,
-    "name": "User23"
-  },
-  {
-    "id": 878,
-    "email": "user21@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Pending",
-    "amount": 414.55,
-    "name": "User21"
-  },
-  {
-    "id": 879,
-    "email": "user61@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Rejected",
-    "amount": 468.1,
-    "name": "User61"
-  },
-  {
-    "id": 880,
-    "email": "user70@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Pending",
-    "amount": 327.5,
-    "name": "User70"
-  },
-  {
-    "id": 881,
-    "email": "user95@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Rejected",
-    "amount": 381.62,
-    "name": "User95"
-  },
-  {
-    "id": 882,
-    "email": "user73@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Rejected",
-    "amount": 167.88,
-    "name": "User73"
-  },
-  {
-    "id": 883,
-    "email": "user27@usf.edu",
-    "expenseType": "Travel",
-    "category": "Flight",
-    "status": "Rejected",
-    "amount": 369.76,
-    "name": "User27"
-  },
-  {
-    "id": 884,
-    "email": "user87@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Approved",
-    "amount": 224.48,
-    "name": "User87"
-  },
-  {
-    "id": 885,
-    "email": "user95@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Pending",
-    "amount": 48.8,
-    "name": "User95"
-  },
-  {
-    "id": 886,
-    "email": "user98@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 225.8,
-    "name": "User98"
-  },
-  {
-    "id": 887,
-    "email": "user64@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Approved",
-    "amount": 8.21,
-    "name": "User64"
-  },
-  {
-    "id": 888,
-    "email": "user56@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 425.75,
-    "name": "User56"
-  },
-  {
-    "id": 889,
-    "email": "user81@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Pending",
-    "amount": 139.14,
-    "name": "User81"
-  },
-  {
-    "id": 890,
-    "email": "user2@usf.edu",
-    "expenseType": "Food",
-    "category": "Lunch",
-    "status": "Rejected",
-    "amount": 68.47,
-    "name": "User2"
-  },
-  {
-    "id": 891,
-    "email": "user8@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Pending",
-    "amount": 313.97,
-    "name": "User8"
-  },
-  {
-    "id": 892,
-    "email": "user42@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Approved",
-    "amount": 327.02,
-    "name": "User42"
-  },
-  {
-    "id": 893,
-    "email": "user8@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Approved",
-    "amount": 450.48,
-    "name": "User8"
-  },
-  {
-    "id": 894,
-    "email": "user30@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Approved",
-    "amount": 281.25,
-    "name": "User30"
-  },
-  {
-    "id": 895,
-    "email": "user25@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Rejected",
-    "amount": 112.33,
-    "name": "User25"
-  },
-  {
-    "id": 896,
-    "email": "user9@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Approved",
-    "amount": 407.74,
-    "name": "User9"
-  },
-  {
-    "id": 897,
-    "email": "user23@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Rejected",
-    "amount": 106.34,
-    "name": "User23"
-  },
-  {
-    "id": 898,
-    "email": "user40@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Approved",
-    "amount": 127.04,
-    "name": "User40"
-  },
-  {
-    "id": 899,
-    "email": "user47@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Rejected",
-    "amount": 142.84,
-    "name": "User47"
-  },
-  {
-    "id": 900,
-    "email": "user21@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Rejected",
-    "amount": 352.76,
-    "name": "User21"
-  },
-  {
-    "id": 901,
-    "email": "user75@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Pending",
-    "amount": 143.49,
-    "name": "User75"
-  },
-  {
-    "id": 902,
-    "email": "user6@usf.edu",
-    "expenseType": "Food",
-    "category": "Lunch",
-    "status": "Approved",
-    "amount": 203.01,
-    "name": "User6"
-  },
-  {
-    "id": 903,
-    "email": "user80@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Pending",
-    "amount": 12.56,
-    "name": "User80"
-  },
-  {
-    "id": 904,
-    "email": "user8@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Rejected",
-    "amount": 77.32,
-    "name": "User8"
-  },
-  {
-    "id": 905,
-    "email": "user92@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Approved",
-    "amount": 176.19,
-    "name": "User92"
-  },
-  {
-    "id": 906,
-    "email": "user79@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Rejected",
-    "amount": 296.95,
-    "name": "User79"
-  },
-  {
-    "id": 907,
-    "email": "user35@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Rejected",
-    "amount": 246.32,
-    "name": "User35"
-  },
-  {
-    "id": 908,
-    "email": "user96@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Rejected",
-    "amount": 299.41,
-    "name": "User96"
-  },
-  {
-    "id": 909,
-    "email": "user25@usf.edu",
-    "expenseType": "Food",
-    "category": "Dinner",
-    "status": "Rejected",
-    "amount": 71.69,
-    "name": "User25"
-  },
-  {
-    "id": 910,
-    "email": "user83@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Approved",
-    "amount": 108.08,
-    "name": "User83"
-  },
-  {
-    "id": 911,
-    "email": "user51@usf.edu",
-    "expenseType": "Food",
-    "category": "Coffee",
-    "status": "Rejected",
-    "amount": 364.47,
-    "name": "User51"
-  },
-  {
-    "id": 912,
-    "email": "user10@usf.edu",
-    "expenseType": "Travel",
-    "category": "Flight",
-    "status": "Approved",
-    "amount": 144.52,
-    "name": "User10"
-  },
-  {
-    "id": 913,
-    "email": "user9@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Pending",
-    "amount": 428.49,
-    "name": "User9"
-  },
-  {
-    "id": 914,
-    "email": "user56@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Rejected",
-    "amount": 150.63,
-    "name": "User56"
-  },
-  {
-    "id": 915,
-    "email": "user7@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Rejected",
-    "amount": 69.74,
-    "name": "User7"
-  },
-  {
-    "id": 916,
-    "email": "user16@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Rejected",
-    "amount": 164.09,
-    "name": "User16"
-  },
-  {
-    "id": 917,
-    "email": "user66@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Approved",
-    "amount": 172.88,
-    "name": "User66"
-  },
-  {
-    "id": 918,
-    "email": "user44@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Rejected",
-    "amount": 176.02,
-    "name": "User44"
-  },
-  {
-    "id": 919,
-    "email": "user13@usf.edu",
-    "expenseType": "Food",
-    "category": "Lunch",
-    "status": "Approved",
-    "amount": 92.04,
-    "name": "User13"
-  },
-  {
-    "id": 920,
-    "email": "user26@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Pending",
-    "amount": 438.99,
-    "name": "User26"
-  },
-  {
-    "id": 921,
-    "email": "user79@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Approved",
-    "amount": 272.9,
-    "name": "User79"
-  },
-  {
-    "id": 922,
-    "email": "user70@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Approved",
-    "amount": 149,
-    "name": "User70"
-  },
-  {
-    "id": 923,
-    "email": "user95@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Rejected",
-    "amount": 427.13,
-    "name": "User95"
-  },
-  {
-    "id": 924,
-    "email": "user63@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Rejected",
-    "amount": 239.62,
-    "name": "User63"
-  },
-  {
-    "id": 925,
-    "email": "user6@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Approved",
-    "amount": 167.82,
-    "name": "User6"
-  },
-  {
-    "id": 926,
-    "email": "user60@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Rejected",
-    "amount": 224.03,
-    "name": "User60"
-  },
-  {
-    "id": 927,
-    "email": "user68@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 136.06,
-    "name": "User68"
-  },
-  {
-    "id": 928,
-    "email": "user85@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Rejected",
-    "amount": 148.96,
-    "name": "User85"
-  },
-  {
-    "id": 929,
-    "email": "user81@usf.edu",
-    "expenseType": "Food",
-    "category": "Lunch",
-    "status": "Pending",
-    "amount": 266.52,
-    "name": "User81"
-  },
-  {
-    "id": 930,
-    "email": "user4@usf.edu",
-    "expenseType": "Food",
-    "category": "Lunch",
-    "status": "Rejected",
-    "amount": 276.28,
-    "name": "User4"
-  },
-  {
-    "id": 931,
-    "email": "user30@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 6.92,
-    "name": "User30"
-  },
-  {
-    "id": 932,
-    "email": "user88@usf.edu",
-    "expenseType": "Travel",
-    "category": "Flight",
-    "status": "Approved",
-    "amount": 49.07,
-    "name": "User88"
-  },
-  {
-    "id": 933,
-    "email": "user62@usf.edu",
-    "expenseType": "Food",
-    "category": "Dinner",
-    "status": "Rejected",
-    "amount": 388.49,
-    "name": "User62"
-  },
-  {
-    "id": 934,
-    "email": "user62@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Approved",
-    "amount": 442.42,
-    "name": "User62"
-  },
-  {
-    "id": 935,
-    "email": "user27@usf.edu",
-    "expenseType": "Food",
-    "category": "Lunch",
-    "status": "Approved",
-    "amount": 351.65,
-    "name": "User27"
-  },
-  {
-    "id": 936,
-    "email": "user77@usf.edu",
-    "expenseType": "Food",
-    "category": "Dinner",
-    "status": "Rejected",
-    "amount": 77.04,
-    "name": "User77"
-  },
-  {
-    "id": 937,
-    "email": "user41@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Approved",
-    "amount": 394.05,
-    "name": "User41"
-  },
-  {
-    "id": 938,
-    "email": "user81@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Approved",
-    "amount": 138.85,
-    "name": "User81"
-  },
-  {
-    "id": 939,
-    "email": "user2@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Rejected",
-    "amount": 196.89,
-    "name": "User2"
-  },
-  {
-    "id": 940,
-    "email": "user9@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Rejected",
-    "amount": 38.41,
-    "name": "User9"
-  },
-  {
-    "id": 941,
-    "email": "user88@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Approved",
-    "amount": 329.54,
-    "name": "User88"
-  },
-  {
-    "id": 942,
-    "email": "user100@usf.edu",
-    "expenseType": "Food",
-    "category": "Coffee",
-    "status": "Rejected",
-    "amount": 5.22,
-    "name": "User100"
-  },
-  {
-    "id": 943,
-    "email": "user86@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 411.64,
-    "name": "User86"
-  },
-  {
-    "id": 944,
-    "email": "user99@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Approved",
-    "amount": 92.77,
-    "name": "User99"
-  },
-  {
-    "id": 945,
-    "email": "user95@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Rejected",
-    "amount": 38,
-    "name": "User95"
-  },
-  {
-    "id": 946,
-    "email": "user47@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Rejected",
-    "amount": 498.19,
-    "name": "User47"
-  },
-  {
-    "id": 947,
-    "email": "user92@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Approved",
-    "amount": 252.17,
-    "name": "User92"
-  },
-  {
-    "id": 948,
-    "email": "user87@usf.edu",
-    "expenseType": "Food",
-    "category": "Coffee",
-    "status": "Pending",
-    "amount": 450.69,
-    "name": "User87"
-  },
-  {
-    "id": 949,
-    "email": "user47@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Pending",
-    "amount": 24.49,
-    "name": "User47"
-  },
-  {
-    "id": 950,
-    "email": "user51@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Approved",
-    "amount": 311.59,
-    "name": "User51"
-  },
-  {
-    "id": 951,
-    "email": "user31@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 312.79,
-    "name": "User31"
-  },
-  {
-    "id": 952,
-    "email": "user21@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Pending",
-    "amount": 211.88,
-    "name": "User21"
-  },
-  {
-    "id": 953,
-    "email": "user62@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Approved",
-    "amount": 417.23,
-    "name": "User62"
-  },
-  {
-    "id": 954,
-    "email": "user42@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Rejected",
-    "amount": 254.54,
-    "name": "User42"
-  },
-  {
-    "id": 955,
-    "email": "user4@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Approved",
-    "amount": 322.35,
-    "name": "User4"
-  },
-  {
-    "id": 956,
-    "email": "user79@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Pending",
-    "amount": 279.63,
-    "name": "User79"
-  },
-  {
-    "id": 957,
-    "email": "user14@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Approved",
-    "amount": 183.95,
-    "name": "User14"
-  },
-  {
-    "id": 958,
-    "email": "user85@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Water",
-    "status": "Pending",
-    "amount": 137.97,
-    "name": "User85"
-  },
-  {
-    "id": 959,
-    "email": "user49@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Pending",
-    "amount": 374.56,
-    "name": "User49"
-  },
-  {
-    "id": 960,
-    "email": "user25@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Rejected",
-    "amount": 220.07,
-    "name": "User25"
-  },
-  {
-    "id": 961,
-    "email": "user73@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Rejected",
-    "amount": 47.9,
-    "name": "User73"
-  },
-  {
-    "id": 962,
-    "email": "user3@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Approved",
-    "amount": 472.43,
-    "name": "User3"
-  },
-  {
-    "id": 963,
-    "email": "user97@usf.edu",
-    "expenseType": "Food",
-    "category": "Lunch",
-    "status": "Approved",
-    "amount": 35.9,
-    "name": "User97"
-  },
-  {
-    "id": 964,
-    "email": "user91@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Pending",
-    "amount": 143.35,
-    "name": "User91"
-  },
-  {
-    "id": 965,
-    "email": "user26@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Pending",
-    "amount": 414.27,
-    "name": "User26"
-  },
-  {
-    "id": 966,
-    "email": "user89@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 49.11,
-    "name": "User89"
-  },
-  {
-    "id": 967,
-    "email": "user50@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Rejected",
-    "amount": 285.26,
-    "name": "User50"
-  },
-  {
-    "id": 968,
-    "email": "user59@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Approved",
-    "amount": 271.83,
-    "name": "User59"
-  },
-  {
-    "id": 969,
-    "email": "user99@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Approved",
-    "amount": 227.35,
-    "name": "User99"
-  },
-  {
-    "id": 970,
-    "email": "user13@usf.edu",
-    "expenseType": "Office",
-    "category": "Stationery",
-    "status": "Approved",
-    "amount": 400.12,
-    "name": "User13"
-  },
-  {
-    "id": 971,
-    "email": "user30@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Rejected",
-    "amount": 145.26,
-    "name": "User30"
-  },
-  {
-    "id": 972,
-    "email": "user93@usf.edu",
-    "expenseType": "Food",
-    "category": "Coffee",
-    "status": "Rejected",
-    "amount": 155.76,
-    "name": "User93"
-  },
-  {
-    "id": 973,
-    "email": "user61@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Rejected",
-    "amount": 179.39,
-    "name": "User61"
-  },
-  {
-    "id": 974,
-    "email": "user70@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Team Building",
-    "status": "Pending",
-    "amount": 10.2,
-    "name": "User70"
-  },
-  {
-    "id": 975,
-    "email": "user55@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Rejected",
-    "amount": 483,
-    "name": "User55"
-  },
-  {
-    "id": 976,
-    "email": "user99@usf.edu",
-    "expenseType": "Travel",
-    "category": "Flight",
-    "status": "Approved",
-    "amount": 51.42,
-    "name": "User99"
-  },
-  {
-    "id": 977,
-    "email": "user98@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Electricity",
-    "status": "Approved",
-    "amount": 456.74,
-    "name": "User98"
-  },
-  {
-    "id": 978,
-    "email": "user13@usf.edu",
-    "expenseType": "Travel",
-    "category": "Hotel",
-    "status": "Pending",
-    "amount": 490.74,
-    "name": "User13"
-  },
-  {
-    "id": 979,
-    "email": "user23@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Approved",
-    "amount": 251.32,
-    "name": "User23"
-  },
-  {
-    "id": 980,
-    "email": "user59@usf.edu",
-    "expenseType": "Travel",
-    "category": "Train",
-    "status": "Pending",
-    "amount": 395.09,
-    "name": "User59"
-  },
-  {
-    "id": 981,
-    "email": "user7@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Approved",
-    "amount": 158.19,
-    "name": "User7"
-  },
-  {
-    "id": 982,
-    "email": "user45@usf.edu",
-    "expenseType": "Food",
-    "category": "Coffee",
-    "status": "Pending",
-    "amount": 257.14,
-    "name": "User45"
-  },
-  {
-    "id": 983,
-    "email": "user14@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Approved",
-    "amount": 152.93,
-    "name": "User14"
-  },
-  {
-    "id": 984,
-    "email": "user92@usf.edu",
-    "expenseType": "Office",
-    "category": "Software",
-    "status": "Approved",
-    "amount": 194.47,
-    "name": "User92"
-  },
-  {
-    "id": 985,
-    "email": "user54@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Approved",
-    "amount": 116.21,
-    "name": "User54"
-  },
-  {
-    "id": 986,
-    "email": "user2@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Rejected",
-    "amount": 416.81,
-    "name": "User2"
-  },
-  {
-    "id": 987,
-    "email": "user37@usf.edu",
-    "expenseType": "Food",
-    "category": "Lunch",
-    "status": "Approved",
-    "amount": 255.26,
-    "name": "User37"
-  },
-  {
-    "id": 988,
-    "email": "user53@usf.edu",
-    "expenseType": "Travel",
-    "category": "Flight",
-    "status": "Pending",
-    "amount": 11.47,
-    "name": "User53"
-  },
-  {
-    "id": 989,
-    "email": "user30@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Ink",
-    "status": "Pending",
-    "amount": 32.51,
-    "name": "User30"
-  },
-  {
-    "id": 990,
-    "email": "user54@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Internet",
-    "status": "Rejected",
-    "amount": 83.65,
-    "name": "User54"
-  },
-  {
-    "id": 991,
-    "email": "user11@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Approved",
-    "amount": 498.74,
-    "name": "User11"
-  },
-  {
-    "id": 992,
-    "email": "user74@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Approved",
-    "amount": 332.28,
-    "name": "User74"
-  },
-  {
-    "id": 993,
-    "email": "user32@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Rejected",
-    "amount": 173.67,
-    "name": "User32"
-  },
-  {
-    "id": 994,
-    "email": "user76@usf.edu",
-    "expenseType": "Food",
-    "category": "Snacks",
-    "status": "Rejected",
-    "amount": 23.29,
-    "name": "User76"
-  },
-  {
-    "id": 995,
-    "email": "user43@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Paper",
-    "status": "Approved",
-    "amount": 237.95,
-    "name": "User43"
-  },
-  {
-    "id": 996,
-    "email": "user66@usf.edu",
-    "expenseType": "Office",
-    "category": "Equipment",
-    "status": "Pending",
-    "amount": 290.75,
-    "name": "User66"
-  },
-  {
-    "id": 997,
-    "email": "user6@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Rejected",
-    "amount": 409.12,
-    "name": "User6"
-  },
-  {
-    "id": 998,
-    "email": "user77@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Workshop",
-    "status": "Pending",
-    "amount": 47.11,
-    "name": "User77"
-  },
-  {
-    "id": 999,
-    "email": "user44@usf.edu",
-    "expenseType": "Supplies",
-    "category": "Toner",
-    "status": "Rejected",
-    "amount": 256.74,
-    "name": "User44"
-  },
-  {
-    "id": 1000,
-    "email": "user59@usf.edu",
-    "expenseType": "Entertainment",
-    "category": "Conference",
-    "status": "Pending",
-    "amount": 98.91,
-    "name": "User59"
-  },
-  {
-    "id": 1001,
     "email": "neerajpillai@usf.edu",
-    "expenseType": "Office Supplies",
-    "category": "Office Supplies",
-    "status": "Pending",
-    "amount": 4.51,
-    "name": "neerajpillai",
-    "date": "2025-03-29",
-    "notes": "pineapple"
+    "name": "neeraj",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Request Clarification",
+    "amount": 81.41
   },
   {
-    "id": 1002,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Utilities",
-    "category": "Utilities",
-    "status": "Pending",
-    "amount": 7804,
-    "name": "neerajpillai",
-    "date": "2025-03-24",
-    "notes": ""
-  },
-  {
-    "id": 1003,
-    "email": "neerajpillai@usf.edu",
-    "expenseType": "Other",
-    "category": "Other",
-    "status": "Pending",
-    "amount": 1492.65,
-    "name": "neerajpillai",
-    "date": "2025-03-24",
-    "notes": "clothing"
-  },
-  {
-    "id": 1004,
+    "id": 101,
     "email": "snagraj@usf.edu",
-    "expenseType": "Office Supplies",
-    "category": "Office Supplies",
+    "name": "srishti",
+    "expenseType": "Meal",
+    "category": "Training",
+    "status": "Approved",
+    "amount": 88.46
+  },
+  {
+    "id": 102,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Training",
+    "status": "Approved",
+    "amount": 219.24
+  },
+  {
+    "id": 103,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 462.79
+  },
+  {
+    "id": 104,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Office",
+    "status": "Approved",
+    "amount": 422.25
+  },
+  {
+    "id": 105,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 485.1
+  },
+  {
+    "id": 106,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Rejected",
+    "amount": 493.53
+  },
+  {
+    "id": 107,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Training",
+    "status": "Approved",
+    "amount": 256.99
+  },
+  {
+    "id": 108,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Meal",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 435.18
+  },
+  {
+    "id": 109,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Lodging",
+    "category": "Office",
     "status": "Pending",
-    "amount": 7804,
-    "name": "snagraj",
-    "date": "2025-03-24",
-    "notes": ""
+    "amount": 152.01
+  },
+  {
+    "id": 110,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Lodging",
+    "category": "Office",
+    "status": "Request Clarification",
+    "amount": 444.57
+  },
+  {
+    "id": 111,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 319.28
+  },
+  {
+    "id": 112,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Meal",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 25.54
+  },
+  {
+    "id": 113,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Office",
+    "status": "Pending",
+    "amount": 175.64
+  },
+  {
+    "id": 114,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Rejected",
+    "amount": 74.11
+  },
+  {
+    "id": 115,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Conference",
+    "status": "Rejected",
+    "amount": 248.84
+  },
+  {
+    "id": 116,
+    "email": "dkarmariya@usf.edu",
+    "name": "dk",
+    "expenseType": "Travel",
+    "category": "Equipment",
+    "status": "Rejected",
+    "amount": 300.05
+  },
+  {
+    "id": 117,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Travel",
+    "category": "Office",
+    "status": "Pending",
+    "amount": 343.03
+  },
+  {
+    "id": 118,
+    "email": "ndeshpande2@usf.edu",
+    "name": "ninad",
+    "expenseType": "Supplies",
+    "category": "Training",
+    "status": "Rejected",
+    "amount": 63.1
+  },
+  {
+    "id": 119,
+    "email": "neerajpillai@usf.edu",
+    "name": "neeraj",
+    "expenseType": "Supplies",
+    "category": "Equipment",
+    "status": "Approved",
+    "amount": 153.6
+  },
+  {
+    "id": 120,
+    "email": "snagraj@usf.edu",
+    "name": "srishti",
+    "expenseType": "Supplies",
+    "category": "Conference",
+    "status": "Approved",
+    "amount": 275.55
   }
 ]
