@@ -13,14 +13,23 @@ import Tesseract from 'tesseract.js';
 import OpenAI from 'openai';
 
 dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname  = path.dirname(__filename);
 
-const __filename     = fileURLToPath(import.meta.url);
-const __dirname      = path.dirname(__filename);
-const app            = express();
+const app = express();
 const upload         = multer({ dest: 'uploads/' });
 const openai         = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
+// === CORS Configuration ===
+// Allow requests only from your Vite frontend origin
+const corsOptions = {
+  origin: 'http://localhost:5173', // Adjust if your frontend runs on a different port
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.use(cors({ origin: 'http://localhost:5173' }));
+// =========================
+
 app.use(bodyParser.json());
 
 // ─── File paths ─────────────────────────────────────────────────
@@ -64,12 +73,28 @@ app.post('/send-OTP', (req, res) => {
     return res.status(403).json({ message: 'Not registered for this role.' });
   }
 
-  exec(`python3 "${PYTHON_SCRIPT}" "${email}" "${otp}"`, (err) => {
-    if (err) {
-      return res.status(500).json({ message: 'OTP send failed.' });
+        // Execute Python Script using venv python
+        const command = `"python3" "${PYTHON_SCRIPT}" "${email}" "${otp}"`;
+        console.log(`Executing command: ${command}`);
+
+        exec(command, (err, stdout, stderr) => {
+            if (err) {
+                console.error(`Error executing Python script: ${err.message}`);
+                return res.status(500).json({ success: false, message: 'Server error: Failed to execute OTP sender.' });
+            }
+            if (stderr) {
+                console.error(`Python script stderr: ${stderr}`);
+                // Consider if stderr should always indicate failure
+            }
+            console.log(`Python script stdout: ${stdout}`);
+            console.log(`OTP successfully processed for ${email}`);
+            res.json({ success: true, message: 'OTP sent.' }); // Send success back
+        });
+
+    } catch (readErr) {
+        console.error("Error processing /send-OTP (likely reading users file):", readErr);
+        res.status(500).json({ success: false, message: 'Server error checking user roles.' });
     }
-    return res.json({ success: true });
-  });
 });
 
 // ─── Users CRUD ─────────────────────────────────────────────────
@@ -121,43 +146,78 @@ app.get('/get-expenses', (req, res) => {
 });
 
 app.post('/update-expense', (req, res) => {
-  const { expenseId, field, newValue, comment = '' } = req.body;
-  if (expenseId == null || !field || newValue == null) {
-    return res.status(400).json({ message: 'Missing fields.' });
-  }
-  const exps = readJSON(EXPENSES_FILE);
-  const idx  = exps.findIndex(e => e.id === expenseId);
-  if (idx === -1) {
-    return res.status(404).json({ message: 'Not found.' });
-  }
+  try {
+    // 1) pull in comment
+    const { expenseId, field, newValue, comment = '' } = req.body;
+    if (
+      expenseId === undefined ||
+      field     === undefined ||
+      newValue  === undefined
+    ) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
 
-  exps[idx][field] = field === 'amount'
-    ? parseFloat(newValue) || 0
-    : newValue;
-  writeJSON(EXPENSES_FILE, exps);
+    // 2) load & update JSON file
+    const exps = readJSON(EXPENSES_FILE);
+    const idx  = exps.findIndex(e => e.id === expenseId);
+    if (idx === -1) {
+      return res.status(404).json({ message: 'Expense not found.' });
+    }
+    exps[idx][field] = field === 'amount'
+      ? (parseFloat(newValue) || 0)
+      : newValue;
 
-  // send notification if status changed
-  if (field === 'status') {
-    const exp       = exps[idx];
-    const to        = exp.email;
-    const subject   = `Expense #${expenseId} – ${newValue}`;
-    const bodyLines = [
-      `Hello ${exp.name || exp.email},`,
-      ``,
-      `Your expense request #${expenseId} is now "${newValue}".`,
-      comment ? `\nNote: ${comment}` : '',
-      ``,
-      `Thank you,`,
-      `Finance Team`
-    ];
-    const notifyScript = path.join(__dirname, 'src/backend/Notification_emailer.py');
-    execFile('python3', [ notifyScript, to, subject, bodyLines.join('\n') ], { cwd: path.join(__dirname, 'src/backend') }, (err) => {
-      if (err) console.error('Notify email error:', err);
-    });
+    // 3) write it back
+    writeJSON(EXPENSES_FILE, exps);
+
+    // 4) if status changed, fire off notification email
+    if (field === 'status') {
+      const exp     = exps[idx];
+      const to      = exp.email;
+      const subject = `Expense #${expenseId} — Status: ${newValue}`;
+      const body    = [
+        `Hello ${exp.name || exp.email},`,
+        ``,
+        `Your expense request (ID: ${expenseId}) has been updated to: "${newValue}".`,
+        ``,
+        comment ? `Admin’s note:\n${comment}\n` : '',
+        `Thank you,`,
+        `Finance Team`
+      ].join('\n');
+
+      const scriptPath = path.join(
+        __dirname,
+        'src', 'backend',
+        'Notification_emailer.py'
+      );
+
+      // non-blocking; logs success/failure to your console
+      execFile(
+        'python3',
+        [ scriptPath, to, subject, body ],
+        { cwd: path.join(__dirname, 'src', 'backend') },
+        (err, stdout, stderr) => {
+          if (err) {
+            console.error('📧 Notification error:', stderr || err);
+          } else {
+            console.log('📧 Notification sent:', stdout.trim());
+          }
+        }
+      );
+    }
+
+    // 5) respond immediately
+    return res.json({ success: true });
   }
-
-  return res.json({ success: true });
+  catch (err) {
+    console.error('Update expense error:', err);
+    return res.status(500).json({ message: 'Failed to update expense.' });
+  }
 });
+
+// server.js
+app.get('/health', (_, res) => res.sendStatus(200));   // replies 200 if server is alive
+
 
 app.post('/delete-expense', (req, res) => {
   const { expenseId } = req.body;
