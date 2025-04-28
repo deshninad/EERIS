@@ -1,41 +1,21 @@
-/* index.css - Themed Base Styles */
+/* index.css - Minimal Base Styles */
 
 :root {
   /* Define base font family globally */
   /* Using Poppins as primary based on previous themes, with fallbacks */
-  /* Ensure your :root variables (--bg-primary, --text-primary etc.) are defined either here */
-  /* OR in another globally loaded CSS file (like a theme.css or App.css) */
-  /* For clarity, it's often best to define theme variables in one central place. */
-  /* We'll assume they are defined elsewhere for now, but apply them here. */
-
   font-family: 'Poppins', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.6; /* Consistent line height */
   font-weight: 400;
+
+  /* Theme variables (colors, radius, etc.) should be defined */
+  /* in a dedicated theme CSS file or potentially ESummaryPage.css/admindashboard.css */
+  /* This file should NOT declare background/text colors globally if using themed components */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-/* Apply Theme Globally */
-html, body {
-  margin: 0; /* Reset margin */
-  padding: 0; /* Reset padding */
-  min-width: 320px;
-  min-height: 100vh;
-  width: 100%; /* Ensure takes full width */
-  /* === ADDED: Set base theme colors directly === */
-  background-color: var(--bg-primary, #f7faff); /* Use theme variable with fallback */
-  color: var(--text-primary, #212529);         /* Use theme variable with fallback */
-  /* =========================================== */
-  box-sizing: border-box; /* Apply box-sizing here too */
-}
-
-*, *::before, *::after {
-    box-sizing: inherit; /* Inherit box-sizing */
-}
-
 
 /* Basic link reset - colors handled by theme variables */
 a {
@@ -49,40 +29,42 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Basic heading resets (can be overridden by components) */
+/* Basic body reset */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  /* Background/text color should be set by a global theme rule */
+  /* (e.g., in ESummaryPage.css or admindashboard.css) */
+  /* background-color: var(--bg-primary); */
+  /* color: var(--text-primary); */
+}
+
+/* Basic heading reset (can be overridden by components) */
 h1 {
   font-size: 2.5em;
   line-height: 1.1;
   font-weight: 600;
-  margin: 0 0 1rem 0; /* Add default bottom margin */
 }
 
 h2 {
     font-size: 1.75em;
     line-height: 1.2;
     font-weight: 600;
-    margin: 0 0 1rem 0;
 }
 
 h3 {
     font-size: 1.3em;
     line-height: 1.3;
     font-weight: 600;
-    margin: 0 0 0.75rem 0;
 }
 
 h4 {
     font-size: 1em;
     line-height: 1.4;
     font-weight: 600;
-    margin: 0 0 0.5rem 0;
 }
 
 /* Remove default button styles from template if not needed globally */
 /* Button styling should be handled by component-specific CSS or theme */
-/* Example: Resetting button appearance */
-button {
-    font-family: inherit; /* Inherit font */
-    /* Remove other default template button styles */
-}
 

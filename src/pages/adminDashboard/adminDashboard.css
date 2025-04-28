@@ -1,428 +1,281 @@
-/* src/pages/adminDashboard/AdminDashboard.css */
-/* Complete styles including layout, table, modal, etc. */
+/* admindashboard.css - Refined Professional "Bank" Light Theme */
 
-/* Assumes :root variables (--bg-primary, --accent-primary etc.) are defined globally */
+/* :root variables assumed to be defined globally (e.g., in index.css or theme.css) */
+/* Example variables needed:
+:root {
+  --bg-primary: #f7faff;
+  --bg-secondary: #ffffff;
+  --border-color: #e9ecef;
+  --text-primary: #212529;
+  --text-secondary: #495057;
+  --accent-primary: #0056b3;
+  --accent-primary-light: #0d6efd;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --status-approved-bg: #e6f5ea;
+  --status-approved-text: #1d7b41;
+  --status-pending-bg: #fff8e1;
+  --status-pending-text: #7a5f00;
+  --status-rejected-bg: #fbe9eb;
+  --status-rejected-text: #b52439;
+  --table-header-bg: #f1f3f5;
+  --table-row-hover-bg: #eef2f7;
+  --table-border-color: var(--border-color);
+  --border-radius: 4px;
+  --transition: 0.15s ease-in-out;
+}
+*/
 
-/* === Base Layout === */
-.admin-dashboard-layout {
+/* LAYOUT: two-column flex (nav + main) */
+.admin-dashboard {
   display: flex;
-  min-height: 100vh;
-  width: 100%;
-  background-color: var(--bg-primary, #f8f9fa); /* Light background for the page */
-  font-family: var(--login-font-family, "Open Sans", sans-serif); /* Consistent font */
+  height: 100vh; /* Full viewport height */
+  max-height: 100vh; /* Prevent exceeding viewport */
+  background-color: var(--bg-primary);
 }
 
-/* === Sidebar === */
-.sidebar {
-  width: 250px; /* Adjust width as needed */
-  background-color: var(--bg-secondary, #ffffff); /* Sidebar background */
-  border-right: 1px solid var(--border-color, #e9ecef);
+/* NAV PANE */
+.nav-pane {
+  width: 200px; /* Fixed width */
+  background: var(--bg-secondary); /* Subtle light grey nav */
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column; /* Ensure content flows top-to-bottom */
+  flex-shrink: 0;
+}
+.nav-pane-content {
+  flex: 1; /* Allow content to take space, pushing signout down */
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 0; /* Vertical padding */
-  flex-shrink: 0; /* Prevent sidebar from shrinking */
-  box-shadow: 2px 0 5px rgba(0,0,0,0.05); /* Subtle shadow */
+  justify-content: flex-start; /* Align items to top */
+  align-items: stretch; /* Stretch items full width */
+  gap: 0.5rem;
+  padding: 1rem 0;
 }
+.nav-pane h3 { margin: 0 0 1.5rem 0; padding: 0 1rem; color: var(--accent-primary); font-size: 1.1rem; font-weight: 600; }
+.nav-pane button { width: auto; margin: 0 1rem; padding: 0.6rem 1rem; background: none; border: none; border-radius: var(--border-radius); color: var(--text-secondary); cursor: pointer; transition: background 0.2s, color 0.2s; text-align: left; font-size: 0.9rem; font-weight: 500; }
+.nav-pane button:hover { background: rgba(0, 86, 179, 0.07); color: var(--accent-primary); }
+.nav-pane button.active { background: rgba(0, 86, 179, 0.1); color: var(--accent-primary); font-weight: 600; }
+.nav-pane .sign-out { margin-top: auto; margin-bottom: 1rem; color: var(--status-rejected-text); font-weight: 500; }
+.nav-pane .sign-out:hover { background: var(--status-rejected-bg); color: var(--status-rejected-text); }
 
-.sidebar .logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--accent-primary, #0056b3);
-  text-align: center;
-  padding: 0 1rem 1.5rem 1rem; /* Padding around logo */
-  margin-bottom: 1rem; /* Space below logo */
-  border-bottom: 1px solid var(--border-color, #eee); /* Separator */
-}
-
-.sidebar-nav {
-  flex-grow: 1; /* Allow nav to fill remaining space */
+/* MAIN PANE (Table Pane, Manage Users View, etc.) */
+.table-pane, .users-view {
+  flex: 1; /* Take remaining width */
   display: flex;
   flex-direction: column;
+  padding: 2rem; /* Padding for the main content area */
+  overflow: hidden; /* Prevent this pane from scrolling */
+  background-color: var(--bg-primary);
+  height: 100vh; /* Explicitly set height */
+  box-sizing: border-box; /* Include padding in height calculation */
 }
 
-.sidebar-nav .menu-item {
-  padding: 0.8rem 1.5rem;
-  color: var(--text-secondary, #495057);
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  border-left: 3px solid transparent; /* Indicator for selected item */
-  transition: background-color 0.2s ease, color 0.2s ease, border-left-color 0.2s ease;
-  display: flex; /* Align icon and text */
-  align-items: center;
-  gap: 0.75rem; /* Space between icon and text */
+/* Scrollable Content Wrapper */
+.table-wrapper, .users-table-wrapper {
+  flex: 1 1 auto; /* Grow and shrink to fill available space */
+  overflow-y: auto; /* Enable vertical scrollbar ONLY here */
+  overflow-x: hidden; /* Prevent horizontal scroll on the wrapper */
+  margin-top: 1rem; /* Space above scrollable area */
+  min-height: 0; /* Important for flexbox shrinking */
+}
+/* Ensure the inner table can still scroll horizontally if needed */
+.table-wrapper > .dynamic-table,
+.users-table-wrapper > .users-table {
+    /* min-width is already set on the table, allowing horizontal scroll */
 }
 
-.sidebar-nav .menu-item:hover {
-  background-color: var(--bg-hover, #f1f3f5);
-  color: var(--text-primary, #212529);
+/* Headings and Filters should NOT grow */
+.table-pane h2, .users-view > h2,
+.filters,
+.metrics-row {
+  flex-shrink: 0; /* Prevent shrinking */
+  flex-grow: 0; /* Prevent growing */
 }
 
-.sidebar-nav .menu-item.selected {
-  background-color: var(--bg-selected, #e7f1fc);
-  color: var(--accent-primary, #0056b3);
-  font-weight: 600;
-  border-left-color: var(--accent-primary, #0056b3);
-}
+/* General Heading in Main Pane */
+.table-pane h2, .users-view > h2 { margin: 0 0 1rem 0; color: var(--text-primary); font-weight: 600; font-size: 1.5rem; }
 
-.sidebar-nav .sign-out-link {
-  margin-top: auto; /* Pushes sign out to the bottom */
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-color, #eee);
-  color: var(--status-rejected-text, #b52439); /* Use a distinct color */
-}
-.sidebar-nav .sign-out-link:hover {
-  background-color: var(--status-rejected-bg, #fbe9eb);
-}
+/* Error & Success Messages */
+.error, .user-message.error { color: var(--status-rejected-text); background-color: var(--status-rejected-bg); border: 1px solid var(--status-rejected-text); padding: 0.75rem; border-radius: var(--border-radius); margin: 1rem 0; font-size: 0.9rem; }
+.user-message.success { color: var(--status-approved-text); background-color: var(--status-approved-bg); border: 1px solid var(--status-approved-text); padding: 0.75rem; border-radius: var(--border-radius); margin: 1rem 0; font-size: 0.9rem; }
 
+/* FILTERS (Space Optimized) */
+.filters { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); }
+.filters label { margin-right: 0.25rem; font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; }
+.filters input, .filters select { background: var(--bg-primary); color: var(--text-primary); border: 1px solid var(--border-color); padding: 0.4rem 0.7rem; border-radius: var(--border-radius); font-size: 0.85rem; }
+.filters input::placeholder { color: var(--text-secondary); opacity: 0.8; }
+.filters input:focus, .filters select:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.15); }
+.filters select { cursor: pointer; }
+.filters button { margin-left: auto; padding: 0.4rem 0.8rem; font-size: 0.8rem; background: transparent; border: 1px solid var(--text-secondary); color: var(--text-secondary); border-radius: var(--border-radius); cursor: pointer; transition: all var(--transition); }
+.filters button:hover:not(:disabled) { background: var(--bg-secondary); color: var(--text-primary); border-color: var(--text-primary); }
+.filters button:disabled { opacity: 0.5; cursor: not-allowed; }
 
-/* === Main Content Area === */
-.admin-main-content {
-  flex-grow: 1; /* Allow main content to take remaining space */
-  display: flex;
-  flex-direction: column; /* Stack header and view content vertically */
-  overflow-y: auto; /* Allow scrolling if content overflows */
-  height: 100vh; /* Ensure it takes full viewport height */
-  box-sizing: border-box;
-}
-
-/* === Header within Main Content === */
-.admin-header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end; /* Pushes content (profile dropdown) to the right */
-  padding: 0.75rem 1.5rem;
-  background-color: var(--bg-secondary, #ffffff);
-  border-bottom: 1px solid var(--border-color, #e9ecef);
-  flex-shrink: 0; /* Prevent header from shrinking */
-  min-height: 4.5rem; /* Match navbar height if desired */
-  box-sizing: border-box;
-}
-
-.admin-header .profile-dropdown {
-  /* No margin-left: auto needed if header uses justify-content: flex-end */
-  position: relative;
-}
-
-/* Profile Dropdown Styles (Assume these exist globally or copy here) */
-.profile-pic { width: 36px; height: 36px; border-radius: 50%; cursor: pointer; object-fit: cover; display: block; border: 1px solid var(--border-color, #dee2e6); }
-.profile-menu { position: absolute; top: calc(100% + 10px); right: 0; width: 220px; background-color: var(--bg-secondary, #ffffff); border-radius: var(--border-radius, 4px); border: 1px solid var(--border-color, #e9ecef); box-shadow: 0 5px 15px var(--shadow-color, rgba(0,0,0,0.06)); padding: 0.5rem 0; list-style: none; z-index: 1000; }
-.profile-menu li { color: var(--text-primary, #212529); font-size: 0.9rem; }
-.profile-menu li.profile-email { padding: 0.6rem 1rem; font-weight: 500; border-bottom: 1px solid var(--border-color, #e9ecef); margin-bottom: 0.5rem; color: var(--text-secondary, #495057); word-break: break-all; font-size: 0.85rem; }
-.profile-menu li button { width: 100%; background: none; border: none; color: var(--text-primary, #212529); text-align: left; padding: 0.6rem 1rem; cursor: pointer; transition: background 0.2s ease; font-size: inherit; font-family: inherit; }
-.profile-menu li button:hover { background-color: var(--bg-hover, #f8f9fa); color: var(--accent-primary, #0056b3); }
-
-
-/* === View Content Styling === */
-.dashboard-view-content {
-  padding: 1.5rem 2rem; /* Padding for the content area */
-  flex-grow: 1; /* Allow content to fill remaining space */
-  overflow-y: auto; /* Scroll within the view if needed */
-}
-
-.dashboard-view-content h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-primary, #343a40);
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-}
-
-/* Metrics Row */
+/* Metrics Row Styling (with Colors) */
 .metrics-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
-  gap: 1rem;
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust min width */
+  gap: 1rem; /* Space between metric cards */
+  margin-bottom: 1.5rem; /* Space below metrics row */
 }
-
 .metric-card {
-  background-color: var(--bg-secondary, #ffffff);
-  padding: 1rem 1.25rem;
-  border-radius: var(--border-radius, 6px);
-  border: 1px solid var(--border-color, #e9ecef);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  background: var(--bg-secondary); /* Default background */
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  padding: 1rem 1.25rem; /* Adjust padding */
   text-align: center;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: none;
+  position: relative;
+  transition: border-color var(--transition), transform var(--transition), background-color var(--transition);
+  cursor: pointer; /* Indicate clickable */
 }
-.metric-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+.metric-card:hover,
+.metric-card:focus {
+  transform: none;
+  border-color: var(--accent-primary); /* Blue border on hover/focus */
+  outline: none;
 }
+/* Style for card when its status filter is active */
 .metric-card.active-filter {
-  border-left: 4px solid var(--accent-primary);
-  font-weight: bold;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2); /* Add a subtle glow */
+  /* Keep background based on status below */
 }
 .metric-card h4 {
-  margin: 0 0 0.5rem 0;
-  font-size: 0.9rem;
-  color: var(--text-secondary, #6c757d);
-  font-weight: 500;
+  font-size: 0.8rem; /* Smaller heading */
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
+  font-weight: 600; /* Slightly bolder */
 }
 .metric-card p {
-  margin: 0;
-  font-size: 1.75rem;
+  font-size: 1.8rem; /* Smaller count */
   font-weight: 600;
-  color: var(--text-primary, #343a40);
+  color: var(--text-primary);
+  line-height: 1.2;
 }
-/* Optional: Add specific colors for metrics */
-.metric-card.metric-pending { border-top: 3px solid #ffc107; }
-.metric-card.metric-approved { border-top: 3px solid #28a745; }
-.metric-card.metric-rejected { border-top: 3px solid #dc3545; }
-.metric-card.metric-clarification-requested { border-top: 3px solid #17a2b8; }
-
-
-/* Filters Bar */
-.filters {
-  display: flex;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background-color: var(--bg-secondary, #ffffff);
-  border-radius: var(--border-radius, 6px);
-  border: 1px solid var(--border-color, #e9ecef);
+/* Specific Metric Card Colors */
+.metric-card.metric-approved,
+.metric-card.metric-approved.active-filter { /* Keep color when active */
+  background-color: var(--status-approved-bg);
+  border-color: var(--status-approved-text);
 }
-.filters input[type="text"],
-.filters select {
-  padding: 0.5rem 0.8rem;
-  border: 1px solid var(--border-color, #ced4da);
-  border-radius: var(--border-radius, 4px);
-  font-size: 0.9rem;
-  font-family: inherit;
-  height: 38px; /* Consistent height */
-  box-sizing: border-box;
+.metric-card.metric-approved h4,
+.metric-card.metric-approved p {
+  color: var(--status-approved-text);
 }
-.filters input[type="text"] {
-  min-width: 180px; /* Minimum width for search */
+.metric-card.metric-pending,
+.metric-card.metric-pending.active-filter {
+  background-color: var(--status-pending-bg);
+  border-color: var(--status-pending-text);
 }
-.filters select {
-  min-width: 150px; /* Minimum width for dropdowns */
+.metric-card.metric-pending h4,
+.metric-card.metric-pending p {
+  color: var(--status-pending-text);
 }
-.filters button {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border-radius: var(--border-radius, 4px);
-  cursor: pointer;
-  background-color: var(--button-secondary-bg, #6c757d);
-  color: white;
-  border: none;
-  transition: background-color 0.2s ease;
-  height: 38px; /* Match input height */
+.metric-card.metric-rejected,
+.metric-card.metric-rejected.active-filter {
+  background-color: var(--status-rejected-bg);
+  border-color: var(--status-rejected-text);
 }
-.filters button:hover:not(:disabled) {
-  background-color: var(--button-secondary-hover-bg, #5a6268);
+.metric-card.metric-rejected h4,
+.metric-card.metric-rejected p {
+  color: var(--status-rejected-text);
 }
-.filters button:disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
+/* Total card uses default --bg-secondary, but make count blue */
+.metric-card.metric-total p {
+    color: var(--accent-primary);
+}
+.metric-card.metric-total.active-filter {
+    background-color: #e7f1fc; /* Light blue when active */
 }
 
+/* TABLE STYLING */
+.dynamic-table, .users-table { width: 100%; border-collapse: collapse; }
+.dynamic-table th, .users-table th, .dynamic-table td, .users-table td { padding: 0.85rem 1rem; text-align: left; vertical-align: middle; border-bottom: 1px solid var(--table-border-color); white-space: normal; /* Allow wrapping */ }
+.dynamic-table th, .users-table th { background: var(--table-header-bg); color: var(--text-secondary); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; border-bottom-width: 1px; border-top: 1px solid var(--table-border-color); position: sticky; top: 0; z-index: 10; }
+.dynamic-table tr:hover, .users-table tr:hover { background: var(--table-row-hover-bg); }
+.dynamic-table td, .users-table td { color: var(--text-primary); font-size: 0.9rem; }
+.dynamic-table tbody tr:last-child td, .users-table tbody tr:last-child td { border-bottom: none; }
+.dynamic-table td:last-child, .users-table td:last-child { text-align: right; white-space: nowrap; } /* Keep actions nowrap */
 
-/* Table Styles */
-.table-wrapper {
-  overflow-x: auto; /* Allow horizontal scroll on small screens */
-  background-color: var(--bg-secondary, #ffffff);
-  border: 1px solid var(--border-color, #e9ecef);
-  border-radius: var(--border-radius, 6px);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+/* STATUS SELECT STYLING (Colored) */
+.dynamic-table td .status-select,
+.users-table td select { /* Style role select in user table too */
+  padding: 0.35rem 0.6rem; border: 1px solid transparent; border-radius: var(--border-radius);
+  font-weight: 500; font-size: 0.8rem; cursor: pointer; transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  min-width: 110px; background-color: var(--bg-primary); color: var(--text-primary);
+  appearance: menulist-button; text-align: center;
 }
-
-.dynamic-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
+.dynamic-table td .status-select:focus,
+.users-table td select:focus {
+    outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.15);
 }
+/* Apply colors based on the class derived from the selected value */
+.status-select.pending { background-color: var(--status-pending-bg); color: var(--status-pending-text); border-color: var(--status-pending-text); }
+.status-select.approved { background-color: var(--status-approved-bg); color: var(--status-approved-text); border-color: var(--status-approved-text); }
+.status-select.rejected { background-color: var(--status-rejected-bg); color: var(--status-rejected-text); border-color: var(--status-rejected-text); }
 
-.dynamic-table th,
-.dynamic-table td {
-  padding: 0.8rem 1rem; /* Adjust padding */
-  text-align: left;
-  border-bottom: 1px solid var(--border-color, #e9ecef);
-  white-space: nowrap; /* Prevent text wrapping initially */
+/* AMOUNT INPUT */
+.dynamic-table input[type="number"], .users-table input[type="number"] { width: 80px; padding: 0.4rem 0.6rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); background: var(--bg-primary); color: var(--text-primary); font-size: 0.9rem; text-align: right; }
+.dynamic-table input[type="number"]:focus, .users-table input[type="number"]:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.15); }
+
+/* ACTION BUTTONS (Text Links) */
+.actions { display: flex; gap: 0.75rem; justify-content: flex-end; align-items: center; }
+.actions button, .actions .edit-btn, .actions .delete-btn { border: none; padding: 0; border-radius: 0; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: color var(--transition), text-decoration var(--transition); background: transparent; text-decoration: none; line-height: 1; }
+.actions button:hover, .actions .edit-btn:hover, .actions .delete-btn:hover { opacity: 1; text-decoration: underline; }
+.actions .edit-btn { color: var(--accent-primary); }
+.actions .delete-btn { color: var(--status-rejected-text); }
+.actions button:not(.edit-btn):not(.delete-btn) { color: var(--text-secondary); }
+.actions button:not(.edit-btn):not(.delete-btn):hover { color: var(--text-primary); }
+
+/* MANAGE USERS FORM */
+.users-view { display: flex; flex-direction: column; height: 100%; box-sizing: border-box; }
+.users-content { display: flex; flex: 1; gap: 2rem; margin-top: 1rem; min-height: 0; }
+.users-table-wrapper { flex: 2; overflow-y: auto; border: 1px solid var(--border-color); border-radius: var(--border-radius); background: var(--bg-primary); min-height: 0;}
+.add-user-side { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; min-width: 280px; }
+.add-user-form { display: flex; flex-direction: column; gap: 1rem; margin: 0; padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); background-color: var(--bg-secondary); }
+.add-user-form h4 { margin: 0 0 1rem 0; font-weight: 600; color: var(--text-primary); }
+.add-user-form label { display: flex; flex-direction: column; font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); gap: 0.25rem; }
+.add-user-form input, .add-user-form select { padding: 0.5rem 0.75rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); background: var(--bg-primary); color: var(--text-primary); font-size: 0.9rem; }
+.add-user-form select { cursor: pointer; }
+.add-user-form input:focus, .add-user-form select:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.15); }
+.add-user-btn { padding: 0.6rem 1.2rem; background: var(--accent-primary); color: #fff; border: none; border-radius: var(--border-radius); font-weight: 500; cursor: pointer; transition: background 0.2s; font-size: 0.9rem; margin-top: 0.5rem; }
+.add-user-btn:hover { background: #004085; }
+
+/* ANALYTICS PANE */
+.analytics-pane { padding: 1rem 0; }
+.analytics-pane h2 { margin: 0 0 1rem 0; color: var(--text-primary); font-weight: 600; font-size: 1.5rem; }
+.analytics-pane h4 { color: var(--text-primary); margin-bottom: 1rem; font-weight: 600; font-size: 1.1rem; }
+
+/* Inline search box */
+.inline-header-input { margin-top: 0.3rem; width: 100%; padding: 0.35rem 0.5rem; background: var(--bg-primary); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: var(--border-radius); font-size: 0.85rem; }
+.inline-header-input:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.15); }
+
+/* Sticky Header */
+.users-table-wrapper thead, .table-wrapper thead { position: sticky; top: 0; z-index: 1; }
+
+/* Responsive rules */
+@media (max-width: 768px) {
+    .admin-dashboard { flex-direction: column; height: auto; }
+    .nav-pane { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); flex-direction: row; }
+    .nav-pane-content { flex-direction: row; justify-content: space-around; padding: 0.5rem; align-items: center; flex-wrap: wrap; }
+    .nav-pane h3 { display: none; }
+    .nav-pane button { margin: 0.25rem; }
+    .nav-pane .sign-out { margin: 0.25rem; margin-left: auto; }
+    .table-pane, .users-view { padding: 1rem; height: auto; }
+    .users-content { flex-direction: column; }
+    .add-user-side { margin-top: 1rem; }
+    .actions button { font-size: 0.75rem; }
+    .dynamic-table th, .users-table th, .dynamic-table td, .users-table td { white-space: normal; }
 }
-
-.dynamic-table th {
-  background-color: var(--table-header-bg, #f8f9fa);
-  font-weight: 600;
-  color: var(--text-secondary, #495057);
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.5px;
+@media (max-width: 480px) {
+    .metrics-row { grid-template-columns: 1fr; gap: 1rem; }
+    .metric-card { padding: 1rem;} .metric-card p { font-size: 1.8rem; }
+    .filters { gap: 0.5rem; }
+    .filters input, .filters select, .filters button { width: 100%; margin-left: 0 !important; }
+    .delete-btn, .edit-btn, .save-btn, .cancel-btn { padding: 0.3rem 0.5rem; font-size: 0.75rem; }
+    .dashboard-content { padding: 1rem; gap: 1rem; } /* Example */
+    .requests-card { padding: 1rem; } /* Example */
+    .requests-card h3 { font-size: 1.1rem; margin-bottom: 1rem;}
 }
-.dynamic-table th[style*="cursor: pointer"]:hover {
-  background-color: var(--table-header-hover-bg, #e9ecef);
-}
-
-.dynamic-table tbody tr:hover {
-  background-color: var(--table-row-hover-bg, #f1f3f5);
-}
-
-.dynamic-table td {
-  color: var(--text-primary, #343a40);
-}
-
-/* Status Select Styling */
-.status-select {
-  padding: 0.3rem 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  min-width: 120px; /* Adjust as needed */
-  background-color: #fff;
-  cursor: pointer;
-  font-size: 0.85rem; /* Slightly smaller font */
-  appearance: none; /* Remove default arrow */
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); /* Basic arrow */
-  background-repeat: no-repeat;
-  background-position: right 0.7em top 50%;
-  background-size: 0.65em auto;
-  padding-right: 2em; /* Space for arrow */
-}
-.status-select.status-pending { border-color: #ffc107; background-color: #fff9e6; color: #856404; }
-.status-select.status-approved { border-color: #28a745; background-color: #eaf6ec; color: #155724; }
-.status-select.status-rejected { border-color: #dc3545; background-color: #fbe9eb; color: #721c24; }
-.status-select.status-clarification-requested {
-    border-color: #17a2b8;
-    background-color: #e8f7f9;
-    color: #0c5460;
-    min-width: 160px; /* Ensure enough width */
-}
-
-/* Action Feedback Message */
-.action-feedback {
-    font-size: 0.8rem;
-    margin-top: 4px;
-    padding: 3px 5px; /* Slightly more padding */
-    border-radius: 3px;
-    display: inline-block; /* Prevent taking full width */
-    max-width: 100%; /* Ensure it doesn't overflow cell */
-}
-.action-feedback.success-message { background-color: var(--status-approved-bg); color: var(--status-approved-text); }
-.action-feedback.error-message { background-color: var(--status-rejected-bg); color: var(--status-rejected-text); }
-
-
-/* Action Buttons in Table */
-.dynamic-table .actions {
-  white-space: nowrap; /* Keep buttons on one line */
-  text-align: right; /* Align buttons to the right of the cell */
-}
-.action-btn {
-  background: none;
-  border: none;
-  padding: 0.3rem 0.5rem; /* Adjust padding */
-  margin-left: 0.4rem; /* Space between buttons */
-  cursor: pointer;
-  font-size: 1rem; /* Adjust icon size */
-  color: var(--text-secondary, #6c757d);
-  transition: color 0.2s ease;
-  vertical-align: middle; /* Align icons nicely */
-}
-.action-btn:hover {
-  color: var(--text-primary, #343a40);
-}
-.action-btn.approve-btn:hover { color: #28a745; }
-.action-btn.reject-btn:hover { color: #dc3545; }
-.action-btn.clarify-btn:hover { color: #17a2b8; }
-.action-btn.delete-btn:hover { color: #bd2130; }
-
-
-/* General Message Styles (for errors etc.) */
-.message { padding: 0.8rem 1.2rem; margin-bottom: 1.5rem; border-radius: var(--border-radius); font-size: 0.9rem; border: 1px solid transparent; }
-.error-message { color: var(--status-rejected-text, #721c24); background-color: var(--status-rejected-bg, #f8d7da); border-color: var(--status-rejected-border, #f5c6cb); }
-.success-message { color: var(--status-approved-text, #155724); background-color: var(--status-approved-bg, #d4edda); border-color: var(--status-approved-border, #c3e6cb); }
-
-
-/* Spinner */
-.spinner {
-  display: inline-block; /* Or block with margin auto for centering */
-  margin: 2rem auto; /* Example centering */
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-left-color: var(--accent-primary, #0056b3);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-
-/* Modal Styles */
-.modal-backdrop {
-  position: fixed; z-index: 1040; left: 0; top: 0;
-  width: 100%; height: 100%; overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex; align-items: center; justify-content: center;
-}
-.modal-content {
-  background-color: var(--bg-secondary, #fefefe); margin: auto; padding: 25px 30px;
-  border: 1px solid var(--border-color, #ccc); border-radius: var(--border-radius, 8px);
-  width: 90%; max-width: 500px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  animation: fadeInModal 0.3s ease-out;
-}
-.modal-content h2 { margin-top: 0; margin-bottom: 1.5rem; text-align: center; color: var(--text-primary); }
-.modal-content p { margin-bottom: 0.75rem; line-height: 1.5; color: var(--text-secondary); }
-.modal-content p strong { color: var(--text-primary); }
-.modal-content .form-group { margin-bottom: 1rem; }
-.modal-content .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 500; color: var(--text-secondary); }
-.modal-content .modal-textarea {
-    width: 100%; padding: 0.6rem 0.8rem; border: 1px solid var(--border-color, #ccc);
-    border-radius: var(--border-radius, 4px); font-family: inherit; font-size: 0.95rem;
-    box-sizing: border-box; resize: vertical; min-height: 80px;
-    background-color: var(--bg-primary, #ffffff); color: var(--text-primary, #212529);
-}
-.modal-content .modal-textarea:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.15); }
-.modal-actions { display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-color, #eee); }
-.modal-actions .btn { padding: 0.6rem 1.2rem; font-weight: 500; font-size: 0.9rem; border: 1px solid; border-radius: var(--border-radius, 4px); cursor: pointer; transition: all 0.2s ease; }
-.modal-actions .btn:disabled { opacity: 0.6; cursor: not-allowed; }
-.modal-actions .modal-btn-secondary { background-color: var(--bg-secondary, #f8f9fa); color: var(--text-secondary, #495057); border-color: var(--border-color, #ccc); }
-.modal-actions .modal-btn-secondary:hover:not(:disabled) { background-color: var(--border-color, #e9ecef); border-color: var(--text-secondary, #adb5bd); }
-.modal-actions .modal-btn-primary { background: var(--accent-primary, #0056b3); color: white; border-color: var(--accent-primary, #0056b3); }
-.modal-actions .modal-btn-primary:hover:not(:disabled) { background: #004085; border-color: #004085; }
-.modal-content .message { width: 100%; margin-top: 1rem; margin-bottom: 0; }
-@keyframes fadeInModal { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-
-
-/* Responsive Adjustments */
-@media (max-width: 992px) { /* Tablet */
-  .admin-dashboard-layout { flex-direction: column; } /* Stack sidebar and content */
-  .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); flex-direction: row; /* Arrange items horizontally */ justify-content: space-around; /* Example alignment */ padding: 0.5rem 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-  .sidebar .logo { padding: 0.5rem; margin: 0; border: none; font-size: 1.5rem; }
-  .sidebar-nav { flex-direction: row; align-items: center; flex-grow: 1; justify-content: flex-end; } /* Align nav items */
-  .sidebar-nav .menu-item { border-left: none; border-bottom: 3px solid transparent; padding: 0.8rem 1rem; } /* Use bottom border */
-  .sidebar-nav .menu-item.selected { border-bottom-color: var(--accent-primary); border-left-color: transparent; }
-  .sidebar-nav .sign-out-link { margin-top: 0; padding-top: 0; border-top: none; margin-left: 1rem; }
-  .sidebar-nav > div[style*="flex-grow: 1"] { display: none; } /* Hide spacer */
-
-  .admin-main-content { height: calc(100vh - 4rem); } /* Adjust height considering horizontal sidebar */
-  .admin-header { padding: 0.5rem 1rem; min-height: auto; }
-  .dashboard-view-content { padding: 1rem; }
-  .metrics-row { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
-  .metric-card p { font-size: 1.5rem; }
-  .filters { flex-direction: column; align-items: stretch; padding: 0.75rem; }
-  .filters button { margin-left: 0 !important; } /* Override margin */
-}
-
-@media (max-width: 768px) { /* Smaller Tablet/Large Mobile */
-    .dynamic-table th, .dynamic-table td { padding: 0.6rem 0.8rem; font-size: 0.85rem; }
-    .status-select { min-width: 100px; font-size: 0.8rem; }
-    .status-select.status-clarification-requested { min-width: 130px; }
-    .action-btn { font-size: 0.9rem; padding: 0.2rem 0.4rem; }
-    .dashboard-view-content h2 { font-size: 1.3rem; }
-}
-
-@media (max-width: 576px) { /* Mobile */
-  .admin-header .profile-dropdown { /* Ensure dropdown doesn't cause overflow */ }
-  .metrics-row { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.5rem; }
-  .metric-card { padding: 0.75rem; }
-  .metric-card h4 { font-size: 0.75rem; }
-  .metric-card p { font-size: 1.25rem; }
-  .modal-content { width: 95%; padding: 15px 20px; }
-  .modal-actions { flex-direction: column; gap: 0.5rem; }
-  .modal-actions .btn { width: 100%; }
-}
-
