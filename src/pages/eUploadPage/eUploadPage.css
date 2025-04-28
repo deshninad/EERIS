@@ -1,228 +1,145 @@
-/* ─── Variables ───────────────────────────────────────────────── */
+/* ──────────────────────────────────────────────────────────────
+   EUploadPage.css  •  Pastel-green gradient + Google Sans family
+   Matches the visual language of Dashboard / Policies pages
+   ──────────────────────────────────────────────────────────── */
+
+/*  1.  Global tokens  ---------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap");
+
 :root {
-  --bg-light:     #f3f7f9;
-  --bg-page:      #ffffff;
-  --border:       #e2e8f0;
-  --text-dark:    #1f2937;
-  --text-light:   #4b5563;
-  --accent:       #2563eb;
-  --err:          #ef4444;
-  --radius:       8px;
-  --shadow:       rgba(0,0,0,0.05);
-  --trans:        0.2s ease;
+  --grad-1: #e7f9e7;          /* light mint   */
+  --grad-2: #d2f4d2;          /* soft green   */
+  --grad-3: #f0fdfa;          /* icy white    */
+
+  --bg-card:   #ffffff;
+  --border:    #e2e8f0;
+  --text-dark: #1f2937;
+  --text-sub:  #4b5563;
+  --accent:    #2f855a;       /* green button / focus ring   */
+  --accent-dark: #1f6c46;
+  --error:     #c53030;
+  --success:   #2f855a;
+
+  --radius: 10px;
+  --shadow: 0 10px 25px rgba(0,0,0,.06);
+  --trans:  .2s ease;
 }
 
-/* ─── Global Reset ────────────────────────────────────────────── */
-html, body {
-  margin: 0; padding: 0;
-  width: 100%; height: 100%;
-  font-family: system-ui, sans-serif;
-  background: var(--bg-light);
+/*  2.  Resets  ------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+html,body {
+  margin:0; height:100%; width:100%;
+  font-family: "Google Sans", sans-serif;
   color: var(--text-dark);
+  background: linear-gradient(
+      135deg,
+      var(--grad-1) 0%,
+      var(--grad-2) 50%,
+      var(--grad-3) 100%
+  );
+  background-size: 400% 400%;
+  animation: bgShift 15s ease infinite;
+}
+@keyframes bgShift {
+  0%,100% { background-position: 0% 50%; }
+  50%     { background-position: 100% 50%; }
 }
 
-/* ─── Page Wrapper ───────────────────────────────────────────── */
-.upload-page {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+/*  3.  Layout containers  ------------------------------------ */
+.upload-page         { display:flex; flex-direction:column; height:100%; }
+.upload-header       {
+  height:60px; padding:0 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+  backdrop-filter: blur(6px);
+  background: rgba(255,255,255,.8);
+  border-bottom:1px solid var(--border);
+}
+.header-logo         { font-size:1.4rem; font-weight:700; letter-spacing:.5px; }
+.nav-btn             {
+  background:none; border:none; color:var(--accent);
+  font-weight:500; cursor:pointer; transition:color var(--trans);
+}
+.nav-btn:hover       { color:var(--accent-dark); }
+
+.content-area        {
+  flex:1; display:flex; justify-content:center; align-items:flex-start;
+  padding:3vh 1rem 6vh;
+  overflow-y:auto;
 }
 
-/* ─── Top Header ─────────────────────────────────────────────── */
-.upload-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
-  background: var(--bg-page);
-  border-bottom: 1px solid var(--border);
-  height: 60px;
-  box-shadow: 0 2px 4px var(--shadow);
-}
-
-.header-logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--accent);
-  cursor: pointer;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.nav-btn {
-  background: none;
-  border: none;
-  color: var(--accent);
-  font-size: 1rem;
-  cursor: pointer;
-  transition: color var(--trans);
-}
-.nav-btn:hover {
-  color: #1e40af;
-}
-
-/* ─── Profile Dropdown ───────────────────────────────────────── */
-.profile-dropdown {
-  position: relative;
-}
-
-.profile-icon {
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-}
-
-.profile-menu {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  list-style: none;
-  margin: 0;
-  padding: 0.5rem 0;
-  background: var(--bg-page);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: 0 4px 12px var(--shadow);
-  min-width: 160px;
-  z-index: 10;
-}
-
-.profile-menu li {
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-  font-size: 0.95rem;
-  color: var(--text-dark);
-}
-.profile-menu .profile-email {
-  font-weight: bold;
-  cursor: default;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 0.5rem;
-}
-.profile-menu li:hover:not(.profile-email) {
-  background: var(--bg-light);
-}
-
-/* ─── Main Content ───────────────────────────────────────────── */
-.content-area {
-  flex: 1;
-  overflow-y: auto;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background: var(--bg-light);
-}
-
-/* ─── Upload Card ────────────────────────────────────────────── */
+/*  4.  Card  -------------------------------------------------- */
 .upload-card {
-  background: var(--bg-page);
-  border-radius: var(--radius);
-  padding: 2.5rem;
-  max-width: 600px;
-  width: 100%;
-  box-shadow: 0 4px 12px var(--shadow);
+  width:100%; max-width:600px;
+  border-radius:var(--radius);
+  background:var(--bg-card);
+  box-shadow:var(--shadow);
+  padding:2.5rem 2.75rem;
 }
-.upload-card h2 {
-  text-align: center;
-  margin: 0;
-  font-size: 1.75rem;
+.upload-card h2   { margin:0 0 .25rem; font-size:1.9rem; text-align:center; }
+.upload-card .sub{ margin:0 0 2rem; color:var(--text-sub); text-align:center; }
+
+/*  5.  Alerts  ------------------------------------------------ */
+.alert {
+  margin-bottom:1.25rem; padding:.9rem 1rem;
+  border-radius:var(--radius); text-align:center; font-weight:500;
 }
-.upload-card .sub {
-  text-align: center;
-  color: var(--text-light);
-  margin: 0.5rem 0 1.75rem;
+.alert.error   { background:#fed7d7; color:var(--error); }
+.alert.success { background:#c6f6d5; color:var(--success); }
+
+/*  6.  Form elements  ---------------------------------------- */
+label { font-weight:600; font-size:.95rem; display:block; margin:.9rem 0 .35rem; }
+
+input[type="file"],
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select, textarea {
+  width:100%; font-size:1rem; padding:.75rem .9rem;
+  border:1px solid var(--border); border-radius:var(--radius);
+  transition:border var(--trans), box-shadow var(--trans);
+}
+textarea          { min-height:110px; resize:vertical; }
+input:focus,
+select:focus,
+textarea:focus    {
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(47,133,90,.25);
+  outline:none;
 }
 
-/* ─── Alerts ─────────────────────────────────────────────────── */
-.alert.error {
-  background: #fee2e2;
-  color: var(--err);
-  padding: 0.75rem;
-  border-radius: var(--radius);
-  margin-bottom: 1rem;
-  text-align: center;
-}
-.alert.success {
-  background: #d1fae5;
-  color: var(--accent);
-  padding: 0.75rem;
-  border-radius: var(--radius);
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-/* ─── Form Elements ─────────────────────────────────────────── */
-.upload-card label {
-  display: block;
-  margin: 1rem 0 0.4rem;
-  font-weight: 500;
-}
-.upload-card input[type="file"],
-.upload-card input[type="text"],
-.upload-card input[type="date"],
-.upload-card input[type="number"],
-.upload-card select,
-.upload-card textarea {
-  width: 100%;
-  padding: 0.7rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 1rem;
-  transition: border var(--trans), box-shadow var(--trans);
-  box-sizing: border-box;
-}
-.upload-card textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-.upload-card input:focus,
-.upload-card select:focus,
-.upload-card textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-}
-
-/* ─── Image Preview ──────────────────────────────────────────── */
+/* image preview */
 .preview {
-  display: block;
-  margin: 0.75rem auto;
-  max-width: 100%;
-  max-height: 200px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  display:block; max-width:100%; max-height:200px;
+  margin:.9rem auto 0; border:1px solid var(--border); border-radius:var(--radius);
 }
 
-/* ─── Upload Button ──────────────────────────────────────────── */
+/*  7.  Buttons  ---------------------------------------------- */
 .btn-upload {
-  margin-top: 1.75rem;
-  width: 100%;
-  padding: 0.85rem;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius);
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background var(--trans), opacity var(--trans);
+  margin-top:2rem;
+  width:100%; padding:.9rem 1rem;
+  border:none; border-radius:var(--radius);
+  font-weight:600; font-size:1rem; color:#fff;
+  background:var(--accent); cursor:pointer;
+  transition:background var(--trans), transform var(--trans), opacity var(--trans);
 }
-.btn-upload:hover:not(:disabled) {
-  background: #1e40af;
-}
-.btn-upload:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
+.btn-upload:hover:not(:disabled) { background:var(--accent-dark); transform:translateY(-2px); }
+.btn-upload:disabled            { opacity:.5; cursor:not-allowed; }
 
-/* ─── Responsive ─────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .upload-header { padding: 0 1rem; }
-  .content-area { padding: 1rem; }
-  .upload-card { padding: 1.5rem; }
+/*  8.  Profile picture  -------------------------------------- */
+.profile-dropdown { position:relative; }
+.profile-icon     { width:32px; height:32px; cursor:pointer; }
+.profile-menu     {
+  position:absolute; top:42px; right:0; z-index:60;
+  min-width:160px; padding:.5rem 0; list-style:none;
+  border:1px solid var(--border); border-radius:var(--radius);
+  background:var(--bg-card); box-shadow:var(--shadow);
+}
+.profile-menu li         { padding:.6rem 1rem; font-size:.9rem; cursor:pointer; }
+.profile-menu li:hover   { background:var(--grad-1); }
+.profile-email           { font-weight:600; cursor:default; }
+
+/*  9.  Responsive tweaks  ------------------------------------ */
+@media(max-width:768px){
+  .upload-header{ padding:0 1rem; }
+  .upload-card  { padding:2rem 1.5rem; }
 }

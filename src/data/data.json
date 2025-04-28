@@ -4162,5 +4162,16 @@
     "name": "neerajpillai",
     "date": "2025-03-24",
     "notes": "clothing"
+  },
+  {
+    "id": 1004,
+    "email": "snagraj@usf.edu",
+    "expenseType": "Office Supplies",
+    "category": "Office Supplies",
+    "status": "Pending",
+    "amount": 7804,
+    "name": "snagraj",
+    "date": "2025-03-24",
+    "notes": ""
   }
 ]
